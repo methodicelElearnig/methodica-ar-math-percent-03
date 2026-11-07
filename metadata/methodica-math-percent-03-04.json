@@ -1,0 +1,33 @@
+{
+  "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-04/",
+  "title": "مهمّة في الصف",
+  "learningUnitId": "methodica-math-percent-03",
+  "componentPurpose": "practice",
+  "isAssessment": false,
+  "recommendedAfterFail": [],
+  "isRequired": true,
+  "relativeDifficulty": 3,
+  "masteryLevel": null,
+  "order": 4,
+  "depthLevel": "core-curriculum-basic",
+  "cognitiveLevels": [
+    "process-thinking"
+  ],
+  "languages": [
+    "Arabic"
+  ],
+  "skills": [],
+  "estimatedTimeInMinutes": 1,
+  "createdAt": "2026-10-25T00:00:00.000Z",
+  "updatedAt": "2026-10-25T00:00:00.000Z",
+  "subContent": [
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-04/methodica-math-percent-03-04-001/",
+      "title": "استطلاع القمصان في الصف",
+      "informationToBot": "هدف البند: تفعيل المتعلّم في الصف: جمع معطيات حقيقية من المحيط وحساب النسب المئوية بمساعدة التقدير أو جدول التناسب. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: أن يعدّ كم طالبًا في الصف، وكم منهم يرتدي قميصًا أسود وكم منهم قميصًا أحمر، وأن يحسب النسب المئوية لكل مجموعة ويقارن بينها. اتجاهات التفكير والاستراتيجيات: إذا كانت الأعداد مريحة - التقدير؛ وإلا - جدول التناسب. في النهاية يستنتج باختيار \"أكبر من / أصغر من / تساوي\" بالنسبة لنسبة أصحاب القمصان السوداء مقارنةً بالحمراء. أخطاء شائعة: حساب النسب المئوية بالنسبة إلى مجموعة خاطئة وليس بالنسبة إلى مجمل طلاب الصف. معلومات إضافية: مهمة صفية تُنفَّذ في الدفتر وفي الميدان. تُجمع المعطيات فعليًا ولا تُجمع كإجابة تُقيَّم، ولذلك لا توجد أسئلة في البند. في نهاية المهمة يُختار من قائمة منسدلة استنتاجٌ لا يُفحص (لأنه يعتمد على معطيات الصف). لقطة شاشة: لم تُرفق.",
+      "contentType": "project-or-inquiry-task",
+      "mediaFormat": "text",
+      "questions": []
+    }
+  ]
+}

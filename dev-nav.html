@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8">
+<title>DEV — الهدف 4.3 (Unit Navigator)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: #111; overflow: hidden; font-family: monospace; }
+
+  #dev-header {
+    direction: ltr;
+    background: rgba(0,0,0,0.92);
+    border-bottom: 2px solid #ffe600;
+    color: #fff;
+    user-select: none;
+  }
+
+  .bar { display: flex; align-items: center; gap: 10px; padding: 8px 14px; flex-wrap: nowrap; }
+  .bar + .bar { border-top: 1px solid #2a2a2a; }
+  .bar-label { color: #888; font-size: 11px; letter-spacing: 0.5px; flex-shrink: 0; }
+
+  /* Component selector */
+  #comp-row { overflow-x: auto; }
+  .comp-btn {
+    background: transparent; border: 1px solid #555; color: #ccc;
+    border-radius: 6px; padding: 5px 12px; cursor: pointer; font-size: 13px;
+    font-family: monospace; flex-shrink: 0; white-space: nowrap;
+  }
+  .comp-btn:hover { border-color: #ffe600; color: #ffe600; }
+  .comp-btn.active { background: #ffe600; color: #000; border-color: #ffe600; font-weight: 700; }
+
+  /* Screen selector */
+  #screen-row { overflow-x: auto; }
+  .screen-btn {
+    background: #1a1a1a; border: 1px solid #444; color: #aaa;
+    border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 12px;
+    font-family: monospace; flex-shrink: 0; white-space: nowrap;
+  }
+  .screen-btn:hover { border-color: #ffe600; color: #ffe600; }
+  .screen-btn.active { background: #ffe600; color: #000; border-color: #ffe600; font-weight: 700; }
+
+  /* Status / prev-next bar */
+  #status-row button {
+    background: transparent; border: 1px solid #ffe600; color: #ffe600;
+    border-radius: 8px; padding: 6px 16px; cursor: pointer; font-size: 18px;
+    font-family: monospace;
+  }
+  #status-row button:hover { background: #ffe600; color: #000; }
+  #status-row button:disabled { opacity: 0.3; cursor: default; background: transparent; color: #ffe600; }
+  #jump-input {
+    width: 52px; text-align: center; background: #1a1a1a;
+    color: #ffe600; border: 1px solid #ffe600; border-radius: 6px;
+    font-size: 15px; font-family: monospace; padding: 5px;
+  }
+  #status-text { color: #ffe600; font-size: 13px; white-space: nowrap; }
+  #status-sub { color: #888; font-size: 12px; white-space: nowrap; }
+  #kbd-hint { color: #555; font-size: 11px; margin-left: auto; white-space: nowrap; }
+
+  /* ── QA presentation stage ──────────────────────────────────────────
+     The unit renders inside a FIXED 1280×720 (16:9) host box — the real
+     production embedding frame. This box's own width/height never change;
+     only the uniform CSS `transform: scale()` applied to it changes as the
+     browser window resizes, so the iframe's internal viewport (what the
+     module's own scaleApp() measures) is always exactly 1280×720, exactly
+     as in production. The DEV toolbar lives entirely outside this stage
+     and never resizes, reshapes, or reaches into the box itself. */
+  #stage {
+    position: absolute; inset: 0; top: var(--header-h, 0px);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    background:
+      repeating-conic-gradient(#1a1a1a 0% 25%, #151515 0% 50%) 0 0 / 24px 24px;
+  }
+  #canvas-box {
+    width: 1280px; height: 720px; flex-shrink: 0;
+    transform-origin: center center;
+    box-shadow: 0 0 0 1px rgba(255,230,0,0.35), 0 10px 40px rgba(0,0,0,0.6);
+    background: #fff;
+  }
+  #lomdah-frame { width: 100%; height: 100%; border: none; display: block; background: #fff; }
+</style>
+</head>
+<body>
+
+<div id="dev-header">
+  <div class="bar" id="comp-row">
+    <span class="bar-label">المكوّن&nbsp;(UNIT)</span>
+  </div>
+  <div class="bar" id="screen-row">
+    <span class="bar-label">الشاشة&nbsp;(SCREEN)</span>
+  </div>
+  <div class="bar" id="status-row">
+    <!-- RTL screen flow: next (◀) on LEFT, prev (▶) on RIGHT — matches per-component dev bars -->
+    <button id="btn-next" title="الشاشة التالية (Ctrl+←)">◀ Next</button>
+    <input id="jump-input" type="number" min="0" max="0" value="0" title="انتقال مباشر إلى رقم شاشة مطلق (0–71)">
+    <button id="btn-prev" title="الشاشة السابقة (Ctrl+→)">▶ Prev</button>
+    <span id="status-text"></span>
+    <span id="status-sub"></span>
+    <span id="kbd-hint">Ctrl+← next · Ctrl+→ prev · Enter in box = jump</span>
+  </div>
+</div>
+
+<div id="stage">
+  <div id="canvas-box">
+    <iframe id="lomdah-frame" src="about:blank"></iframe>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+// Shared across all 7 component builds (verified identical in each index_dev.html).
+var SCREEN_NAMES = ['s0','s1','s2','s3','s4','s5','s6','s7','s8','s9','s16','s17','s18','s19','s20','s21','s22','s23','s24','s25','s26','s27','s28','s29','s30','s31','s32','s33','s34','s35','s36','s37','s38','s39','s40','s41','s42','s43','s44','s45','s46','s47','s48','s49','s50','s51','s52','s53','s54','s55','s56','s57','s58','s59','s60','s61','s62','s63','s64','s65','s66','s67','s68','s69','s70','s71','s72','s73','s74','s75','s76','s77'];
+function nameFor(n) { return SCREEN_NAMES[n] || ('s' + n); }
+
+function range(a, b) {
+  var r = [];
+  for (var i = a; i <= b; i++) r.push(i);
+  return r;
+}
+
+// Absolute screen lists each component build owns (from each component's own
+// index_dev.html — the unit's 0..70 sequence; n=71 / s77 and n=72 / s78 were removed). Listed explicitly
+// (not just first/last) so deleted screens (n=5, 6, 19, 21, 42, 43) are skipped
+// and a non-uniform insertion (e.g. decimal screens) can be represented directly.
+var COMPONENTS = [
+  { id: '03-01', dir: 'methodica-math-percent-03-01', screens: [0, 1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 22, 23, 24, 25, 26] },
+  { id: '03-02', dir: 'methodica-math-percent-03-02', screens: range(27, 33) },
+  { id: '03-03', dir: 'methodica-math-percent-03-03', screens: [36, 37, 38, 39, 40, 41, 44, 45, 46, 47, 48] },
+  { id: '03-04', dir: 'methodica-math-percent-03-04', screens: range(49, 51) },
+  { id: '03-05', dir: 'methodica-math-percent-03-05', screens: range(52, 59) },
+  { id: '03-06', dir: 'methodica-math-percent-03-06', screens: range(60, 65) },
+  { id: '03-07', dir: 'methodica-math-percent-03-07', screens: range(66, 70) } // s77 (n=71) and s78 end screen (n=72) removed
+];
+var MAX_N = SCREEN_NAMES.length - 1;
+
+var frame      = document.getElementById('lomdah-frame');
+var compRow    = document.getElementById('comp-row');
+var screenRow  = document.getElementById('screen-row');
+var jumpInput  = document.getElementById('jump-input');
+var btnPrev    = document.getElementById('btn-prev');
+var btnNext    = document.getElementById('btn-next');
+var statusText = document.getElementById('status-text');
+var statusSub  = document.getElementById('status-sub');
+
+jumpInput.max = MAX_N;
+
+var compIndex     = 0;   // index into COMPONENTS
+var currentScreen = 0;   // absolute n, 0..MAX_N
+var pendingTarget = null; // absolute n to DEV_GOTO once the newly-loaded frame is ready
+
+function componentContains(idx, n) {
+  return COMPONENTS[idx].screens.indexOf(n) !== -1;
+}
+
+// Prefer staying in the current component when a screen number is shared
+// by two adjacent builds (the split boundary, e.g. n=27 between 03-01/03-02).
+function findComponentForScreen(n, preferIdx) {
+  if (preferIdx != null && componentContains(preferIdx, n)) return preferIdx;
+  for (var i = 0; i < COMPONENTS.length; i++) {
+    if (componentContains(i, n)) return i;
+  }
+  return null;
+}
+
+function buildCompRow() {
+  COMPONENTS.forEach(function (c, i) {
+    var b = document.createElement('button');
+    b.className = 'comp-btn';
+    b.textContent = c.id;
+    b.title = 'شاشات ' + c.screens[0] + '–' + c.screens[c.screens.length - 1];
+    b.addEventListener('click', function () { loadComponent(i, c.screens[0]); });
+    b.dataset.idx = i;
+    compRow.appendChild(b);
+  });
+}
+
+function buildScreenRow() {
+  screenRow.querySelectorAll('.screen-btn').forEach(function (b) { b.remove(); });
+  var c = COMPONENTS[compIndex];
+  c.screens.forEach(function (n) {
+    var b = document.createElement('button');
+    b.className = 'screen-btn';
+    b.textContent = nameFor(n);
+    b.title = 'n=' + n;
+    b.dataset.n = n;
+    b.addEventListener('click', function () { gotoScreen(parseFloat(this.dataset.n)); });
+    screenRow.appendChild(b);
+  });
+}
+
+function highlightUI() {
+  compRow.querySelectorAll('.comp-btn').forEach(function (b) {
+    b.classList.toggle('active', parseInt(b.dataset.idx, 10) === compIndex);
+  });
+  screenRow.querySelectorAll('.screen-btn').forEach(function (b) {
+    b.classList.toggle('active', parseFloat(b.dataset.n) === currentScreen);
+  });
+  jumpInput.value = currentScreen;
+  var c = COMPONENTS[compIndex];
+  var localIdx = c.screens.indexOf(currentScreen);
+  statusText.textContent = c.id + '  ·  ' + nameFor(currentScreen) + '  (n=' + currentScreen + ')';
+  statusSub.textContent = 'component ' + (compIndex + 1) + '/' + COMPONENTS.length + '  ·  local ' + (localIdx + 1) + '/' + c.screens.length;
+  btnNext.disabled = (compIndex === COMPONENTS.length - 1 && localIdx === c.screens.length - 1);
+  btnPrev.disabled = (compIndex === 0 && localIdx === 0);
+}
+
+// Load a component build into the iframe and, once it signals DEV_READY,
+// jump to targetScreen if that isn't already the component's default landing screen.
+function loadComponent(idx, targetScreen) {
+  compIndex = idx;
+  var c = COMPONENTS[idx];
+  pendingTarget = (targetScreen !== c.screens[0]) ? targetScreen : null;
+  currentScreen = targetScreen;
+  buildScreenRow();
+  highlightUI();
+  frame.src = c.dir + '/index.html?dev=1&_=' + Date.now();
+}
+
+// Jump to any absolute screen n across the whole unit — reuses the existing
+// DEV_GOTO/DEV_READY postMessage bridge already wired into every script.js
+// when the target is in the currently-loaded component; otherwise swaps builds.
+function gotoScreen(n) {
+  n = Math.max(0, Math.min(MAX_N, n));
+  var targetIdx = findComponentForScreen(n, compIndex);
+  if (targetIdx === null) return;
+
+  if (targetIdx === compIndex) {
+    currentScreen = n;
+    frame.contentWindow.postMessage({ type: 'DEV_GOTO', screen: n }, '*');
+    highlightUI();
+  } else {
+    loadComponent(targetIdx, n);
+  }
+}
+
+function next() {
+  var c = COMPONENTS[compIndex];
+  var i = c.screens.indexOf(currentScreen);
+  if (i > -1 && i < c.screens.length - 1) { gotoScreen(c.screens[i + 1]); return; }
+  if (compIndex < COMPONENTS.length - 1) { loadComponent(compIndex + 1, COMPONENTS[compIndex + 1].screens[0]); }
+}
+
+function prev() {
+  var c = COMPONENTS[compIndex];
+  var i = c.screens.indexOf(currentScreen);
+  if (i > 0) { gotoScreen(c.screens[i - 1]); return; }
+  if (compIndex > 0) { var pc = COMPONENTS[compIndex - 1]; loadComponent(compIndex - 1, pc.screens[pc.screens.length - 1]); }
+}
+
+// A build asked to go past its own screen range (e.g. 03-01's s32 "המשך"
+// → s33, which lives in 03-02): load the neighbouring build there.
+window.addEventListener('message', function (e) {
+  if (!e.data || e.data.type !== 'DEV_LEAVE_SPLIT') return;
+  gotoScreen(e.data.screen);
+});
+
+window.addEventListener('message', function (e) {
+  if (!e.data || e.data.type !== 'DEV_READY') return;
+  if (pendingTarget !== null) {
+    frame.contentWindow.postMessage({ type: 'DEV_GOTO', screen: pendingTarget }, '*');
+    currentScreen = pendingTarget;
+    pendingTarget = null;
+  }
+  highlightUI();
+});
+
+btnNext.addEventListener('click', next);
+btnPrev.addEventListener('click', prev);
+jumpInput.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') {
+    var n = parseFloat(jumpInput.value);
+    if (!isNaN(n)) gotoScreen(n);
+  }
+});
+
+// Same convention as the per-component dev bars: Ctrl+← = next, Ctrl+→ = prev.
+window.addEventListener('keydown', function (e) {
+  if (!e.ctrlKey || e.target === jumpInput) return;
+  if (e.key === 'ArrowLeft')  { e.preventDefault(); next(); }
+  if (e.key === 'ArrowRight') { e.preventDefault(); prev(); }
+});
+
+// The real production embedding frame: 16:9 at this module's own 1280-wide
+// design grid. #canvas-box is fixed at these dimensions forever — only its
+// uniform `transform: scale()` changes with the browser window, so the
+// iframe's internal viewport (what the module's own scaleApp() measures)
+// never differs from a real 1280×720 production host.
+var CANVAS_W = 1280, CANVAS_H = 720;
+var headerEl   = document.getElementById('dev-header');
+var stageEl    = document.getElementById('stage');
+var canvasBox  = document.getElementById('canvas-box');
+
+function layoutStage() {
+  document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+  var availW = stageEl.clientWidth;
+  var availH = stageEl.clientHeight;
+  var scale  = Math.min(availW / CANVAS_W, availH / CANVAS_H);
+  canvasBox.style.transform = 'scale(' + scale + ')';
+}
+
+window.addEventListener('resize', layoutStage);
+// Header height can change when the component/screen rows wrap (narrow
+// windows, or a component with a different screen count) — track it too.
+new ResizeObserver(layoutStage).observe(headerEl);
+
+buildCompRow();
+loadComponent(0, 0);
+layoutStage();
+</script>
+
+</body>
+</html>

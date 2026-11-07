@@ -1,0 +1,455 @@
+{
+ "_about": "Largest boxes each image / clip is DRAWN in, in 1280x710 canvas px, keyed by path from the repo root. MEASURED 2026-11-03 in the running page by _test/visual-snapshot.mjs (MEASURE=1 INTERACT=1, char1 and char2): every screen, every answer-walk step, every zoom view opened; object-fit applied ('contain' = the pixels the image occupies). Entries marked in _derived were not drawn during the walk and take the box of the element they play in. reencode-media.py / reencode-video.py size each file to 2 x its largest box (cover rule), never upscale.",
+ "_derived": {
+  "unit-assets/video/yellow_phone.mp4": "same <video> element as green_phone.mp4",
+  "unit-assets/video/yellow_please.mp4": "s57 nudge scene (shown only on Continue without an answer): .s57-char-img width 190, contain, measured 190x338",
+  "unit-assets/video/blue_please.mp4": "s57 nudge scene (shown only on Continue without an answer): .s57-char-img width 190, contain, measured 190x338",
+  "methodica-math-percent-03-02/assets/images/standard_6_b.png": "s39 section ב image: same frame as standard_6.png (section א)"
+ },
+ "methodica-math-percent-03-01/assets/images/Hook_charge phone.png": [
+  [
+   580,
+   573
+  ],
+  [
+   348,
+   348
+  ]
+ ],
+ "methodica-math-percent-03-01/assets/images/Hook_when_1.jpg": [
+  [
+   580,
+   479
+  ],
+  [
+   365,
+   330
+  ]
+ ],
+ "methodica-math-percent-03-01/assets/images/Hook_when_2.jpg": [
+  [
+   580,
+   596
+  ],
+  [
+   365,
+   330
+  ]
+ ],
+ "methodica-math-percent-03-01/assets/images/gaming.png": [
+  [
+   422,
+   629
+  ],
+  [
+   365,
+   330
+  ]
+ ],
+ "methodica-math-percent-03-01/assets/images/icon-guided-bulb.svg": [
+  [
+   432,
+   72
+  ],
+  [
+   424,
+   72
+  ],
+  [
+   424,
+   36
+  ],
+  [
+   428,
+   30
+  ]
+ ],
+ "methodica-math-percent-03-01/assets/images/togther.mp4": [
+  [
+   320,
+   320
+  ]
+ ],
+ "methodica-math-percent-03-01/assets/images/togther.png": [
+  [
+   320,
+   320
+  ]
+ ],
+ "methodica-math-percent-03-02/assets/images/standard_2.png": [
+  [
+   800,
+   450
+  ],
+  [
+   550,
+   300
+  ]
+ ],
+ "methodica-math-percent-03-02/assets/images/standard_3.png": [
+  [
+   580,
+   573
+  ],
+  [
+   550,
+   300
+  ]
+ ],
+ "methodica-math-percent-03-02/assets/images/standard_6.png": [
+  [
+   580,
+   573
+  ],
+  [
+   368,
+   300
+  ]
+ ],
+ "methodica-math-percent-03-02/index.html": [
+  [
+   370,
+   370
+  ]
+ ],
+ "methodica-math-percent-03-03/assets/images/basic_1.png": [
+  [
+   580,
+   1039
+  ],
+  [
+   246,
+   440
+  ]
+ ],
+ "methodica-math-percent-03-03/assets/images/basic_2.png": [
+  [
+   580,
+   1039
+  ],
+  [
+   246,
+   440
+  ]
+ ],
+ "methodica-math-percent-03-03/assets/images/basic_3.png": [
+  [
+   800,
+   450
+  ],
+  [
+   640,
+   349
+  ]
+ ],
+ "methodica-math-percent-03-03/assets/images/basic_4.png": [
+  [
+   800,
+   450
+  ],
+  [
+   500,
+   273
+  ]
+ ],
+ "methodica-math-percent-03-03/assets/images/basic_5.png": [
+  [
+   580,
+   827
+  ],
+  [
+   309,
+   440
+  ]
+ ],
+ "methodica-math-percent-03-03/assets/images/standard2_2.png": [
+  [
+   580,
+   573
+  ],
+  [
+   640,
+   349
+  ]
+ ],
+ "methodica-math-percent-03-05/assets/images/advanced_1.png": [
+  [
+   800,
+   450
+  ],
+  [
+   491,
+   268
+  ]
+ ],
+ "methodica-math-percent-03-05/assets/images/advanced_1_b.png": [
+  [
+   800,
+   450
+  ],
+  [
+   491,
+   268
+  ]
+ ],
+ "methodica-math-percent-03-05/assets/images/advanced_3.png": [
+  [
+   800,
+   450
+  ],
+  [
+   540,
+   237
+  ]
+ ],
+ "methodica-math-percent-03-05/index.html": [
+  [
+   400,
+   400
+  ]
+ ],
+ "methodica-math-percent-03-06/assets/images/battery_alert_s71.webp": [
+  [
+   797,
+   1556
+  ],
+  [
+   256,
+   500
+  ]
+ ],
+ "methodica-math-percent-03-07/assets/images/see2_0.png": [
+  [
+   800,
+   450
+  ],
+  [
+   640,
+   349
+  ]
+ ],
+ "methodica-math-percent-03-07/assets/images/see2_1.png": [
+  [
+   800,
+   450
+  ],
+  [
+   640,
+   349
+  ]
+ ],
+ "methodica-math-percent-03-07/assets/images/see2_2.png": [
+  [
+   800,
+   450
+  ],
+  [
+   600,
+   327
+  ]
+ ],
+ "unit-assets/img/Green_thumbs_up.png": [
+  [
+   400,
+   400
+  ]
+ ],
+ "unit-assets/img/Step-by-step_1.svg": [
+  [
+   190,
+   190
+  ]
+ ],
+ "unit-assets/img/bubble-purple.svg": [
+  [
+   241,
+   137
+  ],
+  [
+   220,
+   110
+  ],
+  [
+   203,
+   100
+  ],
+  [
+   209,
+   93
+  ],
+  [
+   200,
+   64
+  ]
+ ],
+ "unit-assets/img/char-1.png": [
+  [
+   124,
+   315
+  ],
+  [
+   110,
+   279
+  ]
+ ],
+ "unit-assets/img/char-2.png": [
+  [
+   195,
+   265
+  ],
+  [
+   160,
+   217
+  ],
+  [
+   154,
+   209
+  ],
+  [
+   120,
+   163
+  ]
+ ],
+ "unit-assets/img/green_think.png": [
+  [
+   370,
+   370
+  ]
+ ],
+ "unit-assets/img/s10-bubble.svg": [
+  [
+   296,
+   112
+  ],
+  [
+   225,
+   117
+  ]
+ ],
+ "unit-assets/img/warmup.png": [
+  [
+   800,
+   450
+  ],
+  [
+   533,
+   300
+  ]
+ ],
+ "unit-assets/img/yellow_train.png": [
+  [
+   372,
+   372
+  ]
+ ],
+ "unit-assets/video/Green_happy.mp4": [
+  [
+   263,
+   350
+  ],
+  [
+   150,
+   200
+  ]
+ ],
+ "unit-assets/video/Green_train.mp4": [
+  [
+   338,
+   450
+  ],
+  [
+   263,
+   350
+  ]
+ ],
+ "unit-assets/video/Yellow_happy.mp4": [
+  [
+   270,
+   360
+  ],
+  [
+   150,
+   200
+  ]
+ ],
+ "unit-assets/video/Yellow_thumbs_up.mp4": [
+  [
+   219,
+   390
+  ]
+ ],
+ "unit-assets/video/green_phone.mp4": [
+  [
+   568,
+   320
+  ]
+ ],
+ "unit-assets/video/green_read.mp4": [
+  [
+   426,
+   426
+  ],
+  [
+   400,
+   400
+  ],
+  [
+   372,
+   372
+  ]
+ ],
+ "unit-assets/video/yellow_think.mp4": [
+  [
+   225,
+   400
+  ]
+ ],
+ "unit-assets/video/yellow_train.mp4": [
+  [
+   338,
+   450
+  ],
+  [
+   263,
+   350
+  ]
+ ],
+ "unit-assets/video/yellow_read.mp4": [
+  [
+   251,
+   446
+  ],
+  [
+   240,
+   426
+  ]
+ ],
+ "unit-assets/video/yellow_phone.mp4": [
+  [
+   568,
+   320
+  ]
+ ],
+ "unit-assets/video/yellow_please.mp4": [
+  [
+   190,
+   338
+  ]
+ ],
+ "unit-assets/video/blue_please.mp4": [
+  [
+   190,
+   338
+  ]
+ ],
+ "methodica-math-percent-03-02/assets/images/standard_6_b.png": [
+  [
+   580,
+   573
+  ],
+  [
+   368,
+   300
+  ]
+ ]
+}

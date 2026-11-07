@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <title>DEV — وحدة تعليمية | methodica-math-percent-03-06 (S66a–S71)</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #111; overflow: hidden; }
+    #lomdah-frame { width: 100vw; height: 100vh; border: none; display: block; }
+    #dev-bar {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.88); color: #fff; border: 2px solid #ffe600;
+      border-radius: 32px; padding: 10px 22px;
+      display: flex; align-items: center; gap: 14px;
+      z-index: 9999; font-family: monospace; font-size: 15px; user-select: none;
+      white-space: nowrap;
+    }
+    #dev-label {
+      color: #ffe600; font-weight: 700; font-size: 13px; letter-spacing: 1px;
+      padding-left: 10px; border-left: 1px solid #444; margin-left: 2px;
+    }
+    #dev-bar button {
+      background: transparent; border: 1px solid #ffe600; color: #ffe600;
+      border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: 17px;
+    }
+    #dev-bar button:hover { background: #ffe600; color: #000; }
+    #dev-bar button:disabled { opacity: 0.3; cursor: default; background: transparent; color: #ffe600; }
+    #dev-screen-input {
+      width: 46px; text-align: center; background: #1a1a1a;
+      color: #ffe600; border: 1px solid #ffe600; border-radius: 6px;
+      font-size: 16px; font-family: monospace; padding: 4px;
+    }
+    #dev-total { color: #aaa; font-size: 14px; }
+    #dev-screen-name { color: #ffe600; font-size: 13px; min-width: 60px; text-align: center; }
+    #dev-hint { color: #555; font-size: 11px; border-right: 1px solid #333; padding-right: 12px; }
+  </style>
+</head>
+<body>
+  <iframe id="lomdah-frame" src="index.html?dev=1"></iframe>
+
+  <div id="dev-bar">
+    <!-- RTL: next (◀) on LEFT, prev (▶) on RIGHT -->
+    <span id="dev-hint">Ctrl+← / Ctrl+→</span>
+    <button id="btn-next" onclick="devNext()" title="الشاشة التالية (Ctrl+←)">◀</button>
+    <input id="dev-screen-input" type="text" value="60"
+           title="اكتب رقم شاشة للانتقال المباشر" onchange="devJump(this.value)">
+    <span id="dev-total">60–65</span>
+    <span id="dev-screen-name"></span>
+    <button id="btn-prev" onclick="devPrev()" title="الشاشة السابقة (Ctrl+→)">▶</button>
+    <span id="dev-label">DEV</span>
+  </div>
+
+  <script>
+    'use strict';
+
+    var SCREEN_NAMES = ['s0','s1','s2','s3','s4','s5','s6','s7','s8','s9','s16','s17','s18','s19','s20','s21','s22','s23','s24','s25','s26','s27','s28','s29','s30','s31','s32','s33','s34','s35','s36','s37','s38','s39','s40','s41','s42','s43','s44','s45','s46','s47','s48','s49','s50','s51','s52','s53','s54','s55','s56','s57','s58','s59','s60','s61','s62','s63','s64','s65','s66','s67','s68','s69','s70','s71','s72','s73','s74','s75','s76','s77'];
+    function nameFor(n) { return SCREEN_NAMES[n] || ('s' + n); }
+
+    var frame      = document.getElementById('lomdah-frame');
+    var inputEl    = document.getElementById('dev-screen-input');
+    var totalLabel = document.getElementById('dev-total');
+    var nameLabel  = document.getElementById('dev-screen-name');
+    var btnPrev    = document.getElementById('btn-prev');
+    var btnNext    = document.getElementById('btn-next');
+    // Split build: the dev bar walks only this split's absolute screen range.
+    var SCREENS = [60, 61, 62, 63, 64, 65];
+    var SPLIT_FIRST = SCREENS[0];
+    var SPLIT_LAST  = SCREENS[SCREENS.length - 1];
+    var devCurrent  = SPLIT_FIRST;
+    var TOTAL       = SCREENS.length;
+
+    // Receive actual screen count from script.js via DEV_READY
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'DEV_READY') {
+        TOTAL = e.data.total || TOTAL;
+        totalLabel.textContent = SPLIT_FIRST + '–' + SPLIT_LAST + '  (' + TOTAL + ')';
+        updateButtons();
+      }
+    });
+
+    frame.addEventListener('load', function() {
+      devCurrent = SPLIT_FIRST;
+      inputEl.value = SPLIT_FIRST;
+      nameLabel.textContent = nameFor(SPLIT_FIRST);
+      updateButtons();
+    });
+
+    function devGoTo(n) {
+      if (SCREENS.indexOf(n) === -1) return;
+      frame.contentWindow.postMessage({ type: 'DEV_GOTO', screen: n }, '*');
+      devCurrent = n;
+      inputEl.value = n;
+      nameLabel.textContent = nameFor(n);
+      updateButtons();
+    }
+
+    function devNext() {
+      var i = SCREENS.indexOf(devCurrent);
+      if (i > -1 && i < SCREENS.length - 1) devGoTo(SCREENS[i + 1]);
+    }
+    function devPrev() {
+      var i = SCREENS.indexOf(devCurrent);
+      if (i > 0) devGoTo(SCREENS[i - 1]);
+    }
+
+    function devJump(val) {
+      var n = parseFloat(val);
+      if (!isNaN(n)) devGoTo(n);
+    }
+
+    function updateButtons() {
+      var i = SCREENS.indexOf(devCurrent);
+      btnPrev.disabled = (i <= 0);
+      btnNext.disabled = (i === -1 || i >= SCREENS.length - 1);
+    }
+
+    // RTL keyboard: Ctrl+← = forward (next), Ctrl+→ = backward (prev)
+    window.addEventListener('keydown', function(e) {
+      if (!e.ctrlKey) return;
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); devNext(); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); devPrev(); }
+    });
+
+    inputEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') devJump(inputEl.value);
+    });
+
+    nameLabel.textContent = nameFor(SPLIT_FIRST);
+    totalLabel.textContent = SPLIT_FIRST + '–' + SPLIT_LAST;
+    updateButtons();
+  </script>
+</body>
+</html>

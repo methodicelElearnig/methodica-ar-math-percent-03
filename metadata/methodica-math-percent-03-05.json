@@ -1,0 +1,124 @@
+{
+  "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-05/",
+  "title": "هيا نتحدّى أنفسنا",
+  "learningUnitId": "methodica-math-percent-03",
+  "componentPurpose": "practice",
+  "isAssessment": false,
+  "recommendedAfterFail": [],
+  "isRequired": false,
+  "relativeDifficulty": 5,
+  "masteryLevel": null,
+  "order": 5,
+  "depthLevel": "core-curriculum-basic",
+  "cognitiveLevels": [
+    "interpretation-and-reasoning"
+  ],
+  "languages": [
+    "Arabic"
+  ],
+  "skills": [],
+  "estimatedTimeInMinutes": 14,
+  "createdAt": "2026-10-25T00:00:00.000Z",
+  "updatedAt": "2026-10-25T00:00:00.000Z",
+  "subContent": [
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-05/methodica-math-percent-03-05-001/",
+      "title": "أثاث جديد لغرفة ياسين",
+      "informationToBot": "هدف البند: سؤال متقدّم متعدد المراحل: إيجاد سعر كلّي من عربون بالنسب المئوية، والتقسيم إلى دفعات والمقارنة بين تقسيمين. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: البند أ: 1,000 شيكل هي 4% من سعر الأثاث. البند ب: تقسيم المتبقي إلى 5 دفعات. البند ج: تقسيم المتبقي نفسه إلى 4 دفعات ومقارنة المبلغ الكلي. معطيات السؤال: العربون: 1,000 شيكل، وهو 4% من سعر الأثاث. وينويان دفع باقي المبلغ على 5 دفعات متساوية. اتجاهات التفكير والاستراتيجيات: أ: جدول التناسب، 4% مقابل 1,000 و100% مقابل x، النتيجة 25,000. ب: 25,000 ناقص 1,000 هي 24,000؛ مقسومة على 5 تساوي 4,800. ج: 24,000 مقسومة على 4 تساوي 6,000 للدفعة؛ والمبلغ الكلي لا يتغيّر - 25,000. يوجد تلميح متاح لكل بند. أخطاء شائعة: ب: قسمة كل السعر وليس المتبقي بعد العربون. ج: الإجابة \"أكثر\" لأن الدفعة الواحدة أكبر، مع أن المبلغ الكلي هو نفسه. معلومات إضافية: يتضمّن البند ج جزأين: كتابة عدد واختيار من قائمة منسدلة (أكثر / أقل / المبلغ نفسه). لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-05/methodica-math-percent-03-05-001/q1",
+          "questionType": "numeric",
+          "questionText": "يحصل ياسين على أثاث جديد لغرفته: سرير كبير، ومكتب مريح، وكرسي ألعاب، وعقلة تُثبَّت على الحائط. دفع والداه عربونًا قدره 1,000 ₪، وهو يشكّل 4% من سعر الأثاث. وينويان دفع باقي المبلغ على 5 دفعات متساوية. أ. ما سعر الأثاث كله؟ (ش.ج)",
+          "answers": [],
+          "correctAnswers": [
+            25000
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-05/methodica-math-percent-03-05-001/q2",
+          "questionType": "numeric",
+          "questionText": "وجدنا أن تكلفة الأثاث هي 25,000 ₪. ب. كم دفع والدا ياسين في كل دفعة بعد أن دفعا العربون؟ (ش.ج)",
+          "answers": [],
+          "correctAnswers": [
+            4800
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-05/methodica-math-percent-03-05-001/q3",
+          "questionType": "performance",
+          "questionText": "وجدنا أن تكلفة الأثاث هي 25,000 ₪. ووجدنا أنه عند التقسيم إلى 5 دفعات سيدفع والدا ياسين 4,800 ₪ في كل دفعة. ج. لنفترض أن والدَي ياسين سيدفعان المبلغ المتبقي على 4 دفعات بدلًا من 5 دفعات. كم سيدفعان في كل دفعة؟ سيدفع والدا ياسين: [أكثر / أقل / المبلغ نفسه] في 4 دفعات.",
+          "answers": null,
+          "correctAnswers": [
+            {
+              "stepId": "مبلغ كل دفعة (ش.ج)",
+              "response": "6000"
+            },
+            {
+              "stepId": "أكثر / أقل / المبلغ نفسه",
+              "response": "المبلغ نفسه"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-05/methodica-math-percent-03-05-002/",
+      "title": "الغياب عن الامتحان الختامي",
+      "informationToBot": "هدف البند: سؤال متقدّم: إيجاد الكلّ والانتقال إلى الطرح (من حضر). ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: البند أ: 40 طالبًا هم 16% من طلاب الصف. البند ب: كم طالبًا حضر الامتحان. معطيات السؤال: في الصف الثامن تغيّب 40 طالبًا عن الامتحان الختامي، وهم 16% من طلاب الصف. سيتقدّم الطلاب الذين تغيّبوا إلى الموعد الثاني. اتجاهات التفكير والاستراتيجيات: أ: جدول التناسب، 16% مقابل 40 و100% مقابل x، النتيجة 250. ب: 250 ناقص 40 هي 210. يوجد تلميح متاح لكل بند. أخطاء شائعة: ب: إجابة 40 أو 250 (أي نسيان الطرح). معلومات إضافية: بندان، كتابة عدد. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-05/methodica-math-percent-03-05-002/q1",
+          "questionType": "numeric",
+          "questionText": "في الامتحان الختامي في الرياضيات الذي أُجري في نهاية السنة الدراسية لطلاب الصف الثامن في مدرسة شاملة في الشمال، تغيّب 40 طالبًا، وهم 16% من طلاب الصف الثامن. سيتقدّم الطلاب الذين تغيّبوا إلى الموعد الثاني. أ. كم طالبًا في الصف الثامن؟ (طلاب)",
+          "answers": [],
+          "correctAnswers": [
+            250
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-05/methodica-math-percent-03-05-002/q2",
+          "questionType": "numeric",
+          "questionText": "وجدنا أن في الصف الثامن 250 طالبًا. ب. كم طالبًا حضر الامتحان؟ (طالبات وطلاب)",
+          "answers": [],
+          "correctAnswers": [
+            210
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-05/methodica-math-percent-03-05-003/",
+      "title": "تجديد الحديقة المجتمعية",
+      "informationToBot": "هدف البند: سؤال متقدّم: النسبة بين جزأين بالنسب المئوية وإيجاد الكلّ من مساحة جزئية. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: البند أ: نسبة مختصرة بين مساحة المظلّة (45%) ومساحة المزروعات (55%). البند ب: إيجاد مساحة الحديقة كلها من مساحة المظلّة (90 م² هي 45%). معطيات السؤال: يجدّد الصف الثامن 7 الحديقة المجتمعية: في 55% من الحديقة ستكون مزروعات مختلفة، وفي الـ 45% الباقية ستُقام مظلّة دراسية. مساحة المظلّة الدراسية: 90 م². اتجاهات التفكير والاستراتيجيات: أ: 45:55 تُختزل بالقسمة على 5 إلى 9:11؛ وتُكتب النسبة بحسب ترتيب الذكر في السؤال (المظلّة إلى المزروعات). ب: جدول التناسب، 45% مقابل 90 و100% مقابل x، النتيجة 200 م². يوجد تلميح متاح لكل بند. أخطاء شائعة: أ: عكس ترتيب النسبة (11:9) أو عدم الاختصار. ب: الحساب بـ 55% بدلًا من 45%. معلومات إضافية: البند أ كتابة نسبة؛ البند ب كتابة عدد. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-05/methodica-math-percent-03-05-003/q1",
+          "questionType": "fill-in",
+          "questionText": "طلاب الصف الثامن 7 يجدّدون الحديقة المجتمعية في الحي. ستُخصَّص 55% من الحديقة لمزروعات مختلفة. وفي الـ 45% المتبقية ستُقام مظلّة دراسية. أ. ما النسبة المختصرة بين مساحة المظلّة ومساحة المزروعات؟",
+          "answers": [],
+          "correctAnswers": [
+            "9:11",
+            "9 : 11",
+            "9/11"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-05/methodica-math-percent-03-05-003/q2",
+          "questionType": "numeric",
+          "questionText": "يجدّد الصف الثامن 7 الحديقة المجتمعية في الحي. في 55% من الحديقة ستكون مزروعات مختلفة، وفي الـ 45% المتبقية ستُقام مظلّة دراسية. معطى أن مساحة الأرض التي أُقيمت عليها المظلّة الدراسية هي 90 م². ب. ما مساحة الحديقة المجتمعية كلها؟ (م²)",
+          "answers": [],
+          "correctAnswers": [
+            200
+          ]
+        }
+      ]
+    }
+  ]
+}

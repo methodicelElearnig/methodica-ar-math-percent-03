@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مخطط دائري تفاعلي</title>
+<style>
+  :root{
+    --c-blue:#2563eb;
+    --c-green:#16a34a;
+    --c-orange:#ea580c;
+    --c-red:#dc2626;
+    --c-gray:#94a3b8;
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --ink:#0f172a;
+    --muted:#64748b;
+    --line:#e2e8f0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:Calibri,"Segoe UI",Tahoma,Arial,sans-serif;
+    background:transparent;
+    color:var(--ink);
+    direction:rtl;
+    padding:12px;
+    overflow:hidden;
+  }
+  .wrap{
+    max-width:100%;
+    margin:0 auto;
+    background:transparent;
+    border:none;
+    border-radius:0;
+    padding:18px 18px 16px;
+    box-shadow:none;
+  }
+  h1{
+    font-size:1.35rem;
+    margin:0 0 4px;
+    font-weight:700;
+  }
+  .sub{
+    color:var(--muted);
+    margin:0 0 22px;
+    font-size:.95rem;
+  }
+  .layout{
+    display:flex;
+    gap:20px;
+    flex-wrap:nowrap;
+    align-items:flex-start;
+  }
+  .pie-col{
+    flex:0 1 250px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  .controls-col{
+    flex:1 1 0;
+    min-width:0;
+  }
+  svg{ max-width:250px; width:100%; height:auto; }
+  .slice{ stroke:#fff; stroke-width:2; transition:opacity .15s; }
+  .slice-label{
+    font-size:15px;
+    font-weight:700;
+    fill:#fff;
+    text-anchor:middle;
+    dominant-baseline:middle;
+    pointer-events:none;
+  }
+  /* בקרי הסליידרים */
+  .slider-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .swatch{
+    width:18px;height:18px;border-radius:5px;flex:0 0 auto;
+  }
+  .slabel{ flex:0 0 52px; font-weight:600; }
+  input[type=range]{
+    flex:1 1 auto;
+    direction:ltr;
+    height:6px;
+    -webkit-appearance:none;
+    appearance:none;
+    border-radius:99px;
+    background:var(--line);
+    cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;
+    width:22px;height:22px;border-radius:50%;
+    background:#fff;border:3px solid var(--ink);
+    box-shadow:0 1px 4px rgba(0,0,0,.25);
+  }
+  input[type=range]::-moz-range-thumb{
+    width:22px;height:22px;border-radius:50%;
+    background:#fff;border:3px solid var(--ink);
+    box-shadow:0 1px 4px rgba(0,0,0,.25);
+  }
+  .val{
+    flex:0 0 54px;
+    text-align:left;
+    font-variant-numeric:tabular-nums;
+    font-weight:700;
+    font-size:1.05rem;
+  }
+  /* תיבת האפור — התשובה */
+  .gray-box{
+    margin-top:12px;
+    background:#f1f5f9;
+    border:1px dashed var(--c-gray);
+    border-radius:12px;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .gray-box .left{display:flex;align-items:center;gap:10px;}
+  .gray-box .swatch{width:18px;height:18px;}
+  .gray-val{
+    font-size:1.5rem;font-weight:800;color:#334155;
+    font-variant-numeric:tabular-nums;
+  }
+  .gray-note{color:var(--muted);font-size:.82rem;margin:8px 2px 0;}
+  .total{
+    margin-top:10px;text-align:center;font-weight:700;color:var(--muted);
+    font-variant-numeric:tabular-nums;
+  }
+  .total b{color:var(--ink);}
+  .reset{
+    margin-top:12px;width:100%;
+    background:var(--ink);color:#fff;border:none;
+    padding:10px;border-radius:10px;font-weight:600;cursor:pointer;
+    font-family:inherit;font-size:.95rem;
+  }
+  .reset:hover{opacity:.9;}
+  .reset:focus-visible,input:focus-visible{outline:3px solid #93c5fd;outline-offset:2px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="layout">
+    <div class="pie-col">
+      <svg viewBox="0 0 220 220" id="pie" role="img" aria-label="مخطط دائري تفاعلي"></svg>
+    </div>
+
+    <div class="controls-col" id="controls"></div>
+  </div>
+</div>
+
+<script>
+const SECTORS = [
+  {key:'blue',   name:'أزرق', color:'var(--c-blue)',   hex:'#2563eb', value:20},
+  {key:'green',  name:'أخضر', color:'var(--c-green)',  hex:'#16a34a', value:20},
+  {key:'orange', name:'برتقالي', color:'var(--c-orange)', hex:'#ea580c', value:20},
+  {key:'red',    name:'أحمر', color:'var(--c-red)',    hex:'#dc2626', value:20},
+];
+const GRAY_HEX = '#94a3b8';
+const START = SECTORS.map(s=>s.value);   // לאיפוס
+
+const CX=110, CY=110, R=100;
+
+function polar(cx,cy,r,deg){
+  const a=(deg-90)*Math.PI/180;
+  return {x:cx+r*Math.cos(a), y:cy+r*Math.sin(a)};
+}
+function arcPath(cx,cy,r,start,end){
+  if(end-start>=359.999){ // עיגול מלא
+    return `M ${cx} ${cy-r} A ${r} ${r} 0 1 1 ${cx-0.01} ${cy-r} Z`;
+  }
+  const p1=polar(cx,cy,r,start), p2=polar(cx,cy,r,end);
+  const large=(end-start)>180?1:0;
+  return `M ${cx} ${cy} L ${p1.x} ${p1.y} A ${r} ${r} 0 ${large} 1 ${p2.x} ${p2.y} Z`;
+}
+
+function grayValue(){
+  const sum=SECTORS.reduce((a,s)=>a+s.value,0);
+  return 100-sum;
+}
+
+function render(){
+  const pie=document.getElementById('pie');
+  pie.innerHTML='';
+  const slices=[...SECTORS.map(s=>({hex:s.hex,val:s.value,isGray:false})),
+                {hex:GRAY_HEX,val:grayValue(),isGray:true}];
+  let angle=0;
+  slices.forEach(s=>{
+    if(s.val<=0){return;}
+    const start=angle, end=angle+s.val*3.6;
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',arcPath(CX,CY,R,start,end));
+    path.setAttribute('fill',s.hex);
+    path.setAttribute('class','slice');
+    pie.appendChild(path);
+    // תווית בתוך הגזרה: אחוז לצבעוניות, '?' לאפור — אינו חושף את התשובה
+    if(s.val>=6){
+      const mid=(start+end)/2;
+      const lp=polar(CX,CY,R*0.62,mid);
+      const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x',lp.x); t.setAttribute('y',lp.y);
+      t.setAttribute('class','slice-label');
+      t.textContent=s.isGray?'?':s.val+'%';
+      pie.appendChild(t);
+    }
+    angle=end;
+  });
+
+  // עדכון ערכי הסליידרים והתצוגה
+  SECTORS.forEach(s=>{
+    document.getElementById('val-'+s.key).textContent=s.value+'%';
+    document.getElementById('rng-'+s.key).value=s.value;
+  });
+  document.getElementById('grayVal').textContent='?';
+}
+
+function buildControls(){
+  const box=document.getElementById('controls');
+  SECTORS.forEach(s=>{
+    const row=document.createElement('div');
+    row.className='slider-row';
+    row.innerHTML=`\n      <span class="swatch" style="background:${s.color}"></span>\n      <span class="slabel">${s.name}</span>\n      <input type="range" id="rng-${s.key}" min="0" max="100" step="1"\n             value="${s.value}" aria-label="النسبة المئوية (${s.name})">\n      <span class="val" id="val-${s.key}">${s.value}%</span>`;
+    box.appendChild(row);
+  });
+
+  // תיבת האפור
+  const gray=document.createElement('div');
+  gray.className='gray-box';
+  gray.innerHTML=`\n    <div class="left">\n      <span class="swatch" style="background:${GRAY_HEX}"></span> <span class="slabel" style="flex:0 0 auto">رمادي</span></div>\n    <span class="gray-val" id="grayVal">?</span>`;
+  box.appendChild(gray);
+
+  const btn=document.createElement('button');
+  btn.className='reset';
+  btn.textContent='إعادة ضبط';
+  btn.onclick=()=>{ SECTORS.forEach((s,i)=>s.value=START[i]); render(); };
+  box.appendChild(btn);
+
+  // האזנה לשינויים — כל סליידר נע על כל הטווח עד 100%.
+  // כדי לשמור שהסכום לא יעבור 100 (האפור >= 0), מקטינים בעת הצורך
+  // את שאר הגזרות הצבעוניות.
+  SECTORS.forEach(s=>{
+    document.getElementById('rng-'+s.key).addEventListener('input',e=>{
+      let v=parseInt(e.target.value,10);
+      if(v<0) v=0;
+      if(v>100) v=100;
+      s.value=v;
+      let excess=SECTORS.reduce((a,x)=>a+x.value,0)-100;
+      if(excess>0){
+        const others=SECTORS.filter(x=>x.key!==s.key);
+        for(let i=others.length-1;i>=0 && excess>0;i--){
+          const take=Math.min(others[i].value,excess);
+          others[i].value-=take;
+          excess-=take;
+        }
+      }
+      render();
+    });
+  });
+}
+
+buildControls();
+render();
+</script>
+</body>
+</html>

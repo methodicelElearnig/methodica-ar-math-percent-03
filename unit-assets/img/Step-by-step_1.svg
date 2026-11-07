@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Election pie (25% / 30% / 20% / unlabeled 25%). Dark blue fills so the
+       white labels pass WCAG AA contrast (all >= 5:1). -->
+  <!-- 3D base / thickness -->
+  <circle cx="100" cy="104" r="93" fill="#13234A"/>
+  <g stroke="#DCE4F2" stroke-width="2" stroke-linejoin="round">
+    <!-- unlabeled (Noa) 270°–360° -->
+    <path d="M100 100 L8 100 A92 92 0 0 1 100 8 Z" fill="#182B57"/>
+    <!-- 25%  0°–90° -->
+    <path d="M100 100 L100 8 A92 92 0 0 1 192 100 Z" fill="#2E55A6"/>
+    <!-- 30%  90°–198° -->
+    <path d="M100 100 L192 100 A92 92 0 0 1 71.57 187.5 Z" fill="#1C6690"/>
+    <!-- 20%  198°–270° -->
+    <path d="M100 100 L71.57 187.5 A92 92 0 0 1 8 100 Z" fill="#3D6DB5"/>
+  </g>
+  <circle cx="100" cy="100" r="92" fill="none" stroke="#B9C6DE" stroke-width="2.5"/>
+  <g fill="#FFFFFF" font-family="Calibri, Segoe UI, Tahoma, Arial, sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="central">
+    <text x="139" y="62">25%</text>
+    <text x="132" y="143">30%</text>
+    <text x="57" y="130">20%</text>
+  </g>
+</svg>

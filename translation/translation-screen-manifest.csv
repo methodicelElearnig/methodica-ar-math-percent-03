@@ -1,0 +1,71 @@
+screen_id,screen_key,screen_title,screen_type,pptx_slides,source_file,units
+03-01-00,s0,איזו דמות תרצו שתלווה אתכם?,,,methodica-math-percent-03-01/index.html,5
+03-01-01,s1,מה הקשר בין סוללה של טלפון נייד למתמטיקה?,,,methodica-math-percent-03-01/index.html,5
+03-01-02,s2,לכמה זמן תספיק הסוללה?,SingleChoiceQuestion,14,methodica-math-percent-03-01/index.html,18
+03-01-03,s3,לדעת לחשב אורך חיי סוללה זה חשוב!,,15,methodica-math-percent-03-01/index.html,18
+03-01-04,s4,היום נלמד איך למצוא את השלם (100%) כשנתון רק חלק ממנו,,16-17,methodica-math-percent-03-01/index.html,4
+03-01-05,s6b,איך נמצא את השלם בעזרת טבלת פרופורציה?,CarouselLearningScreen,25–33,methodica-math-percent-03-01/index.html,35
+03-01-06,s7,ועכשיו חזרה לטעינת הטלפון:,GuidedPracticeScreen,34–43,methodica-math-percent-03-01/index.html,62
+03-01-07,s8,"עוד מעט נתחיל לתרגל,",,45,methodica-math-percent-03-01/index.html,4
+03-01-08,s16,מציאת השלם (100%) באמצעות טבלת פרופורציה,,45,methodica-math-percent-03-01/index.html,9
+03-01-09,s17,מציאת השלם (100%) באמצעות טבלת פרופורציה,,46,methodica-math-percent-03-01/index.html,12
+03-01-10,s18,מציאת השלם (100%) באמצעות טבלת פרופורציה,,47,methodica-math-percent-03-01/index.html,12
+03-01-11,s19,מציאת השלם (100%) באמצעות טבלת פרופורציה,,48,methodica-math-percent-03-01/index.html,15
+03-01-12,s20,מציאת השלם (100%) באמצעות טבלת פרופורציה,,49,methodica-math-percent-03-01/index.html,13
+03-01-13,s21,מציאת השלם (100%) באמצעות טבלת פרופורציה,,50,methodica-math-percent-03-01/index.html,10
+03-01-14,s22,מציאת השלם (100%) באמצעות טבלת פרופורציה,,51,methodica-math-percent-03-01/index.html,10
+03-01-15,s23,מציאת השלם (100%) באמצעות טבלת פרופורציה,,52,methodica-math-percent-03-01/index.html,9
+03-01-16,s24,מציאת השלם (100%) באמצעות טבלת פרופורציה,,53,methodica-math-percent-03-01/index.html,16
+03-01-17,s26,מציאת השלם (100%) באמצעות טבלת פרופורציה,,55,methodica-math-percent-03-01/index.html,17
+03-01-18,s28,מציאת השלם (100%) באמצעות טבלת פרופורציה,,57,methodica-math-percent-03-01/index.html,13
+03-01-19,s29,מציאת השלם (100%) באמצעות טבלת פרופורציה,,,methodica-math-percent-03-01/index.html,8
+03-01-20,s30,מה נשאר לנו בראש?,TransitionScreen,60,methodica-math-percent-03-01/index.html,3
+03-01-21,s31,א. מה אחוז הארטיקים בטעם וניל?,ValueInputQuestion,61,methodica-math-percent-03-01/index.html,22
+03-01-22,s32,ב. כמה ארטיקים יש בגלידריה?,ValueInputQuestion,66–70,methodica-math-percent-03-01/index.html,26
+03-01-99,chrome,Part-wide chrome / strings not tied to one screen,chrome,,methodica-math-percent-03-01/index.html + script.js,42
+03-02-00,s33,6 שאלות,TransitionScreen,72,methodica-math-percent-03-02/index.html,4
+03-02-01,s34,מצאו את השלם:,ValueInputQuestion,73–77,methodica-math-percent-03-02/index.html,20
+03-02-02,s35,כמה הזמנות התקבלו באותו ערב?,ValueInputQuestion,78–82,methodica-math-percent-03-02/index.html,26
+03-02-03,s36,מהו הסכום הנדרש כדי לממן את המסיבה?,ValueInputQuestion,83–87,methodica-math-percent-03-02/index.html,26
+03-02-04,s37,א. איזה אחוז מתוך העיגול השלם מייצגת הגזרה האפורה?,ValueInputQuestion,88–97,methodica-math-percent-03-02/index.html,50
+03-02-05,s38,השלימו את הטבלה.,ValueInputQuestion,98–102,methodica-math-percent-03-02/index.html,32
+03-02-06,s39,א. מה הכמות של גבינת הקוטג' בגביע הזה?,SingleChoiceQuestion,103–117,methodica-math-percent-03-02/index.html,68
+03-02-99,chrome,Part-wide chrome / strings not tied to one screen,chrome,,methodica-math-percent-03-02/index.html + script.js,46
+03-03-00,s42,5 שאלות,TransitionScreen,,methodica-math-percent-03-03/index.html,6
+03-03-01,s43,כמה צפיות יש לסרטון של נועם בסך הכל?,ValueInputQuestion,,methodica-math-percent-03-03/index.html,21
+03-03-02,s44,כמה סטיקרים אמורה להכין גל?,ValueInputQuestion,,methodica-math-percent-03-03/index.html,21
+03-03-03,s45,כמה מגנטים יש בסך הכל?,ValueInputQuestion,,methodica-math-percent-03-03/index.html,22
+03-03-04,s46,כמה בקבוקים נאספו על ידי כל השכבה?,ValueInputQuestion,,methodica-math-percent-03-03/index.html,23
+03-03-05,s47,תרגיל סטנדרטי - שאלה 2,SingleChoiceQuestion,,methodica-math-percent-03-03/index.html,26
+03-03-06,s50,יופי של עבודה! הנה עוד 2 תרגילים ברמת קושי גבוהה יותר.,TransitionScreen,,methodica-math-percent-03-03/index.html,3
+03-03-07,s51,א. איזה אחוז מתוך התלמידים הם בעלי שיער חום?,ValueInputQuestion,,methodica-math-percent-03-03/index.html,27
+03-03-08,s52,ב. חשבו את שטח העיגול כולו בעזרת טבלת פרופורציה.,ValueInputQuestion,,methodica-math-percent-03-03/index.html,31
+03-03-09,s53,"א. אם כל ילדה או ילד יקבלו משלוח מנות אחד, כמה משלוחי מנות הם צריכים ל",ValueInputQuestion,,methodica-math-percent-03-03/index.html,25
+03-03-10,s54,תרגיל מתקדם - שאלה 1ג,ValueInputQuestion,,methodica-math-percent-03-03/index.html,15
+03-03-99,chrome,Part-wide chrome / strings not tied to one screen,chrome,,methodica-math-percent-03-03/index.html + script.js,73
+03-04-00,s55,"זמן טוב ללמוד גם בצורה אחרת,",TransitionScreen,,methodica-math-percent-03-04/index.html,4
+03-04-01,s56,קומו מהכיסא והסתכלו סביב,,,methodica-math-percent-03-04/index.html,8
+03-04-02,s57,עכשיו בואו נסיק מסקנות,,,methodica-math-percent-03-04/index.html,11
+03-04-99,chrome,Part-wide chrome / strings not tied to one screen,chrome,,methodica-math-percent-03-04/index.html + script.js,46
+03-05-00,s58,זמן ל – 3 שאלות מתקדמות,TransitionScreen,,methodica-math-percent-03-05/index.html,3
+03-05-01,s59,א. מה מחיר הריהוט כולו?,,,methodica-math-percent-03-05/index.html,19
+03-05-02,s60,ב. כמה שילמו הוריו של איתן בכל תשלום אחרי ששילמו את המקדמה?,,,methodica-math-percent-03-05/index.html,22
+03-05-03,s61,ג. נניח והוריו של איתן ישלמו את הסכום הנותר ב-4 תשלומים במקום ב-5 תשלו,,,methodica-math-percent-03-05/index.html,37
+03-05-04,s62,שאלת שיא א',,,methodica-math-percent-03-05/index.html,17
+03-05-05,s63,ב. כמה תלמידים הגיעו למבחן?,,,methodica-math-percent-03-05/index.html,15
+03-05-06,s64,א. מה היחס המצומצם בין שטח הסככה לשטח הגידולים?,,80,methodica-math-percent-03-05/index.html,19
+03-05-07,s65,ב. מה השטח של כל הגינה הקהילתית?,,,methodica-math-percent-03-05/index.html,20
+03-05-99,chrome,Part-wide chrome / strings not tied to one screen,chrome,,methodica-math-percent-03-05/index.html + script.js,46
+03-06-00,s66,עכשיו מגיעה שאלת השיא,TransitionScreen,,methodica-math-percent-03-06/index.html,4
+03-06-01,s67,שאלת שיא מועד ב' פתיח,,,methodica-math-percent-03-06/index.html,13
+03-06-02,s68,"א. לפי הנתונים האלה, מה סך הנקודות הנדרש לצריכת סוללה תקינה?",,,methodica-math-percent-03-06/index.html,26
+03-06-03,s69,ב. כמה אחוזים צורכת התחממות הסוללה מתוך כלל אחוזי הצריכה?,,,methodica-math-percent-03-06/index.html,20
+03-06-04,s70,שאלת שיא מועד ב' – סעיף ג,,,methodica-math-percent-03-06/index.html,26
+03-06-05,s71,ד. האם צריכת הטלפון שלכם תקינה?,,,methodica-math-percent-03-06/index.html,44
+03-06-99,chrome,Part-wide chrome / strings not tied to one screen,chrome,,methodica-math-percent-03-06/index.html + script.js,40
+03-07-00,s72,הנה שאלת השיא,TransitionScreen,,methodica-math-percent-03-07/index.html,4
+03-07-01,s73,"דני ורוני בנו משחק טריוויה לכיתה, אבל כשהגיעו לכיתה גילו ששכחו את דף ה",,,methodica-math-percent-03-07/index.html,6
+03-07-02,s74,א. האם רוני צודקת או טועה?,,,methodica-math-percent-03-07/index.html,23
+03-07-03,s75,ב. השלימו את מספר הנקודות הכולל שניתן לחלק במשחק.,,,methodica-math-percent-03-07/index.html,20
+03-07-04,s76,"ג. מדוע שימוש בטבלת הפרופורציה מהיר ויעיל יותר מאשר לנסות לחשב בראש ""ב",,,methodica-math-percent-03-07/index.html,21
+03-07-99,chrome,Part-wide chrome / strings not tied to one screen,chrome,,methodica-math-percent-03-07/index.html + script.js,46

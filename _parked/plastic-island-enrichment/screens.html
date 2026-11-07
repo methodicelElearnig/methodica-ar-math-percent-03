@@ -1,0 +1,56 @@
+      <!-- ═══════════════════════════════════════════════════════════════
+         ENRICHMENT ITEM — before component 6 (the peak question)
+         Script slides 82–83 | new data-screen values 59.1–59.2 (not part of
+         the original absolute numbering — invented for this insertion so
+         s66–s78 below keep every existing goTo()/backMap/registry reference
+         unchanged). This item used to be duplicated at the end of
+         methodica-math-percent-03-02 as s40/s41; per producer decision it
+         belongs only here, right before the peak question — the 03-02 copy
+         was removed, this is now the sole implementation.
+    ════════════════════════════════════════════════════════════════ -->
+
+      <!-- ═══ s66a | slide 82 | TransitionScreen — enrichment intro ═══ -->
+      <section class="screen active" data-screen="59.1" id="s66a">
+        <div class="s30-text">
+          <h1 class="s30-heading">
+            תגידו, מי בכלל משתמש
+            <br />
+            בפרופורציה בחיים האמיתיים?
+          </h1>
+          <p class="s30-body">על אי הזבל כבר שמעתם?</p>
+        </div>
+        <video
+          class="s30-char-img"
+          id="s66a-char-img"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source id="s66a-char-img-src" src="" type="video/mp4" />
+        </video>
+        <button class="btn-continue" id="s66a-continue" onclick="goTo(59.2)">
+          המשך
+        </button>
+      </section>
+      <!-- /#s66a -->
+
+      <!-- ═══ s66b | slide 83 | Enrichment — plastic island ═══ -->
+      <section class="screen vq-screen" data-screen="59.2" id="s66b">
+        <div class="s66b-embed-wrap">
+          <iframe
+            class="s66b-embed"
+            id="s66b-embed"
+            src="assets/images/plastic-island-comic.html"
+            title="קומיקס בנושא אי הפלסטיק"
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <button class="btn-continue" id="s66b-continue" onclick="goTo(60)" disabled>
+          המשך
+        </button>
+      </section>
+      <!-- /#s66b -->

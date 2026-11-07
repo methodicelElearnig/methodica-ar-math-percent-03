@@ -1,0 +1,207 @@
+{
+  "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/",
+  "title": "وقت التدرّب 2",
+  "learningUnitId": "methodica-math-percent-03",
+  "componentPurpose": "practice",
+  "isAssessment": false,
+  "recommendedAfterFail": [
+    "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/"
+  ],
+  "isRequired": false,
+  "relativeDifficulty": 2,
+  "masteryLevel": null,
+  "order": 3,
+  "depthLevel": "core-curriculum-basic",
+  "cognitiveLevels": [
+    "algorithmic-thinking"
+  ],
+  "languages": [
+    "Arabic"
+  ],
+  "skills": [],
+  "estimatedTimeInMinutes": 22,
+  "createdAt": "2026-10-25T00:00:00.000Z",
+  "updatedAt": "2026-10-25T00:00:00.000Z",
+  "subContent": [
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-001/",
+      "title": "فيديو القطط ليوسف",
+      "informationToBot": "هدف البند: تدرّب أساسي على إيجاد الكلّ مع تلميح منذ بداية البند. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: 180 إعجابًا هي 36% من مجمل المشاهدات؛ إيجاد العدد الكلي للمشاهدات. اتجاهات التفكير والاستراتيجيات: جدول التناسب: 36% مقابل 180 و100% مقابل x؛ x يساوي 100 ضرب 180 قسمة 36 يساوي 500. يوجد تلميح متاح لكل بند. أخطاء شائعة: إجابة 64% أو 180 ضرب 36. معلومات إضافية: بند واحد، كتابة عدد. كل سؤال في المستوى الأساسي يعرض تلميحًا أولًا. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-001/q1",
+          "questionType": "numeric",
+          "questionText": "يوسف صانع محتوى مبتدئ. نشر اليوم أول فيديو له عن القطط على الشبكة. بعد ساعة واحدة حصل الفيديو على 180 إعجابًا. في نهاية اليوم فحص يوسف ووجد أن هذا العدد يشكّل بالضبط 36% من مجموع مشاهدات الفيديو. كم مشاهدة حصل عليها فيديو يوسف في المجموع؟ (مشاهدات)",
+          "answers": [],
+          "correctAnswers": [
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-002/",
+      "title": "ملصقات لمجموعة الكشافة",
+      "informationToBot": "هدف البند: تدرّب أساسي على إيجاد الكلّ. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: 42 ملصقًا هي 35% من الكمية المخطَّط لها؛ إيجاد الكمية المخطَّط لها. اتجاهات التفكير والاستراتيجيات: جدول التناسب: 35% مقابل 42 و100% مقابل x؛ x يساوي 100 ضرب 42 قسمة 35 يساوي 120. يوجد تلميح متاح لكل بند. أخطاء شائعة: حساب 35% من 42، أو جمع 42 و35. معلومات إضافية: بند واحد، كتابة عدد. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-002/q1",
+          "questionType": "numeric",
+          "questionText": "تصمّم سلمى ملصقات لمجموعة الواتساب الخاصة بالكشافة. لقد صمّمت بنجاح 42 ملصقًا حتى الآن، وحسبت أن هذا يشكّل 35% من عدد الملصقات التي تريد أن تُعدّها لسنة النشاط. كم ملصقًا يجب أن تُعدّ سلمى؟ (ملصقات)",
+          "answers": [],
+          "correctAnswers": [
+            120
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-003/",
+      "title": "مغناطيسات وليد وابن أخيه",
+      "informationToBot": "هدف البند: تدرّب أساسي على إيجاد الكلّ. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: 45 مغناطيسًا هي 15% من مجمل المغناطيسات؛ إيجاد مجمل المغناطيسات. اتجاهات التفكير والاستراتيجيات: جدول التناسب: 15% مقابل 45 و100% مقابل x؛ x يساوي 100 ضرب 45 قسمة 15 يساوي 300. يوجد تلميح متاح لكل بند. أخطاء شائعة: إجابة 255 (طرح 45 من 300 أو فرق آخر) أو 675. معلومات إضافية: بند واحد، كتابة عدد. تذكر القصة بناء برج المراقبة من باقي المغناطيسات، لكن السؤال هو عن المجموع الكلي. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-003/q1",
+          "questionType": "numeric",
+          "questionText": "يبني وليد وابن أخيه طائرة وبرج مراقبة من المغناطيسات. لبناء الطائرة استخدما 45 مغناطيسًا، تشكّل 15% من مجموع المغناطيسات التي لديهما. وبباقي المغناطيسات ينويان بناء برج المراقبة. كم مغناطيسًا يوجد في المجموع؟ (مغناطيسات)",
+          "answers": [],
+          "correctAnswers": [
+            300
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-004/",
+      "title": "مسابقة يوم الأرض العالمي",
+      "informationToBot": "هدف البند: تدرّب أساسي على إيجاد الكلّ. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: 120 زجاجة هي 30% من مجمل زجاجات طلاب الصف الثامن؛ إيجاد المجمل. اتجاهات التفكير والاستراتيجيات: جدول التناسب: 30% مقابل 120 و100% مقابل x؛ x يساوي 100 ضرب 120 قسمة 30 يساوي 400. يوجد تلميح متاح لكل بند. أخطاء شائعة: إجابة 36 (30% من 120) أو 120. معلومات إضافية: بند واحد، كتابة عدد. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-004/q1",
+          "questionType": "numeric",
+          "questionText": "في مسابقة \"يوم الأرض العالمي\" جمع طلاب الصف الثامن زجاجات لإعادة التدوير. فاز الصف الثامن 4 بالمسابقة بعد أن جمع 120 زجاجة في يوم واحد! قالت المعلّمة إن هذا يشكّل بالضبط 30% من مجموع الزجاجات التي جمعها طلاب الصف الثامن جميعًا. كم زجاجة جمعها طلاب الصف الثامن جميعًا؟ (زجاجات)",
+          "answers": [],
+          "correctAnswers": [
+            400
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-005/",
+      "title": "تمارين التحضير للامتحان لعمر وهدى",
+      "informationToBot": "هدف البند: ثلاثة بنود: النسبة المتبقية، وإيجاد الكلّ، والتحقّق من الإجابة. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: البند أ: نسبة التمارين المتبقية (100% ناقص 60%). البند ب: التمارين الـ 30 المتبقية هي 40% - إيجاد مجمل التمارين. البند ج: فحص - 60% من 75 هي 45، وبإضافة 30 نحصل على 75. معطيات السؤال: حلّ عمر وهدى 60% من التمارين في كرّاسة التحضير، وبقي لهما 30 تمرينًا. اتجاهات التفكير والاستراتيجيات: أ: التكملة إلى 100%. ب: جدول التناسب، 40% مقابل 30 و100% مقابل x، النتيجة 75. ج: حساب كم تمرينًا حُلّ وإضافة التمارين المتبقية. يوجد تلميح متاح لكل بند. أخطاء شائعة: أ: إجابة 60% بدلًا من 40%. ب: الحساب بـ 60% دون ملاءمته للكمية 30 التي تقابل 40%. معلومات إضافية: ثلاثة بنود مختلفة الأنواع: اختيار، وكتابة عدد، ونعم/لا. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-005/q1",
+          "questionType": "choice",
+          "questionText": "يدرس عمر وهدى معًا لامتحان الرياضيات. بعد أن حلّا 60% من التمارين في كرّاسة التحضير، بقي لهما 30 تمرينًا. أ. ما النسبة المئوية للتمارين التي بقي على عمر وهدى حلّها؟",
+          "answers": [
+            "20%",
+            "30%",
+            "40%",
+            "50%"
+          ],
+          "correctAnswers": [
+            "40%"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-005/q2",
+          "questionType": "numeric",
+          "questionText": "ب. كم تمرينًا يوجد في كرّاسة التحضير للامتحان؟ (تمارين)",
+          "answers": [],
+          "correctAnswers": [
+            75
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-005/q3",
+          "questionType": "choice",
+          "questionText": "وجدنا أن في الكرّاسة 75 تمرينًا. ج. تحقّقوا من إجابتكم: احسبوا كم تمرينًا حلّ عمر وهدى، ثم أضيفوا إلى الناتج التمارين الـ 30 المتبقية. هل نحصل على عدد التمارين الذي أعطته المعلّمة للتدريب؟",
+          "answers": [
+            "نعم",
+            "لا"
+          ],
+          "correctAnswers": [
+            "نعم"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-006/",
+      "title": "لون الشعر في المخطط الدائري",
+      "informationToBot": "هدف البند: دمج التكملة إلى 100% في مخطط دائري وإيجاد الكلّ (مساحة الدائرة). ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: البند أ: نسبة أصحاب الشعر البنّي بالتكملة إلى 100%. البند ب: حساب مساحة الدائرة كلها من مساحة القطاع البنّي. معطيات السؤال: مخطط دائري للون شعر الطلاب في الصف: شعر أسود 40%، أشقر 24%، أحمر 12%، شعر بنّي - لم تُكتب النسبة، لكن مساحة القطاع البنّي 50 سم². اتجاهات التفكير والاستراتيجيات: أ: 100% ناقص (40% + 24% + 12%) يساوي 24%. ب: جدول التناسب، 24% مقابل 50 سم² و100% مقابل x، النتيجة نحو 208.3 سم². يوجد تلميح متاح لكل بند. أخطاء شائعة: في البند أ: جمع غير صحيح للنسب. في البند ب: تقريب أو حساب بنسبة خاطئة، أو اختيار 187.5 (من قسمة غير صحيحة). معلومات إضافية: البند أ كتابة عدد؛ البند ب اختيار من 4 خيارات. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-006/q1",
+          "questionType": "numeric",
+          "questionText": "في درس العلوم يتعلّم الطلاب عن علم الوراثة. رسمت المعلّمة على اللوح مخططًا دائريًا يلخّص توزيع لون شعر الطلاب في الصف: شعر أسود – 40%، شعر أشقر – 24%، شعر أحمر – 12%، شعر بنّي – نسيت المعلّمة أن تكتب النسبة المئوية، لكنها كتبت أن مساحة القطاع البنّي هي: 50 سم². أ. ما النسبة المئوية للطلاب أصحاب الشعر البنّي؟ (%)",
+          "answers": [],
+          "correctAnswers": [
+            24
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-006/q2",
+          "questionType": "choice",
+          "questionText": "نعرف أن 24% من الطلاب شعرهم بني، وأن مساحة الجزء البني هي 50 سم². ب. احسبوا مساحة الدائرة كلها باستخدام جدول التناسب.",
+          "answers": [
+            "180 سم²",
+            "187.5 سم²",
+            "190 سم²",
+            "208.3 سم²"
+          ],
+          "correctAnswers": [
+            "208.3 سم²"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-007/",
+      "title": "سلال هدايا للأطفال الراقدين في المستشفى",
+      "informationToBot": "هدف البند: دمج إيجاد الكلّ (بالتقدير أو بالتناسب) مع كتابة نسبة مختصرة. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: البند أ: 40 سلة هدايا هي 80% - إيجاد عدد السلال المطلوب. البند ب: النسبة بين ما بقي جمعه وما جُمع حتى الآن. معطيات السؤال: جمع زياد وطارق وجنى 40 سلة هدايا، وهي 80% من العدد المطلوب للأطفال الراقدين في المستشفى. بقي عليهم جمع 10 سلال هدايا. اتجاهات التفكير والاستراتيجيات: أ: 80% هي أربعة أخماس، و20% هي ربع ما جُمع أي 10، والمجموع 50. ب: بقي 10 وجُمع 40 - النسبة 10:40 تُختزل إلى 1:4. يوجد تلميح متاح لكل بند. أخطاء شائعة: أ: إجابة 32 (80% من 40) أو 40. ب: عكس ترتيب النسبة (4:1) أو عدم الاختصار. معلومات إضافية: البند أ كتابة عدد؛ البند ب اختيار من 4 خيارات نسبة. يُعرض البند ب بعد أن يتلقّى المتعلّم نتيجة البند أ (بقي عليهم جمع 10 سلال). لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-007/q1",
+          "questionType": "numeric",
+          "questionText": "في الأسبوع الذي سبق عيد البوريم جمع زياد وطارق وجنى سلال هدايا للأطفال الراقدين في قسم الأطفال في المستشفى. حتى الآن نجحوا في جمع 40 سلة هدايا، وهي 80% من عدد سلال الهدايا المطلوبة للأطفال الراقدين في المستشفى. أ. إذا حصلت كل طفلة وكل طفل على سلة هدايا واحدة، فكم سلة هدايا يحتاجون أن يجمعوا؟ (سلال هدايا)",
+          "answers": [],
+          "correctAnswers": [
+            50
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-03/methodica-math-percent-03-03-007/q2",
+          "questionType": "choice",
+          "questionText": "نعرف أنّ زياد وطارق وجنى جمعوا 40 سلة هدايا، وبقي عليهم أن يجمعوا 10 سلال هدايا أخرى. ب. ما النسبة بين عدد سلال الهدايا التي لم يتمكّنوا من جمعها بعد وعدد سلال الهدايا التي جمعوها حتى الآن؟",
+          "answers": [
+            "3:2",
+            "2:3",
+            "1:4",
+            "4:1"
+          ],
+          "correctAnswers": [
+            "1:4"
+          ]
+        }
+      ]
+    }
+  ]
+}

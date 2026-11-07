@@ -1,0 +1,18 @@
+/* parked from methodica-math-percent-03-06/styles.css (s66a char2 layering selector + s66b embed) */
+#s66a #s66a-char-img[data-char="char2"] { left: 0; z-index: -1; }
+
+/* ── Enrichment screen s66b — plastic-island comic embed (before component 6) ── */
+.s66b-embed-wrap {
+  position: absolute;
+  top: 66px;
+  left: 40px;
+  right: 40px;
+  bottom: 74px;
+}
+.s66b-embed {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  margin: 0;
+}

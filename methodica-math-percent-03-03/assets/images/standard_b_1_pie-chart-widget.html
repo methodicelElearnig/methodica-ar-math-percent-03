@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مخطط دائري تفاعلي</title>
+<style>
+  :root{
+    --c-black:#1f2937;
+    --c-yellow:#eab308;
+    --c-orange:#ea580c;
+    --c-brown:#92400e;
+    --bg:#ffffff;
+    --card:#ffffff;
+    --ink:#0f172a;
+    --muted:#64748b;
+    --line:#e2e8f0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:Calibri,"Segoe UI",Tahoma,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    direction:rtl;
+    padding:0 20px 20px;            /* no top gap: card top lines up with the question text */
+  }
+  .wrap{
+    max-width:860px;
+    margin:0 auto;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 10px 30px -18px rgba(15,23,42,.25);
+  }
+  .sub{
+    color:var(--muted);
+    margin:0 0 20px;
+    font-size:28px;
+  }
+  .layout{
+    display:flex;
+    gap:32px;
+    flex-wrap:wrap;
+    align-items:flex-start;
+  }
+  .pie-col{
+    flex:1 1 300px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+  }
+  .controls-col{
+    flex:1 1 300px;
+  }
+  svg{ max-width:340px; width:100%; height:auto; }
+  .slice{ stroke:#fff; stroke-width:2; transition:opacity .15s; }
+  .slice-label{
+    font-size:19px;
+    font-weight:700;
+    text-anchor:middle;
+    dominant-baseline:middle;
+    pointer-events:none;
+  }
+  .slider-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .swatch{
+    width:24px;height:24px;border-radius:6px;flex:0 0 auto;
+  }
+  .slabel{ flex:0 0 112px; font-weight:600; font-size:26px; }
+  input[type=range]{
+    flex:1 1 auto;
+    direction:ltr;
+    height:6px;
+    -webkit-appearance:none;
+    appearance:none;
+    border-radius:99px;
+    background:var(--line);
+    cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;
+    width:28px;height:28px;border-radius:50%;
+    background:#fff;border:3px solid var(--ink);
+    box-shadow:0 1px 4px rgba(0,0,0,.25);
+  }
+  input[type=range]::-moz-range-thumb{
+    width:28px;height:28px;border-radius:50%;
+    background:#fff;border:3px solid var(--ink);
+    box-shadow:0 1px 4px rgba(0,0,0,.25);
+  }
+  .val{
+    flex:0 0 72px;
+    text-align:left;
+    font-variant-numeric:tabular-nums;
+    font-weight:700;
+    font-size:26px;
+  }
+  .gray-box{
+    margin-top:18px;
+    background:#f1f5f9;
+    border:1px dashed var(--c-brown);
+    border-radius:12px;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .gray-box .left{display:flex;align-items:center;gap:10px;}
+  .gray-box .swatch{width:24px;height:24px;}
+  .gray-val{
+    font-size:34px;font-weight:800;color:#334155;
+    font-variant-numeric:tabular-nums;
+  }
+  .reset{
+    margin-top:18px;width:100%;
+    background:var(--ink);color:#fff;border:none;
+    padding:14px;border-radius:10px;font-weight:600;cursor:pointer;
+    font-family:inherit;font-size:24px;
+  }
+  .reset:hover{opacity:.9;}
+  .reset:focus-visible,input:focus-visible{outline:3px solid #93c5fd;outline-offset:2px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="sub">حرّكوا المنزلقات ولاحظوا كيف يتغيّر الجزء البني.</p>
+
+  <div class="layout">
+    <div class="pie-col">
+      <svg viewBox="0 0 220 220" id="pie" role="img" aria-label="مخطط دائري تفاعلي"></svg>
+    </div>
+
+    <div class="controls-col" id="controls"></div>
+  </div>
+</div>
+
+<script>
+const SECTORS = [
+  {key:'black',  name:'أسود', color:'var(--c-black)',  hex:'#1f2937', text:'#ffffff', value:25},
+  {key:'yellow', name:'أشقر', color:'var(--c-yellow)', hex:'#eab308', text:'#1f2937', value:25},
+  {key:'orange', name:'أحمر', color:'var(--c-orange)', hex:'#ea580c', text:'#ffffff', value:25},
+];
+const COMP = {name:'بني', hex:'#92400e', text:'#ffffff'};   // הגזרה המשלימה
+const START = SECTORS.map(s=>s.value);
+
+const CX=110, CY=110, R=100;
+
+function polar(cx,cy,r,deg){
+  const a=(deg-90)*Math.PI/180;
+  return {x:cx+r*Math.cos(a), y:cy+r*Math.sin(a)};
+}
+function arcPath(cx,cy,r,start,end){
+  if(end-start>=359.999){
+    return `M ${cx} ${cy-r} A ${r} ${r} 0 1 1 ${cx-0.01} ${cy-r} Z`;
+  }
+  const p1=polar(cx,cy,r,start), p2=polar(cx,cy,r,end);
+  const large=(end-start)>180?1:0;
+  return `M ${cx} ${cy} L ${p1.x} ${p1.y} A ${r} ${r} 0 ${large} 1 ${p2.x} ${p2.y} Z`;
+}
+
+function compValue(){
+  const sum=SECTORS.reduce((a,s)=>a+s.value,0);
+  return 100-sum;
+}
+
+function render(){
+  const pie=document.getElementById('pie');
+  pie.innerHTML='';
+  const slices=[...SECTORS.map(s=>({hex:s.hex,text:s.text,val:s.value,isComp:false})),
+                {hex:COMP.hex,text:COMP.text,val:compValue(),isComp:true}];
+  let angle=0;
+  slices.forEach(s=>{
+    if(s.val<=0){return;}
+    const start=angle, end=angle+s.val*3.6;
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',arcPath(CX,CY,R,start,end));
+    path.setAttribute('fill',s.hex);
+    path.setAttribute('class','slice');
+    pie.appendChild(path);
+    // תווית בתוך הגזרה: אחוז לצבעוניות, '?' לחום — אינו חושף את התשובה
+    if(s.val>=6){
+      const mid=(start+end)/2;
+      const lp=polar(CX,CY,R*0.62,mid);
+      const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x',lp.x); t.setAttribute('y',lp.y);
+      t.setAttribute('class','slice-label');
+      t.setAttribute('fill',s.text);
+      t.textContent=s.isComp?'?':s.val+'%';
+      pie.appendChild(t);
+    }
+    angle=end;
+  });
+
+  SECTORS.forEach(s=>{
+    document.getElementById('val-'+s.key).textContent=s.value+'%';
+    document.getElementById('rng-'+s.key).value=s.value;
+  });
+  document.getElementById('compVal').textContent='?';
+}
+
+function buildControls(){
+  const box=document.getElementById('controls');
+  SECTORS.forEach(s=>{
+    const row=document.createElement('div');
+    row.className='slider-row';
+    row.innerHTML=`\n      <span class="swatch" style="background:${s.color}"></span>\n      <span class="slabel">${s.name}</span>\n      <input type="range" id="rng-${s.key}" min="0" max="100" step="1"\n             value="${s.value}" aria-label="النسبة المئوية (${s.name})">\n      <span class="val" id="val-${s.key}">${s.value}%</span>`;
+    box.appendChild(row);
+  });
+
+  const comp=document.createElement('div');
+  comp.className='gray-box';
+  comp.innerHTML=`
+    <div class="left">
+      <span class="swatch" style="background:${COMP.hex}"></span>
+      <span class="slabel" style="flex:0 0 auto">${COMP.name}</span>
+    </div>
+    <span class="gray-val" id="compVal">?</span>`;
+  box.appendChild(comp);
+
+  const btn=document.createElement('button');
+  btn.className='reset';
+  btn.textContent='إعادة ضبط';
+  btn.onclick=()=>{ SECTORS.forEach((s,i)=>s.value=START[i]); render(); };
+  box.appendChild(btn);
+
+  SECTORS.forEach(s=>{
+    document.getElementById('rng-'+s.key).addEventListener('input',e=>{
+      let v=parseInt(e.target.value,10);
+      // Each slider is independent: it never moves the others. It is capped at
+      // whatever is left after the other sectors, so the total stays ≤ 100%.
+      const othersSum=SECTORS.filter(x=>x.key!==s.key).reduce((a,x)=>a+x.value,0);
+      v=Math.min(v,100-othersSum);
+      s.value=v;
+      render();
+    });
+  });
+}
+
+buildControls();
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,2473 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>هيا نتعلّم شيئًا جديدًا — حساب الكلّ عند معرفة نسبة الجزء المئوية | رياضيات 720</title>
+    <!-- The shared xAPI library is fetched by unit-js/50-loader.js at the END of the body, after the
+         parser has queued every image; preloading it from the head puts it first in the queue, so the
+         resume restore does not wait for the media (BOOT-AND-RESUME-HARDENING-2026-11-03.md C2). The href
+         must equal what 50-loader.js builds (no ?v=, no crossorigin) or the browser fetches it twice; the
+         library letter changes together with LIB720 there (the harness asserts it). -->
+    <link rel="preload" as="script" fetchpriority="high" href="https://lomdot.education.gov.il/metodica/720active/common/xapiwrapper.min.js">
+    <link rel="preload" as="script" fetchpriority="high" href="https://lomdot.education.gov.il/metodica/720active/common/xapi-720-l.js">
+    <link rel="preconnect" href="https://kata.cet.ac.il">
+    <link rel="stylesheet" href="styles.css?v=84" />
+    <script>
+      // Explicit delimiters: inline \(...\) (feedback calcs) + display $$...$$ (s6b).
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+        },
+        options: {
+          skipHtmlTags: [
+            "script",
+            "noscript",
+            "style",
+            "textarea",
+            "pre",
+            "code",
+          ],
+        },
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+
+  <body data-subject-theme="math">
+    <!-- Boot cover: hides the first screen until the resume decision is made (50-loader.js), so a
+         learner with saved progress never sees — or clicks — the start screen first. Painted in the
+         page's own background in the first frame. -->
+    <div id="boot-cover" style="position:fixed;inset:0;z-index:9999;background:#1a2744"></div>
+    <script>
+    /* Safety net. DEPENDENCY-FREE and inline by design: it must run even if unit-js/ fails to load
+       or throws, because the one thing worse than a flash of the start screen is a learner left
+       staring at a blank page. 800 ms normally; up to 6 s while window.__resumeInFlight is true.
+       Polls every 100 ms so it drops the cover as soon as the flag clears. */
+    (function () {
+      /* A Kata launch (registration in the query) may have a document to restore: raise the flag
+         HERE, before any script is fetched — bootXAPI runs from the last script tag, after the
+         800 ms below on a cold cache (2026-11-03, C1). Without a registration (local, dev) the
+         800 ms behaviour is unchanged. */
+      if (/[?&]registration=/.test(location.search)) window.__resumeInFlight = true;
+      var t0 = Date.now();
+      function tick() {
+        var c = document.getElementById('boot-cover');
+        if (!c || !c.parentNode) return;          /* already removed — nothing to do */
+        if (window.__resumeInFlight && Date.now() - t0 < 6000) { setTimeout(tick, 100); return; }
+        c.parentNode.removeChild(c);
+      }
+      setTimeout(tick, 800);
+    })();
+    </script>
+    <div id="app">
+      <!-- ═══════════════════════════════════════
+         GLOBAL — Flag / Report Issue button
+    ════════════════════════════════════════ -->
+      <button
+        class="flag-btn"
+        id="flag-btn"
+        onclick="openReportModal()"
+        aria-label="التبليغ عن مشكلة"
+      >
+        <span class="flag-icon-circle">
+          <svg
+            class="flag-icon-svg"
+            width="12"
+            height="17"
+            viewBox="0 0 12 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M0.397164 17C0.177722 17 0 16.8239 0 16.6065V0.393501C0 0.176082 0.177722 0 0.397164 0C0.616607 0 0.794329 0.176082 0.794329 0.393501V16.607C0.794329 16.8245 0.616607 17.0005 0.397164 17.0005V17Z"
+              fill="currentColor"
+            />
+            <path
+              d="M2.76227 9.9082C1.91972 9.9082 1.06958 9.74822 0.213483 9.3064C0.0823588 9.23876 0 9.10402 0 8.95746V1.54375C0 1.40739 0.0715221 1.2807 0.188558 1.20876C0.305594 1.13736 0.45189 1.13038 0.574886 1.19158C0.577053 1.19266 0.578679 1.19373 0.580846 1.19481C2.31309 2.08864 4.05563 1.63877 5.90003 1.16259C7.80946 0.669779 9.78336 0.160858 11.7865 1.19427C11.9176 1.26191 12 1.39666 12 1.54321V8.95692C12 9.08738 11.9344 9.20977 11.8255 9.28278C11.7166 9.35579 11.5774 9.37082 11.4555 9.32251C11.443 9.31768 11.4311 9.31231 11.4197 9.3064C9.68745 8.41257 7.94491 8.86244 6.10051 9.33808C5.00709 9.61992 3.89199 9.90766 2.76281 9.90766L2.76227 9.9082ZM0.793787 8.71213C2.45559 9.46584 4.13094 9.03315 5.90003 8.57684C7.62469 8.13181 9.40191 7.67335 11.2062 8.35084V1.78908C9.54441 1.03536 7.86906 1.46805 6.09997 1.92437C4.37531 2.3694 2.59755 2.82786 0.793787 2.15037V8.71213Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        <span class="flag-label">هل وجدتم مشكلة؟</span>
+      </button>
+
+      <!-- ═══════════════════════════════════════
+         GLOBAL — Back button
+    ════════════════════════════════════════ -->
+      <button
+        class="btn-back"
+        id="global-back-btn"
+        hidden
+        onclick="goBack()"
+        aria-label="العودة إلى الشاشة السابقة"
+      >
+        رجوع
+      </button>
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 0 — בחירת דמות
+    ════════════════════════════════════════ -->
+      <section class="screen active" data-screen="0" id="s0">
+        <div class="screen-content">
+          <div class="select-head">
+            <h1 class="select-title">أي شخصية تريدون أن ترافقكم؟</h1>
+          </div>
+
+          <div class="option-cards" role="radiogroup" aria-label="اختاروا شخصية">
+            <div
+              class="option-card"
+              role="radio"
+              aria-checked="false"
+              tabindex="0"
+              data-value="char1"
+              onclick="selectOption(this)"
+              onkeydown="cardKeyHandler(event, this)"
+            >
+              <img
+                class="char-img"
+                src="../unit-assets/img/char-1-opt.png"
+                alt="شخصية صفراء"
+              />
+            </div>
+
+            <div
+              class="option-card"
+              role="radio"
+              aria-checked="false"
+              tabindex="0"
+              data-value="char2"
+              onclick="selectOption(this)"
+              onkeydown="cardKeyHandler(event, this)"
+            >
+              <img
+                class="char-img"
+                src="../unit-assets/img/char-2-opt.png"
+                alt="شخصية خضراء"
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s0-continue"
+          disabled
+          onclick="advanceFromS0()"
+        >
+          متابعة
+        </button>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 1 — הצגת הדמות הנבחרת
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="1" id="s1">
+        <div class="intro-text">
+          <h1 class="intro-heading">
+            ما العلاقة بين بطارية الهاتف المحمول والرياضيات؟
+          </h1>
+          <p class="intro-sub">
+            ستتفاجؤون، هنالك علاقة!<br/>تابعوا لرؤية قوتها.
+          </p>
+        </div>
+
+        <video
+          class="intro-video"
+          id="intro-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        >
+          <source id="intro-video-src" src="" type="video/mp4" />
+        </video>
+
+        <div class="speech-bubble">
+          <p class="speech-text">هل معكم شاحن سريع؟</p>
+        </div>
+
+        <button class="btn-continue" id="s1-continue" onclick="advanceFromS1()">
+          متابعة
+        </button>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 2 — Hook Question (PPTX slide 14)
+         SingleChoiceQuestion: לכמה זמן תספיק הסוללה?
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="2" id="s2">
+        <div class="s2-layout">
+          <!-- Image panel (physical left) -->
+          <div class="s2-image-panel">
+            <div class="vq-img-frame">
+              <img loading="lazy"
+                class="s2-hook-img"
+                src="assets/images/Hook_charge phone-opt.png"
+                alt="يدٌ تمسك هاتفًا ذكيًا، وتعرض شاشته مؤشر البطارية عند 15% مع رمز بطارية ضعيفة والوقت، على خلفية غرفة ضبابية."
+              />
+              <button
+                class="img-zoom-btn"
+                type="button"
+                aria-label="تكبير الصورة"
+                data-zoom-src="assets/images/Hook_charge phone-opt.png"
+                data-zoom-alt="يدٌ تمسك هاتفًا ذكيًا، وتعرض شاشته مؤشر البطارية عند 15% مع رمز بطارية ضعيفة والوقت، على خلفية غرفة ضبابية."
+              >
+                <svg
+                  class="img-zoom-btn__icon-svg"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="8.5"
+                    cy="8.5"
+                    r="6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  />
+                  <line
+                    x1="13.2"
+                    y1="13.2"
+                    x2="18"
+                    y2="18"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question panel (physical right) -->
+          <div class="s2-question-panel">
+            <h1 class="s2-title">كم من الوقت ستكفي البطارية؟</h1>
+            <p class="s2-body">
+              في الحافلة، وأنتم في طريقكم إلى الرحلة السنوية، فحصتم حالة بطارية<br/> هاتفكم المحمول واكتشفتم أن مستوى الشحن فيه 15%،<br/> وهذا يكفي لتشغيل الهاتف لمدة 30 دقيقة فقط.<br/> ولن يكفي ذلك بالتأكيد لرحلة تستغرق يومين في الصحراء 😞<br/><strong class="mm-purple-bold s2-question-oneline">برأيكم، كم من الوقت ستكفي البطارية إذا شحنتموها بالكامل (100%)؟</strong></p>
+            <div class="s2-options" role="radiogroup" aria-label="اختاروا إجابة">
+              <button
+                class="s2-option"
+                role="radio"
+                aria-checked="false"
+                data-value="100"
+                onclick="s2SelectOption(this)"
+              >
+                <span aria-hidden="true" class="s2-option-marker"></span> <span class="s2-option-text">100 دقيقة</span></button>
+              <button
+                class="s2-option"
+                role="radio"
+                aria-checked="false"
+                data-value="200"
+                onclick="s2SelectOption(this)"
+              >
+                <span aria-hidden="true" class="s2-option-marker"></span> <span class="s2-option-text">200 دقيقة</span></button>
+              <button
+                class="s2-option"
+                role="radio"
+                aria-checked="false"
+                data-value="300"
+                onclick="s2SelectOption(this)"
+              >
+                <span aria-hidden="true" class="s2-option-marker"></span> <span class="s2-option-text">300 دقيقة</span></button>
+              <button
+                class="s2-option"
+                role="radio"
+                aria-checked="false"
+                data-value="400"
+                onclick="s2SelectOption(this)"
+              >
+                <span aria-hidden="true" class="s2-option-marker"></span> <span class="s2-option-text">400 دقيقة</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Character feedback — bottom-right, absolutely positioned (PPTX slide 12 spec: 197×165px, border #019DE5) -->
+        <div class="s2-feedback" id="s2-feedback" role="status" hidden>
+          <div class="s2-feedback-bubble">
+            <p>لا تقلقوا، سنصل إلى الإجابة لاحقًا في الوحدة.</p>
+          </div>
+          <img
+            class="s2-feedback-character"
+            id="s2-feedback-character"
+            alt="الشخصية المختارة"
+          />
+        </div>
+
+        <button
+          class="btn-continue"
+          id="s2-continue"
+          disabled
+          onclick="advanceFromS2()"
+        >
+          هل إجابتي صحيحة؟
+        </button>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 3 — Daily-life contexts (PPTX slide 15)
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="3" id="s3">
+        <div class="screen-content s3-content">
+          <div class="select-head">
+            <h1 class="select-title">من المهم أن نعرف كيف نحسب عمر البطارية!</h1>
+            <p class="select-subtitle">
+              أين يمكننا أيضًا أن نستخدم حساب النسب المئوية في الحياة اليومية؟
+            </p>
+          </div>
+
+          <div class="s3-cards" role="list">
+            <div class="s3-card" role="listitem">
+              <div class="s3-card-img-wrap">
+                <div class="vq-img-frame s3-card-frame">
+                  <img loading="lazy"
+                    src="assets/images/Hook_when_1-opt.jpg"
+                    alt="واجهة متجر فيها أحذية رياضية. زوج باللونين الأبيض والوردي عليه ورقة كُتب عليها خصم 26%، وزوج أزرق عليه ورقة كُتب عليها خصم 25%."
+                  />
+                  <button
+                    class="img-zoom-btn"
+                    type="button"
+                    aria-label="تكبير الصورة"
+                    data-zoom-src="assets/images/Hook_when_1-opt.jpg"
+                    data-zoom-alt="واجهة متجر فيها أحذية رياضية. زوج باللونين الأبيض والوردي عليه ورقة كُتب عليها خصم 26%، وزوج أزرق عليه ورقة كُتب عليها خصم 25%."
+                  >
+                    <svg
+                      class="img-zoom-btn__icon-svg"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <circle cx="8.5" cy="8.5" r="6" stroke="currentColor" stroke-width="1.8" />
+                      <line x1="13.2" y1="13.2" x2="18" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="s3-card-body">
+                <h3 class="s3-card-title">تسوّق!</h3>
+                <p class="s3-card-text">هل الخصم كبير حقًا؟</p>
+              </div>
+            </div>
+
+            <div class="s3-card" role="listitem">
+              <div class="s3-card-img-wrap">
+                <div class="vq-img-frame s3-card-frame">
+                  <img loading="lazy"
+                    src="assets/images/Hook_when_2-opt.jpg"
+                    alt="الصفحة الأولى من صحيفة رياضية عنوانها &quot;أخبار الرياضة&quot;، وفيها صورة للاعب كرة سلة أثناء اللعب."
+                  />
+                  <button
+                    class="img-zoom-btn"
+                    type="button"
+                    aria-label="تكبير الصورة"
+                    data-zoom-src="assets/images/Hook_when_2-opt.jpg"
+                    data-zoom-alt="الصفحة الأولى من صحيفة رياضية عنوانها &quot;أخبار الرياضة&quot;، وفيها صورة للاعب كرة سلة أثناء اللعب."
+                  >
+                    <svg
+                      class="img-zoom-btn__icon-svg"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <circle cx="8.5" cy="8.5" r="6" stroke="currentColor" stroke-width="1.8" />
+                      <line x1="13.2" y1="13.2" x2="18" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="s3-card-body">
+                <h3 class="s3-card-title">الرياضة</h3>
+                <p class="s3-card-text">كم هدفًا سجّل؟</p>
+              </div>
+            </div>
+
+            <div class="s3-card" role="listitem">
+              <div class="s3-card-img-wrap">
+                <div class="vq-img-frame s3-card-frame">
+                  <img loading="lazy"
+                    src="assets/images/gaming-opt.png"
+                    alt="خريطة المناطق في لعبة حاسوب: منطقة القلعة البيضاء، غابة الصنوبر، المناجم، وصحراء الظلال المقفلة. في الأسفل يظهر شريط تقدّم بنسبة 60% والنص: أنهيتَ 3 من أصل 5 مناطق."
+                  />
+                  <button
+                    class="img-zoom-btn"
+                    type="button"
+                    aria-label="تكبير الصورة"
+                    data-zoom-src="assets/images/gaming-opt.png"
+                    data-zoom-alt="خريطة المناطق في لعبة حاسوب: منطقة القلعة البيضاء، غابة الصنوبر، المناجم، وصحراء الظلال المقفلة. في الأسفل يظهر شريط تقدّم بنسبة 60% والنص: أنهيتَ 3 من أصل 5 مناطق."
+                  >
+                    <svg
+                      class="img-zoom-btn__icon-svg"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <circle cx="8.5" cy="8.5" r="6" stroke="currentColor" stroke-width="1.8" />
+                      <line x1="13.2" y1="13.2" x2="18" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="s3-card-body">
+                <h3 class="s3-card-title">ألعاب الفيديو</h3>
+                <p class="s3-card-text">كم منطقة أنهيتُ في اللعبة؟</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-continue" id="s3-continue" onclick="advanceFromS3()">
+          متابعة
+        </button>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 4 — Three calculation methods (PPTX slides 16-17)
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="4" id="s4">
+        <div class="s4-layout">
+          <div class="s4-intro-text">
+            <h1 class="s4-title">
+              سنتعلّم اليوم كيف نجد الكمية الكاملة (100%)<br/> إذا عرفنا جزءًا منها
+            </h1>
+          </div>
+          <video
+            class="s4-character-video"
+            id="s4-character-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            aria-hidden="true"
+          >
+            <source id="s4-character-video-src" src="" type="video/mp4" />
+          </video>
+          <div class="s4-speech-bubble">
+            <p class="s4-speech-text">
+              هل تتذكرون جدول التناسب ومعادلة التناسب؟<br/> سنستخدمهما اليوم أيضًا!
+            </p>
+          </div>
+        </div>
+        <button class="btn-continue" id="s4-continue" onclick="advanceFromS4()">
+          متابعة
+        </button>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 7 — s6b: CarouselLearningScreen
+         PPTX slides 25–33 | methodica-math-percent-03-01-003.3
+         Sprint 2B
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="7" id="s6b">
+        <!-- Carousel content area -->
+        <div class="carousel-screen">
+          <div class="carousel-header">
+            <h1 class="carousel-title">كيف نجد الكلّ باستخدام جدول التناسب؟</h1>
+            <br />
+            <p class="carousel-instruction">
+              <strong>اضغطوا على الأسهم الجانبية للتقدّم:</strong></p>
+            <br />
+            <span class="carousel-progress" id="s6b-progress"
+              >المرحلة 1 من 9</span
+            >
+          </div>
+
+          <!-- prev ‹ | slide area | › next  (direction:ltr → left=prev, right=next per PPTX) -->
+          <div class="carousel-body-row">
+            <button
+              class="carousel-arrow carousel-arrow--prev"
+              id="s6b-prev-btn"
+              aria-label="المرحلة السابقة"
+              disabled
+              onclick="s6bPrevStep()"
+            >
+              <svg
+                class="carousel-arrow__icon"
+                viewBox="0 0 22 40"
+                fill="none"
+                aria-hidden="true"
+              >
+                <!-- Figma "Navigation Icons" vector (node 1118:13840) -->
+                <path transform="matrix(-1 0 0 1 22 0)"
+                  d="M20.2632 0C21.0298 0.0469 21.7407 0.5934 21.9325 1.3359C22.1186 1.9745 21.9068 2.6931 21.4209 3.1457C15.7569 8.7663 10.0854 14.3795 4.4214 20C10.0854 25.6206 15.7577 31.2338 21.4218 36.8536C21.9491 37.3457 22.1485 38.1499 21.8819 38.8215C21.6394 39.4881 20.9725 39.9523 20.264 39.9992H20.0888C19.5955 39.968 19.1312 39.7408 18.7916 39.3869C12.709 33.3581 6.6222 27.3309 0.5429 21.2988C-0.1796 20.6223 -0.1821 19.3778 0.5429 18.7029C6.623 12.6692 12.709 6.6429 18.7907 0.6132C19.1304 0.2585 19.5955 0.0313 20.0905 0H20.2632Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+
+            <!-- Slide content — no card border, matches Figma template -->
+            <div class="s6b-slide-area" id="s6b-panel">
+              <div class="s6b-step-header">
+                <span class="carousel-step-badge" id="s6b-badge">مقدمة</span></div>
+              <div class="s6b-content-wrap">
+                <div class="s6b-content" id="s6b-content">
+                  <!-- populated by s6bRenderStep() -->
+                </div>
+                <div class="s6b-table-col" id="s6b-table-slot">
+                  <!-- table only, fixed position — populated by s6bRenderStep() -->
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="carousel-arrow carousel-arrow--next"
+              id="s6b-next-btn"
+              aria-label="المرحلة التالية"
+              onclick="s6bNextStep()"
+            >
+              <svg
+                class="carousel-arrow__icon"
+                viewBox="0 0 22 40"
+                fill="none"
+                aria-hidden="true"
+              >
+                <!-- Figma "Navigation Icons" vector (node 1118:13840) -->
+                <path
+                  d="M20.2632 0C21.0298 0.0469 21.7407 0.5934 21.9325 1.3359C22.1186 1.9745 21.9068 2.6931 21.4209 3.1457C15.7569 8.7663 10.0854 14.3795 4.4214 20C10.0854 25.6206 15.7577 31.2338 21.4218 36.8536C21.9491 37.3457 22.1485 38.1499 21.8819 38.8215C21.6394 39.4881 20.9725 39.9523 20.264 39.9992H20.0888C19.5955 39.968 19.1312 39.7408 18.7916 39.3869C12.709 33.3581 6.6222 27.3309 0.5429 21.2988C-0.1796 20.6223 -0.1821 19.3778 0.5429 18.7029C6.623 12.6692 12.709 6.6429 18.7907 0.6132C19.1304 0.2585 19.5955 0.0313 20.0905 0H20.2632Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+          <!-- /.carousel-body-row -->
+        </div>
+        <!-- /.carousel-screen -->
+
+        <button
+          class="btn-continue"
+          id="s6b-continue"
+          disabled
+          onclick="advanceFromS6b()"
+        >
+          متابعة
+        </button>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 8 — s7: GuidedPracticeScreen — Battery
+         PPTX slides 34–43 | methodica-math-percent-03-01-003
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="8" id="s7">
+        <!-- ── STEP 0: Table placement (slides 34–38) ─────────────── -->
+        <div class="guided-step" id="s7-step-0">
+          <div class="guided-top">
+            <h1 class="guided-main-title">والآن، لنعد إلى شحن الهاتف:</h1>
+            <p class="guided-context">
+              البطارية المشحونة بنسبة 15% تكفي لمدة 30 دقيقة.<br/>كم دقيقة ستكفي البطارية المشحونة بالكامل (100%)؟
+            </p>
+          </div>
+
+          <div class="guided-body">
+            <div class="guided-work-area">
+              <div class="guided-card">
+                <p class="guided-step-instruction mm-purple-bold">
+                  1. أولًا، ضعوا المعطيات في جدول التناسب:
+                </p>
+
+                <table
+                  class="triple-table"
+                  role="grid"
+                  aria-label="جدول القاعدة الثلاثية"
+                >
+                  <thead>
+                    <tr>
+                      <th scope="col">الزمن بالدقائق</th>
+                      <th scope="col">النسبة المئوية</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="ttcell ttcell--input">
+                        <input
+                          class="table-input"
+                          id="s7-val-known"
+                          type="text"
+                          inputmode="numeric"
+                          aria-label="القيمة المعروفة"
+                          maxlength="4"
+                          oninput="s7TableChanged()"
+                          onfocus="s7HideTableFeedbackOnFocus()"
+                        />
+                      </td>
+                      <td class="ttcell ttcell--input">
+                        <div class="ttcell-input-wrap">
+                          <span class="pct-suffix">%</span>
+                          <input
+                            class="table-input"
+                            id="s7-pct-partial"
+                            type="text"
+                            inputmode="numeric"
+                            aria-label="نسبة مئوية جزئية"
+                            maxlength="4"
+                            oninput="s7TableChanged()"
+                            onfocus="s7HideTableFeedbackOnFocus()"
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="ttcell ttcell--fixed ttcell--qmark">x</td>
+                      <td class="ttcell ttcell--input">
+                        <div class="ttcell-input-wrap">
+                          <span class="pct-suffix">%</span>
+                          <input
+                            class="table-input"
+                            id="s7-pct-whole"
+                            type="text"
+                            inputmode="numeric"
+                            aria-label="النسبة المئوية الكاملة"
+                            maxlength="4"
+                            oninput="s7TableChanged()"
+                            onfocus="s7HideTableFeedbackOnFocus()"
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <p
+                  class="inline-validation"
+                  id="s7-table-validation"
+                  hidden
+                  role="alert"
+                >
+                  يجب إدخال أعداد فقط.
+                </p>
+              </div>
+              <!-- /.guided-card -->
+            </div>
+            <!-- /.guided-work-area -->
+          </div>
+          <!-- /.guided-body -->
+        </div>
+        <!-- /#s7-step-0 -->
+
+        <!-- ── STEP 1: Formula / value input (slides 39–43) ───────── -->
+        <div class="guided-step" id="s7-step-1" hidden>
+          <div class="guided-top">
+            <p class="guided-reminder">
+              تذكّروا: سنكتب معادلة تناسب. نقسم الزمن على الزمن (x على 30 دقيقة) والنسبة المئوية على النسبة المئوية (100% على 15%)، بالترتيب نفسه في الطرفين، ثم نساوي بين النسبتين.
+            </p>
+          </div>
+ <p class="guided-question">
+                  كم دقيقة ستكفي البطارية المشحونة بالكامل (100%)؟
+                </p>
+          <div class="guided-body">
+            <div class="guided-work-area">
+              <div class="guided-card">
+                <p class="guided-step-instruction mm-purple-bold">
+                  2. الآن حُلّوا باستخدام جدول التناسب.
+                </p>
+
+                <table
+                  class="triple-table triple-table--readonly"
+                  aria-label="جدول القاعدة الثلاثية"
+                >
+                  <thead>
+                    <tr>
+                      <th scope="col">الزمن بالدقائق</th>
+                      <th scope="col">النسبة المئوية</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="ttcell ttcell--fixed">30</td>
+                      <td class="ttcell ttcell--fixed">15%</td>
+                    </tr>
+                    <tr>
+                      <td class="ttcell ttcell--fixed ttcell--qmark">x</td>
+                      <td class="ttcell ttcell--fixed">100%</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+               
+
+                <div class="formula-input-row">
+                  <input
+                    class="table-input formula-answer-input"
+                    id="s7-formula-answer"
+                    type="text"
+                    inputmode="numeric"
+                    aria-label="الإجابة — عدد الدقائق"
+                    maxlength="5"
+                    oninput="s7FormulaChanged()"
+                    onfocus="s7HideFormulaFeedbackOnFocus()"
+                  />
+                  <span class="formula-unit">دقيقة</span>
+                </div>
+
+                <p
+                  class="inline-validation"
+                  id="s7-formula-validation"
+                  hidden
+                  role="alert"
+                >
+                  يجب إدخال أعداد فقط.
+                </p>
+              </div>
+              <!-- /.guided-card -->
+            </div>
+            <!-- /.guided-work-area -->
+          </div>
+          <!-- /.guided-body -->
+        </div>
+        <!-- /#s7-step-1 -->
+
+        <!-- Feedback panels — positioned absolutely above action bar -->
+        <div class="feedback-panel" id="s7-table-feedback" hidden></div>
+        <div class="feedback-panel" id="s7-formula-feedback" hidden></div>
+
+        <!-- Character speech bubble — shown alongside formula feedback -->
+        <div
+          class="s7-char-bubble"
+          id="s7-char-bubble"
+          hidden
+          aria-hidden="true"
+        >
+          <div class="s7-speech-bubble">
+            <span class="s7-bubble-text">أعتقد أنه من الأفضل تغيير البطارية...</span></div>
+          <img
+            class="s7-char-img"
+            id="s7-char-img-bubble"
+            alt=""
+          />
+        </div>
+
+        <!-- Shared hint button (shown after first wrong attempt) -->
+        <button class="btn-hint" id="s7-hint-btn" hidden onclick="s7ShowHint()">
+          هل أحصل على تلميح؟
+        </button>
+
+        <!-- Shared continue / submit button -->
+        <button
+          class="btn-continue"
+          id="s7-action-btn"
+          disabled
+          onclick="s7MainAction()"
+        >
+          هل إجابتي صحيحة؟
+        </button>
+
+        <!-- Hint overlay -->
+        <div
+          class="hint-panel"
+          id="s7-hint-panel"
+          hidden
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="s7-hint-title"
+        >
+          <div class="hint-panel-box">
+            <h2 class="hint-panel-title" id="s7-hint-title">تلميح</h2>
+            <div class="hint-panel-content" id="s7-hint-content"></div>
+            <button class="btn-hint-close" onclick="s7CloseHint()">
+              رجوع إلى السؤال
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- /#s7 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 9 — s8: Transition to guided candy practice
+         PPTX slide 45 (new script 180626) | methodica-math-percent-03-01-004
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="9" id="s8">
+        <div class="s8-text">
+          <h1 class="s8-heading">سنبدأ بالتدرّب بعد قليل،</h1>
+          <p class="s8-sub">لكن قبل ذلك، تعالوا نحلّ تمرينًا واحدًا معًا</p>
+        </div>
+
+        <video
+          class="s8-together-img"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="none"
+          data-poster="assets/images/togther-opt.png"
+          aria-hidden="true"
+        >
+          <source data-src="assets/images/togther-opt.mp4" type="video/mp4" />
+        </video>
+
+        <!-- Selected character — static image (no "notebook/pencil" asset found in assets/images/;
+           using standard character PNG. Replace with a dedicated asset when available.) -->
+        <img
+          class="s8-char-img"
+          id="s8-char-img"
+          alt="الشخصية المختارة"
+          aria-hidden="true"
+        />
+
+        <button
+          class="btn-continue"
+          id="s8-continue"
+          onclick="advanceFromS8()"
+        >
+          متابعة
+        </button>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 16 — s16 | PPTX slide 45 | REF-01-01-S7
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="10" id="s16">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا في طريقة للحل.
+          </p>
+        </div>
+        <div class="s16-card">
+          <p class="s16-problem">
+            أُجريت انتخابات لمجلس الطلاب في الصف الثامن بمدرسة "واحة الزهور" الإعدادية.<br/> حصلت ريم على 20% من الأصوات، ولينا على 30%، وكريم على 25%.<br/> بالإضافة إلى ذلك، صوّت 40 طالبًا لنور.
+          </p>
+          <p class="s16-question mm-purple-bold">كم طالبًا صوّت في الانتخابات؟</p>
+          <div class="s16-substep">
+            <p class="s16-sub">نعمل خطوة خطوة:</p>
+            <p class="s16-sub">
+              <strong>1. أولًا، نجد النسبة المئوية للطلاب الذين صوّتوا لنور.</strong></p>
+          </div>
+        </div>
+        <div class="s16-char-bubble" aria-hidden="true">
+          <img
+            id="s16-char-img"
+            class="s16-char-img"
+            alt=""
+          />
+          <div class="s16-speech-bubble">
+            <span class="s16-bubble-text">هيا نحلّ معًا</span></div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s16-continue"
+          type="button"
+          onclick="goTo(11)"
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s16 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 17 — s17 | PPTX slide 46 | REF-01-01-S11
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="11" id="s17">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا في طريقة للحل.
+          </p>
+        </div>
+        <div class="s17-layout">
+          <div class="s17-card">
+            <p class="s17-problem">
+              أُجريت انتخابات لمجلس الطلاب في الصف الثامن بمدرسة "واحة الزهور" الإعدادية.<br/> حصلت ريم على 20% من الأصوات، ولينا على 30%، وكريم على 25%.<br/> بالإضافة إلى ذلك، صوّت 40 طالبًا لنور.
+            </p>
+            <p class="s17-question mm-purple-bold">كم طالبًا صوّت في الانتخابات؟</p>
+            <div class="s17-substep">
+              <p class="s17-sub">نعمل خطوة خطوة:</p>
+              <p class="s17-sub">
+                <strong>1. أولًا، نجد النسبة المئوية للطلاب الذين صوّتوا لنور.</strong></p>
+            </div>
+            <div
+              class="s17-pie"
+              role="img"
+              aria-label="مخطط دائري مقسّم إلى أربعة أجزاء، ثلاثة منها مُعلَّمة بالنسب المئوية: 25%، و30%، و20%."
+            ></div>
+          </div>
+          <div class="s17-panel">
+            <p class="s17-panel-text">
+              نتأمّل المخطط الدائري ("الكعكة") الذي يعرض توزيع النسب المئوية.
+            </p>
+            <p class="s17-panel-text s17-panel-strong">
+              هذا المخطط مناسب لعرض المعطيات بالنسب المئوية، لأن:
+            </p>
+            <p class="s17-panel-text">أ. مجموع كل النسب المئوية في الدائرة الكاملة هو 100%.</p>
+            <p class="s17-panel-text">
+              ب. تُمثَّل كل نسبة مئوية في الدائرة حسب حجمها النسبي.
+            </p>
+          </div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s17-continue"
+          type="button"
+          onclick="goTo(12)"
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s17 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 18 — s18 | PPTX slide 47 | REF-01-01-S8
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="12" id="s18">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا في طريقة للحل.
+          </p>
+        </div>
+        <div class="s18-layout">
+          <div class="s18-card">
+            <p class="s18-problem">
+              أُجريت انتخابات لمجلس الطلاب في الصف الثامن بمدرسة "واحة الزهور" الإعدادية.<br/> حصلت ريم على 20% من الأصوات، ولينا على 30%، وكريم على 25%.<br/> بالإضافة إلى ذلك، صوّت 40 طالبًا لنور.
+            </p>
+            <p class="s18-question mm-purple-bold">كم طالبًا صوّت في الانتخابات؟</p>
+            <div class="s18-substep">
+              <p class="s18-sub">نعمل خطوة خطوة:</p>
+              <p class="s18-sub">
+                <strong>1. أولًا، نجد النسبة المئوية للطلاب الذين صوّتوا لنور.</strong></p>
+            </div>
+            <div
+              class="s18-pie"
+              role="img"
+              aria-label="مخطط دائري مقسّم إلى أربعة أجزاء، ثلاثة منها مُعلَّمة بالنسب المئوية: 25%، و30%، و20%."
+            ></div>
+          </div>
+          <div class="s18-panel">
+            <p class="s18-panel-text s18-panel-strong">في المرحلة الأولى نحدد المعطيات:</p>
+            <p class="s18-panel-text">
+              هل تستطيعون تحديد النسب المئوية للأصوات في المخطط؟
+            </p>
+            <div class="s18-btn-row">
+              <button
+                class="s18-btn"
+                id="s18-btn-no"
+                type="button"
+                onclick="s18Answer('no')"
+              >
+                لا
+              </button>
+              <button
+                class="s18-btn"
+                id="s18-btn-yes"
+                type="button"
+                onclick="s18Answer('yes')"
+              >
+                نعم
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s18-continue"
+          type="button"
+          onclick="goTo(13)"
+          disabled
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s18 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 19 — s19 | PPTX slide 48 | s17 prototype
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="13" id="s19">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا في طريقة للحل.
+          </p>
+        </div>
+        <div class="guided-layout">
+          <div class="guided-card">
+            <p class="guided-problem">
+              أُجريت انتخابات لمجلس الطلاب في الصف الثامن بمدرسة "واحة الزهور" الإعدادية.<br/> حصلت ريم على 20% من الأصوات، ولينا على 30%، وكريم على 25%.<br/> بالإضافة إلى ذلك، صوّت 40 طالبًا لنور.
+            </p>
+            <p class="guided-question mm-purple-bold">كم طالبًا صوّت في الانتخابات؟</p>
+            <div class="guided-substep">
+              <p class="guided-sub">نعمل خطوة خطوة:</p>
+              <p class="guided-sub">
+                <strong>1. أولًا، نجد النسبة المئوية للطلاب الذين صوّتوا لنور.</strong></p>
+            </div>
+            <div class="s19-pie-figure">
+              <div
+                class="guided-pie"
+                role="img"
+                aria-label="مخطط دائري مقسّم إلى أربعة أجزاء، ثلاثة منها مُعلَّمة بالنسب المئوية: 25%، و30%، و20%."
+              ></div>
+              <span class="s19-pie-label s19-pie-label--grapes">كريم</span>
+              <span class="s19-pie-label s19-pie-label--lemon">لينا</span>
+              <span class="s19-pie-label s19-pie-label--orange">ريم</span>
+              <!-- Curved callout arrows, one vector layer in figure-local
+                   coords (300×160; pie centre 150,80, r 80) -->
+              <svg
+                class="s19-pie-arrows"
+                viewBox="0 0 300 160"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <defs>
+                  <marker
+                    id="s19-arrow-head"
+                    viewBox="0 0 10 10"
+                    refX="5"
+                    refY="5"
+                    markerWidth="3.2"
+                    markerHeight="3.2"
+                    orient="auto-start-reverse"
+                  >
+                    <path d="M0 0 L10 5 L0 10 Z" />
+                  </marker>
+                </defs>
+                <!-- אמיר → top-right slice (25%) -->
+                <path class="s19-pie-arrow" d="M238 16 Q216 12 201 31" />
+                <!-- דנה → bottom-right slice (30%) -->
+                <path class="s19-pie-arrow" d="M246 104 Q228 125 211 111" />
+                <!-- מיכל → bottom-left slice (20%) -->
+                <path class="s19-pie-arrow" d="M40 114 Q62 129 83 112" />
+              </svg>
+            </div>
+          </div>
+          <div class="guided-panel">
+            <p class="guided-panel-text guided-panel-strong">الآن أصبحت المعطيات بين أيدينا:</p>
+            <p class="guided-panel-text">20% - صوّتوا لريم</p>
+            <p class="guided-panel-text">30% - صوّتوا للينا</p>
+            <p class="guided-panel-text">25% - صوّتوا لكريم</p>
+          </div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s19-continue"
+          type="button"
+          onclick="goTo(14)"
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s19 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 20 — s20 | PPTX slide 49 | s18 prototype
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="14" id="s20">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا في طريقة للحل.
+          </p>
+        </div>
+        <div class="guided-layout">
+          <div class="guided-card">
+            <p class="guided-problem">
+              أُجريت انتخابات لمجلس الطلاب في الصف الثامن بمدرسة "واحة الزهور" الإعدادية.<br/> حصلت ريم على 20% من الأصوات، ولينا على 30%، وكريم على 25%.<br/> بالإضافة إلى ذلك، صوّت 40 طالبًا لنور.
+            </p>
+            <p class="guided-question mm-purple-bold">كم طالبًا صوّت في الانتخابات؟</p>
+            <div class="guided-substep">
+              <p class="guided-sub">نعمل خطوة خطوة:</p>
+              <p class="guided-sub">
+                <strong>1. أولًا، نجد النسبة المئوية للطلاب الذين صوّتوا لنور.</strong></p>
+            </div>
+            <div
+              class="guided-pie"
+              role="img"
+              aria-label="مخطط دائري مقسّم إلى أربعة أجزاء، ثلاثة منها مُعلَّمة بالنسب المئوية: 25%، و30%، و20%."
+            ></div>
+          </div>
+          <div class="guided-panel">
+            <p class="guided-panel-text">
+              لدينا الـ 100% وثلاث نسب مئوية معطاة.
+            </p>
+            <p class="guided-panel-text">
+              ما هو نوع المعادلة التي يجب أن نكتبها لإيجاد النسبة المئوية الناقصة؟
+            </p>
+            <div class="guided-btn-row">
+              <button
+                class="guided-btn"
+                id="s20-btn-hibur"
+                type="button"
+                onclick="guidedAnswer('s20', 's20-btn-hibur', false)"
+              >
+                <span
+                  class="guided-correct-mark"
+                  id="s20-mark-hibur"
+                  aria-hidden="true"
+                  ><img
+                    class="s20-visited-icon"
+                    src="assets/images/icon-visited.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                /></span>
+                جمع
+              </button>
+              <button
+                class="guided-btn"
+                id="s20-btn-gamvegam"
+                type="button"
+                data-correct="1"
+                onclick="guidedAnswer('s20', 's20-btn-gamvegam', true)"
+              >
+                <span
+                  class="guided-correct-mark"
+                  id="s20-mark-gamvegam"
+                  aria-hidden="true"
+                  ><img
+                    class="s20-visited-icon"
+                    src="assets/images/icon-visited.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                /></span>
+                مركّب من جمع وطرح
+              </button>
+              <button
+                class="guided-btn"
+                id="s20-btn-chisor"
+                type="button"
+                data-correct="1"
+                onclick="guidedAnswer('s20', 's20-btn-chisor', true)"
+              >
+                <span
+                  class="guided-correct-mark"
+                  id="s20-mark-chisor"
+                  aria-hidden="true"
+                  ><img
+                    class="s20-visited-icon"
+                    src="assets/images/icon-visited.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                /></span>
+                طرح
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s20-continue"
+          type="button"
+          onclick="goTo(15)"
+          disabled
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s20 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 21 — s21 | PPTX slide 50 | s18 prototype
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="15" id="s21">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا في طريقة للحل.
+          </p>
+        </div>
+        <div class="guided-layout">
+          <div class="guided-card">
+            <p class="guided-problem">
+              أُجريت انتخابات لمجلس الطلاب في الصف الثامن بمدرسة "واحة الزهور" الإعدادية.<br/> حصلت ريم على 20% من الأصوات، ولينا على 30%، وكريم على 25%.<br/> بالإضافة إلى ذلك، صوّت 40 طالبًا لنور.
+            </p>
+            <p class="guided-question mm-purple-bold">كم طالبًا صوّت في الانتخابات؟</p>
+            <div class="guided-substep">
+              <p class="guided-sub">نعمل خطوة خطوة:</p>
+              <p class="guided-sub">
+                <strong>1. أولًا، نجد النسبة المئوية للطلاب الذين صوّتوا لنور.</strong></p>
+            </div>
+          </div>
+          <div class="guided-panel">
+            <p class="guided-panel-text">التمرين المناسب هو تمرين مركّب:</p>
+            <p class="guided-formula">$$100\% - (20\% + 30\% + 25\%) =$$</p>
+            <p class="guided-panel-text">أو تمرين طرح</p>
+            <p class="guided-formula">$$100\% - 20\% - 30\% - 25\% =$$</p>
+            <p class="guided-panel-text">ما الناتج؟</p>
+
+            <div class="guided-btn-row guided-btn-row-2x2">
+              <button
+                class="guided-btn"
+                id="s21-btn-20"
+                type="button"
+                onclick="guidedAnswer('s21', 's21-btn-20', false)"
+              >
+                <span
+                  class="guided-correct-mark"
+                  id="s21-mark-20"
+                  aria-hidden="true"
+                  ><img
+                    class="guided-visited-icon"
+                    src="assets/images/icon-visited.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                /></span>
+                20
+              </button>
+              <button
+                class="guided-btn"
+                id="s21-btn-15"
+                type="button"
+                onclick="guidedAnswer('s21', 's21-btn-15', false)"
+              >
+                <span
+                  class="guided-correct-mark"
+                  id="s21-mark-15"
+                  aria-hidden="true"
+                  ><img
+                    class="guided-visited-icon"
+                    src="assets/images/icon-visited.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                /></span>
+                15
+              </button>
+              <button
+                class="guided-btn"
+                id="s21-btn-25"
+                type="button"
+                data-correct="1"
+                onclick="guidedAnswer('s21', 's21-btn-25', true)"
+              >
+                <span
+                  class="guided-correct-mark"
+                  id="s21-mark-25"
+                  aria-hidden="true"
+                  ><img
+                    class="guided-visited-icon"
+                    src="assets/images/icon-visited.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                /></span>
+                25
+              </button>
+              <button
+                class="guided-btn"
+                id="s21-btn-30"
+                type="button"
+                onclick="guidedAnswer('s21', 's21-btn-30', false)"
+              >
+                <span
+                  class="guided-correct-mark"
+                  id="s21-mark-30"
+                  aria-hidden="true"
+                  ><img
+                    class="guided-visited-icon"
+                    src="assets/images/icon-visited.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                /></span>
+                30
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s21-continue"
+          type="button"
+          onclick="goTo(16)"
+          disabled
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s21 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 22 — s22 | PPTX slide 51 | s17 prototype
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="16" id="s22">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا في طريقة للحل.
+          </p>
+        </div>
+        <div class="guided-layout">
+          <div class="guided-card">
+            <p class="guided-problem">
+              أُجريت انتخابات لمجلس الطلاب في الصف الثامن بمدرسة "واحة الزهور" الإعدادية.<br/> حصلت ريم على 20% من الأصوات، ولينا على 30%، وكريم على 25%.<br/> بالإضافة إلى ذلك، صوّت 40 طالبًا لنور.
+            </p>
+            <p class="guided-question mm-purple-bold">كم طالبًا صوّت في الانتخابات؟</p>
+            <div class="s22-substep-row">
+              <div class="guided-substep">
+                <p class="guided-sub">نعمل خطوة خطوة:</p>
+                <p class="guided-sub">
+                  <strong>1. أولًا، نجد النسبة المئوية للطلاب الذين صوّتوا لنور.</strong></p>
+              </div>
+              <div class="guided-pie-badge-wrap" aria-hidden="true">
+                <div class="guided-pie"></div>
+                <span class="guided-pie-badge">25%</span>
+              </div>
+            </div>
+          </div>
+          <div class="guided-panel">
+            <p class="guided-panel-text">النتيجة هي 25%.</p>
+            <p class="guided-formula">
+              $$100\% - (20\% + 30\% + 25\%) = 25\%$$
+            </p>
+            <p class="guided-panel-text">
+              الإجابة: النسبة المئوية للمصوّتين لنور هي 25% من مجموع المصوّتين.
+            </p>
+            <p class="guided-panel-text">ننتقل إلى البند التالي.</p>
+          </div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s22-continue"
+          type="button"
+          onclick="goTo(17)"
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s22 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 23 — s23 | PPTX slide 52 | s18 prototype
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="17" id="s23">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا في طريقة للحل.
+          </p>
+        </div>
+        <div class="guided-layout">
+          <div class="guided-card">
+            <p class="guided-problem">
+              أُجريت انتخابات لمجلس الطلاب في الصف الثامن بمدرسة "واحة الزهور" الإعدادية.<br/> حصلت ريم على 20% من الأصوات، ولينا على 30%، وكريم على 25%.<br/> بالإضافة إلى ذلك، صوّت 40 طالبًا لنور.
+            </p>
+            <p class="guided-question mm-purple-bold">كم طالبًا صوّت في الانتخابات؟</p>
+            <div class="guided-substep">
+              <p class="guided-sub">نعمل خطوة خطوة:</p>
+              <p class="guided-sub">
+                <strong>2. الآن نجد عدد الطلاب الذين صوّتوا في الانتخابات.</strong></p>
+            </div>
+          </div>
+          <div class="guided-panel">
+            <p class="guided-panel-text">
+              نعرف أن 40 طالبًا صوّتوا لنور.
+            </p>
+            <p class="guided-panel-text">
+              حسب البند السابق، ما النسبة المئوية التي يشكّلونها من إجمالي الأصوات؟
+            </p>
+            <div class="guided-btn-row guided-btn-row-2x2">
+              <button
+                class="guided-btn"
+                id="s23-btn-20"
+                type="button"
+                onclick="guidedAnswer('s23', 's23-btn-20', false)"
+              >
+                <span
+                  class="guided-correct-mark"
+                  id="s23-mark-20"
+                  aria-hidden="true"
+                  ><img
+                    class="guided-visited-icon"
+                    src="assets/images/icon-visited.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                /></span>
+                20
+              </button>
+              <button
+                class="guided-btn"
+                id="s23-btn-15"
+                type="button"
+                onclick="guidedAnswer('s23', 's23-btn-15', false)"
+              >
+                <span
+                  class="guided-correct-mark"
+                  id="s23-mark-15"
+                  aria-hidden="true"
+                  ><img
+                    class="guided-visited-icon"
+                    src="assets/images/icon-visited.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                /></span>
+                15
+              </button>
+              <button
+                class="guided-btn"
+                id="s23-btn-25"
+                type="button"
+                data-correct="1"
+                onclick="guidedAnswer('s23', 's23-btn-25', true)"
+              >
+                <span
+                  class="guided-correct-mark"
+                  id="s23-mark-25"
+                  aria-hidden="true"
+                  ><img
+                    class="guided-visited-icon"
+                    src="assets/images/icon-visited.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                /></span>
+                25
+              </button>
+              <button
+                class="guided-btn"
+                id="s23-btn-30"
+                type="button"
+                onclick="guidedAnswer('s23', 's23-btn-30', false)"
+              >
+                <span
+                  class="guided-correct-mark"
+                  id="s23-mark-30"
+                  aria-hidden="true"
+                  ><img
+                    class="guided-visited-icon"
+                    src="assets/images/icon-visited.svg"
+                    width="18"
+                    height="18"
+                    alt=""
+                /></span>
+                30
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s23-continue"
+          type="button"
+          onclick="goTo(18)"
+          disabled
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s23 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 24 — s24 | PPTX slide 53 | s17 prototype
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="18" id="s24">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا في طريقة للحل.
+          </p>
+        </div>
+        <div class="guided-layout">
+          <div class="guided-card">
+            <p class="guided-problem">
+              أُجريت انتخابات لمجلس الطلاب في الصف الثامن بمدرسة "واحة الزهور" الإعدادية.<br/> حصلت ريم على 20% من الأصوات، ولينا على 30%، وكريم على 25%.<br/> بالإضافة إلى ذلك، صوّت 40 طالبًا لنور.
+            </p>
+            <p class="guided-question mm-purple-bold">كم طالبًا صوّت في الانتخابات؟</p>
+            <div class="guided-substep">
+              <p class="guided-sub">نعمل خطوة خطوة:</p>
+              <p class="guided-sub">
+                <strong>2. الآن نجد عدد الطلاب الذين صوّتوا في الانتخابات.</strong></p>
+            </div>
+            <div class="s24-tri">
+              <div class="s24-tri-side s24-tri-left">
+                <div class="s24-tri-lbl s24-tri-lbl--r1">
+                  <span class="s24-tri-txt">نسبة مئوية معطاة – أصوات نور</span> <span aria-hidden="true" class="s24-tri-arrow s24-tri-arrow--right"></span></div>
+                <div class="s24-tri-lbl s24-tri-lbl--r2">
+                  <span class="s24-tri-txt">الكلّ</span> <span aria-hidden="true" class="s24-tri-arrow s24-tri-arrow--right"></span></div>
+              </div>
+              <table class="guided-table s24-tri-table" dir="rtl">
+                <thead>
+                  <tr>
+                    <th>عدد الأصوات</th>
+                    <th>النسبة المئوية</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>40</td>
+                    <td>25%</td>
+                  </tr>
+                  <tr>
+                    <td>x</td>
+                    <td>100%</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="s24-tri-side s24-tri-right">
+                <div class="s24-tri-lbl s24-tri-lbl--r1">
+                  <span aria-hidden="true" class="s24-tri-arrow s24-tri-arrow--left"></span> <span class="s24-tri-txt">المصوّتون لنور</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="guided-panel">
+            <p class="guided-panel-text">
+              وجدنا أن المصوّتين لنور يشكّلون 25% من إجمالي الأصوات.
+            </p>
+            <p class="guided-panel-text">
+              <strong>في المرحلة الثانية</strong> سنُدخل المعطيات في جدول التناسب.
+            </p>
+            <p class="guided-panel-text">الكمية الجزئية فوق الكمية الكاملة.</p>
+            <p class="guided-panel-text">النسبة المئوية المعطاة فوق النسبة المئوية الكاملة (100%).</p>
+          </div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s24-continue"
+          type="button"
+          onclick="goTo(20)"
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s24 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 26 — s26 | PPTX slide 55 | s17 prototype
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="20" id="s26">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا في طريقة للحل.
+          </p>
+        </div>
+        <div class="guided-layout">
+          <div class="guided-card">
+            <p class="guided-problem">
+              أُجريت انتخابات لمجلس الطلاب في الصف الثامن بمدرسة "واحة الزهور" الإعدادية.<br/> حصلت ريم على 20% من الأصوات، ولينا على 30%، وكريم على 25%.<br/> بالإضافة إلى ذلك، صوّت 40 طالبًا لنور.
+            </p>
+            <p class="guided-question mm-purple-bold">كم طالبًا صوّت في الانتخابات؟</p>
+            <div class="guided-substep">
+              <p class="guided-sub">نعمل خطوة خطوة:</p>
+              <p class="guided-sub">
+                <strong>2. الآن نجد عدد الطلاب الذين صوّتوا في الانتخابات.</strong></p>
+            </div>
+            <div class="s24-tri">
+              <div class="s24-tri-side s24-tri-left">
+                <div class="s24-tri-lbl s24-tri-lbl--r1">
+                  <span class="s24-tri-txt">نسبة مئوية معطاة – أصوات نور</span> <span aria-hidden="true" class="s24-tri-arrow s24-tri-arrow--right"></span></div>
+                <div class="s24-tri-lbl s24-tri-lbl--r2">
+                  <span class="s24-tri-txt">الكلّ</span> <span aria-hidden="true" class="s24-tri-arrow s24-tri-arrow--right"></span></div>
+              </div>
+              <table class="guided-table s24-tri-table" dir="rtl">
+                <thead>
+                  <tr>
+                    <th>عدد الأصوات</th>
+                    <th>النسبة المئوية</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>40</td>
+                    <td>25%</td>
+                  </tr>
+                  <tr>
+                    <td>x</td>
+                    <td>100%</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="s24-tri-side s24-tri-right">
+                <div class="s24-tri-lbl s24-tri-lbl--r1">
+                  <span aria-hidden="true" class="s24-tri-arrow s24-tri-arrow--left"></span> <span class="s24-tri-txt">المصوّتون لنور</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="guided-panel">
+            <p class="guided-panel-text">في المرحلة الثالثة نحسب:</p>
+            <p class="guided-panel-text">
+              سنكتب معادلة وفقًا لجدول التناسب.
+            </p>
+            <p class="guided-formula s26-formula-setup">$$\frac{x}{40} = \frac{100\%}{25\%}$$</p>
+            <p class="guided-panel-text">نحلّ المعادلة:</p>
+            <p class="guided-formula s26-formula-final">
+             $$x = 160$$
+            </p>
+            <p class="guided-panel-text guided-panel-result">
+              صوّت 160 طالبًا في المجموع.
+            </p>
+            <p class="guided-panel-text">ننتقل إلى البند الأخير.</p>
+          </div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s26-continue"
+          type="button"
+          onclick="goTo(22)"
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s26 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 28 — s28 | PPTX slide 57 | s17 prototype
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="22" id="s28">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا: هل هناك طريقة للحل؟
+          </p>
+        </div>
+        <div class="guided-layout">
+          <div class="guided-card">
+            <p class="guided-problem">
+              أُجريت انتخابات لمجلس الطلاب في الصف الثامن بمدرسة "واحة الزهور" الإعدادية.<br/> حصلت ريم على 20% من الأصوات، ولينا على 30%، وكريم على 25%.<br/> بالإضافة إلى ذلك، صوّت 40 طالبًا لنور.
+            </p>
+            <p class="guided-question mm-purple-bold">3. كم طالبًا صوّت للينا؟</p>
+            <div class="s24-tri">
+              <div class="s24-tri-side s24-tri-left">
+                <div class="s24-tri-lbl s24-tri-lbl--r1">
+                  <span class="s24-tri-txt">نسبة مئوية معطاة – المصوّتون للينا</span> <span aria-hidden="true" class="s24-tri-arrow s24-tri-arrow--right"></span></div>
+                <div class="s24-tri-lbl s24-tri-lbl--r2">
+                  <span class="s24-tri-txt">الكلّ</span> <span aria-hidden="true" class="s24-tri-arrow s24-tri-arrow--right"></span></div>
+              </div>
+              <table class="guided-table s24-tri-table" dir="rtl">
+                <thead>
+                  <tr>
+                    <th>عدد الأصوات</th>
+                    <th>النسبة المئوية</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>x</td>
+                    <td>30%</td>
+                  </tr>
+                  <tr>
+                    <td>160</td>
+                    <td>100%</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="s24-tri-side s24-tri-right">
+                <div
+                  class="s24-tri-lbl s24-tri-spacer"
+                  aria-hidden="true"
+                ></div>
+                <div class="s24-tri-lbl s24-tri-lbl--r2">
+                  <span aria-hidden="true" class="s24-tri-arrow s24-tri-arrow--left"></span> <span class="s24-tri-txt">مجموع المصوّتين</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="guided-panel">
+            <p class="guided-panel-text">
+              نعمل وفق القاعدة ونكتب معادلة حسب جدول التناسب.
+            </p>
+            <p class="guided-formula s28-formula-setup">$$\frac{x}{160} = \frac{30\%}{100\%}$$</p>
+            <p class="guided-panel-text">الآن لنحلّ المعادلة:</p>
+            <p class="guided-formula s28-formula-final">$$x = 48$$</p>
+            <p class="guided-panel-text guided-panel-result">
+              صوّت 48 طالبًا للينا.
+            </p>
+          </div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s28-continue"
+          type="button"
+          onclick="goTo(23)"
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s28 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 29 — s29 | PPTX sl 58 | s16 prototypeide
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="23" id="s29">
+        <div class="candy-screen-header">
+          <h1 class="candy-screen-title">
+            إيجاد الكلّ (100%) باستخدام جدول التناسب
+          </h1>
+          <p class="candy-screen-subtitle">
+            تأمّلوا التمرين التالي. لا تحلّوه، بل انظروا فقط إلى المعطيات وفكّروا: هل هناك طريقة للحل؟
+          </p>
+        </div>
+        <div class="guided-single-card">
+          <p class="guided-problem">
+            وجدنا أن 48 طالبًا صوّتوا للينا (وهذا العدد من الأصوات يمثّل 30% من الكلّ).<br/> لكن في الرياضيات لا نتجاوز أي مرحلة، فلا تنسوا <strong>المرحلة الرابعة!</strong></p>
+          <p class="guided-question mm-purple-bold">تحقّقوا بأنفسكم:</p>
+          <p class="guided-sub">هل الجزء الذي حصلنا عليه منطقي بالنسبة إلى الكلّ؟</p>
+          <p class="guided-sub">
+            بحسب التقدير: إذا كان الكلّ 160 و25% منه تساوي 40، فمن المنطقي جدًا<br/> أن تكون 30% منه 48 طالبًا، أي الذين صوّتوا للينا.
+          </p>
+        </div>
+        <div class="s29-char-bubble" aria-hidden="true">
+          <img
+            id="s29-char-img"
+            class="s29-char-img"
+            alt=""
+          />
+          <div class="s29-speech-bubble">
+            <span class="s29-bubble-text">ياااااي،<br/>أخيرًا يمكننا أن نبدأ!</span></div>
+        </div>
+        <button
+          class="btn-continue"
+          id="s29-continue"
+          type="button"
+          onclick="goTo(24)"
+        >
+          متابعة
+        </button>
+      </section>
+      <!-- /#s29 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 30 — s30 | PPTX slide 60 | TransitionScreen prototype (s11)
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="24" id="s30">
+        <div class="s30-text">
+          <h1 class="s30-heading">ماذا بقي في أذهاننا؟</h1>
+          <p class="s30-body">سؤالان خفيفان للإحماء قبل أن نتقدّم</p>
+        </div>
+        <video
+          class="s30-char-img"
+          id="s30-char-img"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source id="s30-char-img-src" src="" type="video/mp4" />
+        </video>
+
+        <div
+          class="s30-countdown-overlay"
+          id="s30-countdown-overlay"
+          hidden
+          aria-hidden="true"
+        >
+          <span class="s30-countdown-digit" id="s30-countdown-digit">3</span>
+        </div>
+
+        <button class="btn-continue" id="s30-start-btn" onclick="s30Start()">
+          هل نبدأ؟
+        </button>
+      </section>
+      <!-- /#s30 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 31 — s31 | PPTX slide 61 | ValueInputQuestion — warmup
+         methodica-math-percent-03-01-005 | layout: REF-01-01-S18
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="25" id="s31">
+        <h1 class="qa-screen-title-only">أ. ما النسبة المئوية للمثلّجات بنكهة الفانيليا؟</h1>
+        <!-- Two-column question area (RTL: text RIGHT, image LEFT) -->
+        <div class="s31-question">
+          <div class="s31-q-layout">
+            <!-- RIGHT column (first child in RTL): question text + input -->
+            <div class="s31-q-right">
+              <div class="s31-q-inner">
+                <div class="s31-q-text-wrap">
+                  <p class="s31-q-text">
+                    محل البوظة "لذّة" يبيع نكهتين فقط من المثلّجات: مثلّجات بنكهة <br/> الشوكولاتة ومثلّجات بنكهة الفانيليا.<br/> 80% من المثلّجات بنكهة الشوكولاتة، و80 مثلّجة بنكهة الفانيليا.<br/> <strong class="mm-purple-bold">أ. ما النسبة المئوية للمثلّجات بنكهة الفانيليا؟</strong></p>
+                </div>
+                <!-- % before input in DOM → RTL flex places % physically RIGHT of input -->
+                <div class="s31-fill-row">
+                  <span class="s31-pct-suffix">%</span>
+                  <span class="vq-answer-wrap">
+                  <input
+                    class="s31-answer-box"
+                    id="s31-answer"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="4"
+                    dir="rtl"
+                    aria-label="الإجابة — النسبة المئوية للمثلّجات بنكهة الفانيليا"
+                    oninput="s31InputChanged()"
+                    onfocus="s31InputChanged()"
+                  />
+                  </span>
+                </div>
+                <p
+                  class="inline-validation"
+                  id="s31-validation"
+                  hidden
+                  role="alert"
+                >
+                  يجب إدخال أعداد فقط.
+                </p>
+              </div>
+            </div>
+
+            <!-- LEFT column (second child in RTL): image -->
+            <div class="s31-q-left">
+              <div class="vq-img-frame s31-hero-frame">
+                <img loading="lazy"
+                  class="s31-warmup-img s31-hero-img"
+                  src="../unit-assets/img/warmup-opt.png"
+                  alt="مثلّجتان على طاولة خشبية في محل البوظة — مثلّجة مغطاة بالشوكولاتة مكتوب عليها &quot;شوكولاتة&quot; ومثلّجة بيضاء بنكهة الفانيليا مكتوب عليها &quot;فانيليا&quot;."
+                />
+                <button
+                  class="img-zoom-btn"
+                  type="button"
+                  aria-label="تكبير الصورة"
+                  data-zoom-src="../unit-assets/img/warmup-opt.png"
+                  data-zoom-alt="مثلّجتان على طاولة خشبية في محل البوظة — مثلّجة مغطاة بالشوكولاتة مكتوب عليها &quot;شوكولاتة&quot; ومثلّجة بيضاء بنكهة الفانيليا مكتوب عليها &quot;فانيليا&quot;."
+                >
+                  <svg
+                    class="img-zoom-btn__icon-svg"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="8.5"
+                      cy="8.5"
+                      r="6"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                    <line
+                      x1="13.2"
+                      y1="13.2"
+                      x2="18"
+                      y2="18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback bar — absolutely positioned above bottom bar (REF-01-01-S18 pattern) -->
+        <div class="feedback-panel" id="s31-feedback" hidden></div>
+
+        <button
+          class="btn-hint"
+          id="s31-hint-btn"
+          hidden
+          onclick="s31ShowHint()"
+        >
+          هل أحصل على تلميح؟
+        </button>
+        <button
+          class="btn-continue"
+          id="s31-action-btn"
+          disabled
+          onclick="s31Submit()"
+        >
+          هل إجابتي صحيحة؟
+        </button>
+
+        <div
+          class="hint-panel"
+          id="s31-hint-panel"
+          hidden
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="s31-hint-title"
+        >
+          <div class="hint-panel-box">
+            <h2 class="hint-panel-title" id="s31-hint-title">تلميح</h2>
+            <div class="hint-panel-content">
+              80% من المثلّجات بنكهة الشوكولاتة، وهناك نكهتان فقط: الفانيليا والشوكولاتة.
+            </div>
+            <button class="btn-hint-close" onclick="s31CloseHint()">
+              رجوع إلى السؤال
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- /#s31 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 32 — s32 | PPTX slides 66–70 | ValueInputQuestion b
+         States: initial / incorrect-1 / hint / correct / incorrect-final
+         Template: s31
+    ════════════════════════════════════════ -->
+      <section class="screen" data-screen="26" id="s32">
+        <h1 class="qa-screen-title-only">ب. كم مثلّجة يوجد في محل البوظة؟</h1>
+        <div class="s31-question">
+          <div class="s31-q-layout">
+            <div class="s31-q-right">
+              <div class="s31-q-inner">
+                <div class="s31-q-text-wrap">
+                  <p class="s31-q-text">
+                    محل البوظة "لذّة" يبيع نكهتين فقط من المثلّجات: مثلّجات بنكهة الشوكولاتة ومثلّجات بنكهة الفانيليا.<br/> 80% من المثلّجات بنكهة الشوكولاتة، و80 مثلّجة بنكهة الفانيليا.<br/> <strong class="mm-black-bold">وجدنا أن 20% من المثلّجات بنكهة الفانيليا.</strong><br/><br/> <strong class="mm-purple-bold">ب. كم مثلّجة يوجد في محل البوظة؟</strong></p>
+                </div>
+                <div class="s31-fill-row">
+                  <span class="vq-answer-wrap">
+                  <input
+                    class="s31-answer-box"
+                    id="s32-answer"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="5"
+                    dir="rtl"
+                    aria-label="الإجابة — عدد المثلّجات"
+                    oninput="s32InputChanged()"
+                    onfocus="s32InputChanged()"
+                  />
+                  </span>
+                  <span class="s3x-suffix">مثلّجة</span>
+                </div>
+                <p
+                  class="inline-validation"
+                  id="s32-validation"
+                  hidden
+                  role="alert"
+                >
+                  يجب إدخال أعداد فقط.
+                </p>
+              </div>
+            </div>
+            <div class="s31-q-left">
+              <div class="vq-img-frame">
+                <img loading="lazy"
+                  class="s31-warmup-img s32-hero-img"
+                  src="../unit-assets/img/warmup-opt.png"
+                  alt='مثلّجتان على طاولة خشبية في محل البوظة — مثلّجة مغطاة بالشوكولاتة مكتوب عليها &quot;شوكولاتة&quot; ومثلّجة بيضاء بنكهة الفانيليا مكتوب عليها &quot;فانيليا&quot;.'
+                />
+                <button
+                  class="img-zoom-btn"
+                  type="button"
+                  aria-label="تكبير الصورة"
+                  data-zoom-src="../unit-assets/img/warmup-opt.png"
+                  data-zoom-alt='مثلّجتان على طاولة خشبية في محل البوظة — مثلّجة مغطاة بالشوكولاتة مكتوب عليها &quot;شوكولاتة&quot; ومثلّجة بيضاء بنكهة الفانيليا مكتوب عليها &quot;فانيليا&quot;.'
+                >
+                  <svg
+                    class="img-zoom-btn__icon-svg"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="8.5"
+                      cy="8.5"
+                      r="6"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                    <line
+                      x1="13.2"
+                      y1="13.2"
+                      x2="18"
+                      y2="18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback bar — absolutely positioned above bottom bar -->
+        <div class="feedback-panel" id="s32-feedback" hidden></div>
+
+        <button
+          class="btn-hint"
+          id="s32-hint-btn"
+          hidden
+          onclick="s32ShowHint()"
+        >
+          هل أحصل على تلميح؟
+        </button>
+        <button
+          class="btn-continue"
+          id="s32-action-btn"
+          disabled
+          onclick="s32Submit()"
+        >
+          هل إجابتي صحيحة؟
+        </button>
+
+        <!-- Hint panel — purple overlay inside s32 (s31 pattern) -->
+        <div class="hint-panel" id="s32-hint-panel" hidden>
+          <div class="hint-panel-box">
+            <h2 class="hint-panel-title">تلميح</h2>
+            <div class="hint-panel-content">استعينوا بجدول التناسب.</div>
+            <table class="guided-table s32-hint-table" dir="rtl">
+              <thead>
+                <tr>
+                  <th>عدد المثلّجات</th>
+                  <th>النسبة المئوية</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="s32-blank">___</td>
+                  <td class="s32-blank">___</td>
+                </tr>
+                <tr>
+                  <td class="s32-blank">___</td>
+                  <td class="s32-blank">___</td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="btn-hint-close" onclick="s32CloseHint()">
+              رجوع إلى السؤال
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- /#s32 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 34 — s34 | PPTX slides 73–77 | ValueInputQuestion 1/6
+         States: initial / incorrect-1 / hint / correct / incorrect-final
+         Template: s32 pattern + progress menu
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s34 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 35 — s35 | PPTX slides 78–82 | ValueInputQuestion 2/6
+         States: initial / incorrect-1 / hint / correct / incorrect-final
+         Template: s34
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s35 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 36 — s36 | PPTX slides 83–87 | ValueInputQuestion 3/6
+         States: initial / incorrect-1 / hint / correct / incorrect-final
+         Template: s35
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s36 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 37 — s37 | PPTX slides 88–97 | ValueInputQuestion 4/6 (two-phase)
+         Phase A (slides 88–92): sector א — which % is gray? Answer: 15%
+         Phase B (slides 93–97): sector ב — total area?   Answer: 300 cm²
+         States A: initial / incorrect-1 / hint / correct / incorrect-final
+         States B: initial / incorrect-1 / hint / correct / incorrect-final
+         Visual: pie-chart widget (iframe), both phases share same widget
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s37 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 38 — s38 | PPTX slides 98–102 | ValueInputQuestion 5/6
+         Two-input table completion: % for החברה להגנת הטבע (25) + count for צער בעלי חיים (18)
+         States: initial / incorrect-1 / hint-popup / correct / incorrect-final
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s38 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 39 — s39 | PPTX slides 103–117 | SingleChoiceQuestion 6/6
+         Authentic question (שאלה אוריינית) — three sequential sections:
+         Section א (103–107): 5% fat → 250g per container
+         Section ב (108–112): 5 containers in bowl → 1,250g total
+         Section ג (113–117): compare 9% vs 5% → 9% is smaller (200g vs 250g)
+         States per section: initial / wrong-1 / hint / correct / wrong-final
+         Nav: Q1–Q5 dynamic from stored results, Q6 active (last item, no future)
+         Ref layout: REF-01-01-S20
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s39 -->
+
+      <!-- ═══════════════════════════════════════════════════════════════
+         COMPONENT 02 — ENRICHMENT + BASIC + STANDARD-B PRACTICE
+         Script slides 119–121, 124–180  (s40–s54 / data-screen 34–48)
+         Templates: s30/s33 (transition), s34 (ValueInputQuestion),
+         s39 (option buttons). Palette: purple/green/red — no blue.
+    ════════════════════════════════════════════════════════════════ -->
+
+      <!-- ═══ SCREEN s40 | slide 119 | TransitionScreen — enrichment intro ═══ -->
+      
+      <!-- /#s40 -->
+
+      <!-- ═══ SCREEN s41 | slides 120 (+121 modal) | Enrichment — plastic island ═══ -->
+      
+      <!-- /#s41 -->
+
+      <!-- ═══ SCREEN s42 | slide 124 | TransitionScreen — basic questions intro ═══ -->
+      
+      <!-- /#s42 -->
+
+      <!-- ═══ SCREEN s43 | slides 125–129 | ValueInputQuestion — Basic Q1 (Noam) ═══ -->
+      
+      <!-- /#s43 -->
+
+      <!-- ═══ SCREEN s44 | slides 130–134 | ValueInputQuestion — Basic Q2 (Gal) ═══ -->
+      
+      <!-- /#s44 -->
+
+      <!-- ═══ SCREEN s45 | slides 135–139 | ValueInputQuestion — Basic Q3 (Nir) ═══ -->
+      
+      <!-- /#s45 -->
+
+      <!-- ═══ SCREEN s46 | slides 140–144 | ValueInputQuestion — Basic Q4 (Earth Day) ═══ -->
+      
+      <!-- /#s46 -->
+
+      <!-- ═══ SCREEN s47 | slides 145–149 | ValueInputQuestion — Basic Q5א (Ron & Yael) ═══ -->
+      
+      <!-- /#s47 -->
+
+      <!-- ═══ SCREEN s48 | slides 150–154 | ValueInputQuestion — Basic Q5ב ═══ -->
+      
+      <!-- /#s48 -->
+
+      <!-- ═══ SCREEN s49 | slides 155–158 | Yes/No verification — Basic Q5ג ═══ -->
+      
+      <!-- /#s49 -->
+
+      <!-- ═══ SCREEN s50 | slide 160 | TransitionScreen — Standard B intro ═══ -->
+      
+      <!-- /#s50 -->
+
+      <!-- ═══ SCREEN s51 | slides 161–165 | ValueInputQuestion — Standard B Q1א (pie chart) ═══ -->
+      
+      <!-- /#s51 -->
+
+      <!-- ═══ SCREEN s52 | slides 166–170 | ValueInputQuestion — Standard B Q1ב (circle area) ═══ -->
+      
+      <!-- /#s52 -->
+
+      <!-- ═══ SCREEN s53 | slides 171–175 | ValueInputQuestion — Standard B Q2א (Purim) ═══ -->
+      
+      <!-- /#s53 -->
+
+      <!-- ═══ SCREEN s54 | slides 176–180 | ValueInputQuestion — Standard B Q2ב (ratio) ═══ -->
+      
+      <!-- /#s54 -->
+
+      <!-- ═══════════════════════════════════════════════════════════════
+         COMPONENT 03 + 04 — CLASS TASK / ADVANCED / PEAK QUESTIONS
+         Script slides 183–263  (s55–s77 / data-screen 49–71)
+         Templates: s30/s50 transition, s43 ValueInput, s47 choice,
+         science-ref S8 (inline fills). Palette: purple/green/red.
+    ════════════════════════════════════════════════════════════════ -->
+
+      <!-- ═══ s55 | slide 183 | TransitionScreen — class-task intro ═══ -->
+      
+      <!-- /#s55 -->
+
+      <!-- ═══ s56 | slide 184 | Class survey (reflection, ungraded) ═══ -->
+      
+      <!-- /#s56 -->
+
+      <!-- ═══ s57 | slide 187 | TransitionScreen — advanced section intro ═══ -->
+      
+      <!-- /#s57 -->
+
+      <!-- ═══ s58 | slides 188–192 | Advanced Q1א — furniture price (ValueInput) ═══ -->
+      
+      <!-- /#s58 -->
+
+      <!-- ═══ s59 | slides 193–197 | Advanced Q1ב — per-payment (ValueInput) ═══ -->
+      
+      <!-- /#s59 -->
+
+      <!-- ═══ s60 | slides 198–202 | Advanced Q1ג — 4 payments (value + dropdown) ═══ -->
+      
+      <!-- /#s60 -->
+
+      <!-- ═══ s61 | slides 203–207 | Advanced Q2א — grade size (ValueInput, no image) ═══ -->
+      
+      <!-- /#s61 -->
+
+      <!-- ═══ s62 | slides 208–212 | Advanced Q2ב — students present (ValueInput) ═══ -->
+      
+      <!-- /#s62 -->
+
+      <!-- ═══ s63 | slides 213–217 | Advanced Q3א — ratio (ValueInput) ═══
+         NOTE: per manual decision, answer = 9:11 and the question asks סככה:גידולים. -->
+      
+      <!-- /#s63 -->
+
+      <!-- ═══ s64 | slides 218–222 | Advanced Q3ב — garden area (ValueInput) ═══ -->
+      
+      <!-- /#s64 -->
+
+      <!-- ═══ s65 | slide 224 | TransitionScreen — peak question intro ═══ -->
+      
+      <!-- /#s65 -->
+
+      <!-- ═══ s66 | slide 225 | Info screen — battery research context ═══ -->
+      
+      <!-- /#s66 -->
+
+      <!-- ═══ s67 | slides 226–230 | Peak Q1א — minimum points (ValueInput) ═══ -->
+      
+      <!-- /#s67 -->
+
+      <!-- ═══ s68 | slides 231–235 | Peak Q1ב — heating % (ValueInput) ═══ -->
+      
+      <!-- /#s68 -->
+
+      <!-- ═══ s69 | slides 236–240 | Peak Q1ג — brightness points (ValueInput) ═══ -->
+      
+      <!-- /#s69 -->
+
+      <!-- ═══ s70 | slides 241–245 | Peak Q1ד — verdict (science-ref S8 inline fills) ═══ -->
+      
+      <!-- /#s70 -->
+
+      <!-- ═══ s71 | slide 246 | TransitionScreen — second peak question intro ═══ -->
+      
+      <!-- /#s71 -->
+
+      <!-- ═══ s72 | slide 247 | Info screen — trivia game context ═══ -->
+      
+      <!-- /#s72 -->
+
+      <!-- ═══ s73 | slides 248–251 | Peak Q2א — true/false (ONE attempt) ═══ -->
+      
+      <!-- /#s73 -->
+
+      <!-- ═══ s74 | slides 252–256 | Peak Q2ב — total points (ValueInput) ═══ -->
+      
+      <!-- /#s74 -->
+
+      <!-- ═══ s75 | slides 257–261 | Peak Q2ג — multi-select (all correct) ═══ -->
+      
+      <!-- /#s75 -->
+
+      <!-- ═══ s76 | slide 262 | End screen — peak question not passed ═══ -->
+      
+      <!-- /#s76 -->
+
+      <!-- ═══ s77 | slide 263 | End screen — unit completed successfully ═══ -->
+      
+      <!-- /#s77 -->
+
+      <!-- ═══════════════════════════════════════
+         IMAGE-ZOOM MODAL (Fix 8) — shared chrome, purple theme
+    ════════════════════════════════════════ -->
+      <div
+        class="vq-zoom-modal"
+        id="vq-zoom-modal"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-label="عرض الصورة مكبّرة"
+      >
+        <div class="vq-zoom-backdrop" onclick="vqCloseZoom()"></div>
+        <div class="vq-zoom-panel">
+          <button
+            class="vq-zoom-close"
+            type="button"
+            aria-label="إغلاق الصورة"
+            onclick="vqCloseZoom()"
+          >
+            &times;
+          </button>
+          <div class="vq-zoom-stage" id="vq-zoom-stage"></div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════
+         IMAGE-ZOOM MODAL — 720-templates global component spec
+         (currently wired to S2, S31, and S43; other screens keep the legacy
+         vq-zoom-modal above until they're migrated)
+    ════════════════════════════════════════ -->
+      <div
+        class="img-zoom-modal hidden"
+        id="img-zoom-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden="true"
+        aria-label="عرض الصورة مكبّرة"
+      >
+        <div class="img-zoom-modal__backdrop" data-zoom-close="true"></div>
+        <div class="img-zoom-modal__panel">
+          <button
+            class="img-zoom-modal__close"
+            type="button"
+            aria-label="إغلاق الصورة"
+            data-zoom-close="true"
+          >
+            <svg viewBox="0 0 15 15" fill="none" aria-hidden="true">
+              <path
+                d="M1 1L14 14M14 1L1 14"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <div class="img-zoom-modal__stage" id="img-zoom-modal-stage"></div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════
+         REPORT MODAL
+         (outside all .screen elements)
+         Figma: 720 - UI Templates › ReportIssueModal - State 01–09
+         Both fields are required — "שליחת דיווח" stays disabled
+         until a type is chosen and a description is written.
+    ════════════════════════════════════════ -->
+      <div
+        id="report-modal"
+        class="report-modal-overlay"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="report-modal-title"
+        aria-describedby="report-modal-body"
+      >
+        <div class="report-modal-box">
+          <div class="report-modal-head">
+            <h2 class="report-modal-title" id="report-modal-title">
+              التبليغ عن مشكلة
+            </h2>
+            <button
+              type="button"
+              class="report-close-btn"
+              onclick="tryCloseReportModal()"
+              aria-label="إغلاق"
+            >
+              <svg width="12" height="12" viewBox="9 9 12 12" aria-hidden="true" focusable="false">
+                <path d="M20.7208 9.27916C20.542 9.10042 20.2996 9 20.0467 9C19.7939 9 19.5514 9.10042 19.3726 9.27916L15 13.6518L10.6274 9.27916C10.4486 9.10042 10.2061 9 9.95327 9C9.70044 9 9.45797 9.10042 9.27916 9.27916C9.10042 9.45797 9 9.70044 9 9.95327C9 10.2061 9.10042 10.4486 9.27916 10.6274L13.6518 15L9.27916 19.3726C9.10042 19.5514 9 19.7939 9 20.0467C9 20.2996 9.10042 20.542 9.27916 20.7208C9.45797 20.8996 9.70044 21 9.95327 21C10.2061 21 10.4486 20.8996 10.6274 20.7208L15 16.3482L19.3726 20.7208C19.5514 20.8996 19.7939 21 20.0467 21C20.2996 21 20.542 20.8996 20.7208 20.7208C20.8996 20.542 21 20.2996 21 20.0467C21 19.7939 20.8996 19.5514 20.7208 19.3726L16.3482 15L20.7208 10.6274C20.8996 10.4486 21 10.2061 21 9.95327C21 9.70044 20.8996 9.45797 20.7208 9.27916Z" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+          <p class="report-modal-body" id="report-modal-body">
+            هل هناك شيء غير واضح أو لا يعمل كما ينبغي؟<br/>أخبرونا بما حدث حتى نتمكن من معالجته.
+          </p>
+
+          <div class="report-fields">
+            <div class="report-field" id="report-type-field">
+              <span class="report-label" id="report-type-label"
+                >ما نوع المشكلة؟<span aria-hidden="true" class="report-required">*</span></span
+              >
+              <div class="report-select-wrap">
+                <button
+                  type="button"
+                  class="report-select"
+                  id="report-type"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="report-type-list"
+                  aria-labelledby="report-type-label report-type-value"
+                  aria-required="true"
+                  aria-describedby="report-type-error"
+                  data-value=""
+                >
+                  <span class="report-select-value is-placeholder" id="report-type-value">اختاروا خيارًا</span>
+                  <svg class="report-select-chevron" width="16" height="8" viewBox="0 0 16 8" aria-hidden="true" focusable="false">
+                    <path d="M15.6677 0.329895C15.5615 0.225362 15.4351 0.142392 15.2958 0.0857716C15.1566 0.0291509 15.0072 0 14.8564 0C14.7055 0 14.5562 0.0291509 14.4169 0.0857716C14.2776 0.142392 14.1513 0.225362 14.045 0.329895L8.81134 5.43783C8.70511 5.54236 8.57872 5.62533 8.43947 5.68195C8.30021 5.73857 8.15085 5.76772 8 5.76772C7.84915 5.76772 7.69979 5.73857 7.56053 5.68195C7.42128 5.62533 7.29489 5.54236 7.18866 5.43783L1.95497 0.329895C1.84874 0.225362 1.72235 0.142392 1.5831 0.0857716C1.44385 0.0291509 1.29449 0 1.14363 0C0.99278 0 0.843419 0.0291509 0.704167 0.0857716C0.564915 0.142392 0.438528 0.225362 0.332297 0.329895C0.119463 0.538854 0 0.821521 0 1.11616C0 1.4108 0.119463 1.69346 0.332297 1.90242L5.57742 7.02151C6.2202 7.64807 7.09153 8 8 8C8.90847 8 9.7798 7.64807 10.4226 7.02151L15.6677 1.90242C15.8805 1.69346 16 1.4108 16 1.11616C16 0.821521 15.8805 0.538854 15.6677 0.329895Z" fill="currentColor"/>
+                  </svg>
+                </button>
+                <ul
+                  class="report-select-list"
+                  id="report-type-list"
+                  role="listbox"
+                  aria-labelledby="report-type-label"
+                  tabindex="-1"
+                  hidden
+                >
+                  <li role="option" id="report-opt-technical" data-value="technical" aria-selected="false">عطل تقني أو شيء ما لا يعمل</li>
+                  <li role="option" id="report-opt-unclear" data-value="unclear" aria-selected="false">شيء غير واضح لي</li>
+                  <li role="option" id="report-opt-other" data-value="other" aria-selected="false">آخر</li>
+                </ul>
+              </div>
+              <span class="report-error" id="report-type-error" hidden>اختاروا نوع المشكلة</span>
+            </div>
+
+            <div class="report-field" id="report-text-field">
+              <label class="report-label" for="report-text"
+                >ماذا حدث؟<span aria-hidden="true" class="report-required">*</span></label
+              >
+              <textarea
+                class="report-textarea"
+                id="report-text"
+                maxlength="250"
+                aria-required="true"
+                aria-describedby="report-text-error"
+                placeholder="فصّلوا ما حدث لنتمكن من فهم المشكلة"
+              ></textarea>
+              <span class="report-error" id="report-text-error" hidden>اكتبوا ما حدث</span>
+            </div>
+          </div>
+
+          <div class="report-actions">
+            <button type="button" class="report-cancel-btn" onclick="tryCloseReportModal()">
+              إلغاء
+            </button>
+            <button
+              type="button"
+              class="report-submit-btn"
+              id="report-submit"
+              aria-disabled="true"
+              onclick="submitReport()"
+            >
+              إرسال البلاغ
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════
+         REPORT CONFIRM-CLOSE MODAL
+    ════════════════════════════════════════ -->
+      <div
+        id="report-confirm-modal"
+        class="report-modal-overlay"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="confirm-modal-title"
+      >
+        <div class="report-modal-box report-confirm-box">
+          <h2 class="report-modal-title" id="confirm-modal-title">
+            هل تريدون إغلاق النافذة فعلًا؟
+          </h2>
+          <p class="report-modal-body">إذا أغلقتم النافذة فلن يُرسَل البلاغ</p>
+          <div class="report-actions">
+            <button class="report-cancel-btn" onclick="forceCloseReportModal()">
+              إغلاق النافذة
+            </button>
+            <button class="report-submit-btn" onclick="backToReportForm()">
+              أريد التبليغ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /#app -->
+    <script src="../unit-js/10-identity.js?v=20261104b"></script>
+    <script src="../unit-js/20-xapi.js?v=20261103a"></script>
+    <script src="../unit-js/25-report.js?v=20261103a"></script>
+    <script src="../unit-js/40-resume.js?v=20261104b"></script>
+    <script src="../unit-js/50-loader.js?v=20261104b"></script>
+    <script src="script.js?v=48"></script>
+    <script src="../unit-js/main.js?v=3"></script>
+    <script src="../unit-js/90-boot.js?v=20261103a"></script>
+  </body>
+</html>

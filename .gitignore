@@ -1,0 +1,17 @@
+# Ignore node_modules and builds in editor subdirectory
+lomda-editor/node_modules/
+lomda-editor/dist/
+lomda-editor/*.tsbuildinfo
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Local reference/archive material — not part of the shipped project
+_archive/
+
+# Kata API key and tool logs — never committed
+kata-api-key.txt
+docs-and-tools/kata-api-key.txt
+docs-and-tools/*.log
+metadata-from/

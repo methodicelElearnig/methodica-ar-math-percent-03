@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 12" width="40" height="12">
+  <!-- Designed vector arrow, head points LEFT. Solid black: used as a CSS
+       mask (recolored via background-color) or as a plain background. -->
+  <rect x="9" y="4.5" width="31" height="3" rx="1.5" fill="#000"/>
+  <path d="M0.8 6 L11 0.6 Q12 0.1 12 1.2 L12 10.8 Q12 11.9 11 11.4 Z" fill="#000" stroke="#000" stroke-width="0.8" stroke-linejoin="round"/>
+</svg>

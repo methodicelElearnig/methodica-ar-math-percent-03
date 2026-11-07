@@ -1,0 +1,1279 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>سؤال التحدّي — حساب الكلّ عند معرفة نسبة الجزء المئوية | رياضيات 720</title>
+    <!-- The shared xAPI library is fetched by unit-js/50-loader.js at the END of the body, after the
+         parser has queued every image; preloading it from the head puts it first in the queue, so the
+         resume restore does not wait for the media (BOOT-AND-RESUME-HARDENING-2026-11-03.md C2). The href
+         must equal what 50-loader.js builds (no ?v=, no crossorigin) or the browser fetches it twice; the
+         library letter changes together with LIB720 there (the harness asserts it). -->
+    <link rel="preload" as="script" fetchpriority="high" href="https://lomdot.education.gov.il/metodica/720active/common/xapiwrapper.min.js">
+    <link rel="preload" as="script" fetchpriority="high" href="https://lomdot.education.gov.il/metodica/720active/common/xapi-720-l.js">
+    <link rel="preconnect" href="https://kata.cet.ac.il">
+    <link rel="stylesheet" href="styles.css?v=80" />
+    <script>
+      // Explicit delimiters: inline \(...\) (feedback calcs) + display $$...$$ (s6b).
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+        },
+        options: {
+          skipHtmlTags: [
+            "script",
+            "noscript",
+            "style",
+            "textarea",
+            "pre",
+            "code",
+          ],
+        },
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+
+  <body data-subject-theme="math">
+    <!-- Boot cover: hides the first screen until the resume decision is made (50-loader.js), so a
+         learner with saved progress never sees — or clicks — the start screen first. Painted in the
+         page's own background in the first frame. -->
+    <div id="boot-cover" style="position:fixed;inset:0;z-index:9999;background:#1a2744"></div>
+    <script>
+    /* Safety net. DEPENDENCY-FREE and inline by design: it must run even if unit-js/ fails to load
+       or throws, because the one thing worse than a flash of the start screen is a learner left
+       staring at a blank page. 800 ms normally; up to 6 s while window.__resumeInFlight is true.
+       Polls every 100 ms so it drops the cover as soon as the flag clears. */
+    (function () {
+      /* A Kata launch (registration in the query) may have a document to restore: raise the flag
+         HERE, before any script is fetched — bootXAPI runs from the last script tag, after the
+         800 ms below on a cold cache (2026-11-03, C1). Without a registration (local, dev) the
+         800 ms behaviour is unchanged. */
+      if (/[?&]registration=/.test(location.search)) window.__resumeInFlight = true;
+      var t0 = Date.now();
+      function tick() {
+        var c = document.getElementById('boot-cover');
+        if (!c || !c.parentNode) return;          /* already removed — nothing to do */
+        if (window.__resumeInFlight && Date.now() - t0 < 6000) { setTimeout(tick, 100); return; }
+        c.parentNode.removeChild(c);
+      }
+      setTimeout(tick, 800);
+    })();
+    </script>
+    <div id="app">
+      <!-- ═══════════════════════════════════════
+         GLOBAL — Flag / Report Issue button
+    ════════════════════════════════════════ -->
+      <button
+        class="flag-btn"
+        id="flag-btn"
+        onclick="openReportModal()"
+        aria-label="التبليغ عن مشكلة"
+      >
+        <span class="flag-icon-circle">
+          <svg
+            class="flag-icon-svg"
+            width="12"
+            height="17"
+            viewBox="0 0 12 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M0.397164 17C0.177722 17 0 16.8239 0 16.6065V0.393501C0 0.176082 0.177722 0 0.397164 0C0.616607 0 0.794329 0.176082 0.794329 0.393501V16.607C0.794329 16.8245 0.616607 17.0005 0.397164 17.0005V17Z"
+              fill="currentColor"
+            />
+            <path
+              d="M2.76227 9.9082C1.91972 9.9082 1.06958 9.74822 0.213483 9.3064C0.0823588 9.23876 0 9.10402 0 8.95746V1.54375C0 1.40739 0.0715221 1.2807 0.188558 1.20876C0.305594 1.13736 0.45189 1.13038 0.574886 1.19158C0.577053 1.19266 0.578679 1.19373 0.580846 1.19481C2.31309 2.08864 4.05563 1.63877 5.90003 1.16259C7.80946 0.669779 9.78336 0.160858 11.7865 1.19427C11.9176 1.26191 12 1.39666 12 1.54321V8.95692C12 9.08738 11.9344 9.20977 11.8255 9.28278C11.7166 9.35579 11.5774 9.37082 11.4555 9.32251C11.443 9.31768 11.4311 9.31231 11.4197 9.3064C9.68745 8.41257 7.94491 8.86244 6.10051 9.33808C5.00709 9.61992 3.89199 9.90766 2.76281 9.90766L2.76227 9.9082ZM0.793787 8.71213C2.45559 9.46584 4.13094 9.03315 5.90003 8.57684C7.62469 8.13181 9.40191 7.67335 11.2062 8.35084V1.78908C9.54441 1.03536 7.86906 1.46805 6.09997 1.92437C4.37531 2.3694 2.59755 2.82786 0.793787 2.15037V8.71213Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        <span class="flag-label">هل وجدتم مشكلة؟</span>
+      </button>
+
+      <!-- ═══════════════════════════════════════
+         GLOBAL — Back button
+    ════════════════════════════════════════ -->
+      <button
+        class="btn-back"
+        id="global-back-btn"
+        hidden
+        onclick="goBack()"
+        aria-label="العودة إلى الشاشة السابقة"
+      >
+        رجوع
+      </button>
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 0 — בחירת דמות
+    ════════════════════════════════════════ -->
+      
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 1 — הצגת הדמות הנבחרת
+    ════════════════════════════════════════ -->
+      
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 2 — Hook Question (PPTX slide 14)
+         SingleChoiceQuestion: לכמה זמן תספיק הסוללה?
+    ════════════════════════════════════════ -->
+      
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 3 — Daily-life contexts (PPTX slide 15)
+    ════════════════════════════════════════ -->
+      
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 4 — Three calculation methods (PPTX slides 16-17)
+    ════════════════════════════════════════ -->
+      
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 5 — Learning method selection (PPTX slide 17)
+         TwoOptionSelection: video vs carousel
+    ════════════════════════════════════════ -->
+      
+
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 7 — s6b: CarouselLearningScreen
+         PPTX slides 25–33 | methodica-math-percent-03-01-003.3
+         Sprint 2B
+    ════════════════════════════════════════ -->
+      
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 8 — s7: GuidedPracticeScreen — Battery
+         PPTX slides 34–43 | methodica-math-percent-03-01-003
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s7 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 9 — s8: Transition to guided candy practice
+         PPTX slide 45 (new script 180626) | methodica-math-percent-03-01-004
+    ════════════════════════════════════════ -->
+      
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 16 — s16 | PPTX slide 45 | REF-01-01-S7
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s16 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 17 — s17 | PPTX slide 46 | REF-01-01-S11
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s17 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 18 — s18 | PPTX slide 47 | REF-01-01-S8
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s18 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 19 — s19 | PPTX slide 48 | s17 prototype
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s19 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 20 — s20 | PPTX slide 49 | s18 prototype
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s20 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 21 — s21 | PPTX slide 50 | s18 prototype
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s21 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 22 — s22 | PPTX slide 51 | s17 prototype
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s22 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 23 — s23 | PPTX slide 52 | s18 prototype
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s23 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 24 — s24 | PPTX slide 53 | s17 prototype
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s24 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 25 — s25 | PPTX slide 54 | s17 prototype
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s25 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 26 — s26 | PPTX slide 55 | s17 prototype
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s26 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 27 — s27 | PPTX slide 56 | s18 prototype
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s27 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 28 — s28 | PPTX slide 57 | s17 prototype
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s28 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 29 — s29 | PPTX sl 58 | s16 prototypeide
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s29 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 30 — s30 | PPTX slide 60 | TransitionScreen prototype (s11)
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s30 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 31 — s31 | PPTX slide 61 | ValueInputQuestion — warmup
+         methodica-math-percent-03-01-005 | layout: REF-01-01-S18
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s31 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 32 — s32 | PPTX slides 66–70 | ValueInputQuestion b
+         States: initial / incorrect-1 / hint / correct / incorrect-final
+         Template: s31
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s32 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 33 — s33 | PPTX slide 72 | TransitionScreen
+         Template: S30
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s33 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 34 — s34 | PPTX slides 73–77 | ValueInputQuestion 1/6
+         States: initial / incorrect-1 / hint / correct / incorrect-final
+         Template: s32 pattern + progress menu
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s34 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 35 — s35 | PPTX slides 78–82 | ValueInputQuestion 2/6
+         States: initial / incorrect-1 / hint / correct / incorrect-final
+         Template: s34
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s35 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 36 — s36 | PPTX slides 83–87 | ValueInputQuestion 3/6
+         States: initial / incorrect-1 / hint / correct / incorrect-final
+         Template: s35
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s36 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 37 — s37 | PPTX slides 88–97 | ValueInputQuestion 4/6 (two-phase)
+         Phase A (slides 88–92): sector א — which % is gray? Answer: 15%
+         Phase B (slides 93–97): sector ב — total area?   Answer: 300 cm²
+         States A: initial / incorrect-1 / hint / correct / incorrect-final
+         States B: initial / incorrect-1 / hint / correct / incorrect-final
+         Visual: pie-chart widget (iframe), both phases share same widget
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s37 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 38 — s38 | PPTX slides 98–102 | ValueInputQuestion 5/6
+         Two-input table completion: % for החברה להגנת הטבע (25) + count for צער בעלי חיים (18)
+         States: initial / incorrect-1 / hint-popup / correct / incorrect-final
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s38 -->
+
+      <!-- ═══════════════════════════════════════
+         SCREEN 39 — s39 | PPTX slides 103–117 | SingleChoiceQuestion 6/6
+         Authentic question (שאלה אוריינית) — three sequential sections:
+         Section א (103–107): 5% fat → 250g per container
+         Section ב (108–112): 5 containers in bowl → 1,250g total
+         Section ג (113–117): compare 9% vs 5% → 9% is smaller (200g vs 250g)
+         States per section: initial / wrong-1 / hint / correct / wrong-final
+         Nav: Q1–Q5 dynamic from stored results, Q6 active (last item, no future)
+         Ref layout: REF-01-01-S20
+    ════════════════════════════════════════ -->
+      
+      <!-- /#s39 -->
+
+      <!-- ═══════════════════════════════════════════════════════════════
+         COMPONENT 02 — ENRICHMENT + BASIC + STANDARD-B PRACTICE
+         Script slides 119–121, 124–180  (s40–s54 / data-screen 34–48)
+         Templates: s30/s33 (transition), s34 (ValueInputQuestion),
+         s39 (option buttons). Palette: purple/green/red — no blue.
+    ════════════════════════════════════════════════════════════════ -->
+
+      <!-- ═══ SCREEN s40 | slide 119 | TransitionScreen — enrichment intro ═══ -->
+      
+      <!-- /#s40 -->
+
+      <!-- ═══ SCREEN s41 | slides 120 (+121 modal) | Enrichment — plastic island ═══ -->
+      
+      <!-- /#s41 -->
+
+      <!-- ═══ SCREEN s42 | slide 124 | TransitionScreen — basic questions intro ═══ -->
+      
+      <!-- /#s42 -->
+
+      <!-- ═══ SCREEN s43 | slides 125–129 | ValueInputQuestion — Basic Q1 (Noam) ═══ -->
+      
+      <!-- /#s43 -->
+
+      <!-- ═══ SCREEN s44 | slides 130–134 | ValueInputQuestion — Basic Q2 (Gal) ═══ -->
+      
+      <!-- /#s44 -->
+
+      <!-- ═══ SCREEN s45 | slides 135–139 | ValueInputQuestion — Basic Q3 (Nir) ═══ -->
+      
+      <!-- /#s45 -->
+
+      <!-- ═══ SCREEN s46 | slides 140–144 | ValueInputQuestion — Basic Q4 (Earth Day) ═══ -->
+      
+      <!-- /#s46 -->
+
+      <!-- ═══ SCREEN s47 | slides 145–149 | ValueInputQuestion — Basic Q5א (Ron & Yael) ═══ -->
+      
+      <!-- /#s47 -->
+
+      <!-- ═══ SCREEN s48 | slides 150–154 | ValueInputQuestion — Basic Q5ב ═══ -->
+      
+      <!-- /#s48 -->
+
+      <!-- ═══ SCREEN s49 | slides 155–158 | Yes/No verification — Basic Q5ג ═══ -->
+      
+      <!-- /#s49 -->
+
+      <!-- ═══ SCREEN s50 | slide 160 | TransitionScreen — Standard B intro ═══ -->
+      
+      <!-- /#s50 -->
+
+      <!-- ═══ SCREEN s51 | slides 161–165 | ValueInputQuestion — Standard B Q1א (pie chart) ═══ -->
+      
+      <!-- /#s51 -->
+
+      <!-- ═══ SCREEN s52 | slides 166–170 | ValueInputQuestion — Standard B Q1ב (circle area) ═══ -->
+      
+      <!-- /#s52 -->
+
+      <!-- ═══ SCREEN s53 | slides 171–175 | ValueInputQuestion — Standard B Q2א (Purim) ═══ -->
+      
+      <!-- /#s53 -->
+
+      <!-- ═══ SCREEN s54 | slides 176–180 | ValueInputQuestion — Standard B Q2ב (ratio) ═══ -->
+      
+      <!-- /#s54 -->
+
+      <!-- ═══════════════════════════════════════════════════════════════
+         COMPONENT 03 + 04 — CLASS TASK / ADVANCED / PEAK QUESTIONS
+         Script slides 183–263  (s55–s78 / data-screen 49–72)
+         Templates: s30/s50 transition, s43 ValueInput, s47 choice,
+         science-ref S8 (inline fills). Palette: purple/green/red.
+    ════════════════════════════════════════════════════════════════ -->
+
+      <!-- ═══ s55 | slide 183 | TransitionScreen — class-task intro ═══ -->
+      
+      <!-- /#s55 -->
+
+      <!-- ═══ s56 | slide 184 | Class survey (reflection, ungraded) ═══ -->
+      
+      <!-- /#s56 -->
+
+      <!-- ═══ s58 | slide 187 | TransitionScreen — advanced section intro ═══ -->
+      
+      <!-- /#s58 -->
+
+      <!-- ═══ s59 | slides 188–192 | Advanced Q1א — furniture price (ValueInput) ═══ -->
+      
+      <!-- /#s59 -->
+
+      <!-- ═══ s60 | slides 193–197 | Advanced Q1ב — per-payment (ValueInput) ═══ -->
+      
+      <!-- /#s60 -->
+
+      <!-- ═══ s61 | slides 198–202 | Advanced Q1ג — 4 payments (value + dropdown) ═══ -->
+      
+      <!-- /#s61 -->
+
+      <!-- ═══ s62 | slides 203–207 | Advanced Q2א — grade size (ValueInput, no image) ═══ -->
+      
+      <!-- /#s62 -->
+
+      <!-- ═══ s63 | slides 208–212 | Advanced Q2ב — students present (ValueInput) ═══ -->
+      
+      <!-- /#s63 -->
+
+      <!-- ═══ s64 | slides 213–217 | Advanced Q3א — ratio (ValueInput) ═══
+         NOTE: per manual decision, answer = 9:11 and the question asks סככה:גידולים. -->
+      
+      <!-- /#s64 -->
+
+      <!-- ═══ s65 | slides 218–222 | Advanced Q3ב — garden area (ValueInput) ═══ -->
+      
+      <!-- /#s65 -->
+
+      <!-- ═══ s66 | slide 224 | TransitionScreen — peak question intro ═══ -->
+      <section class="screen active" data-screen="60" id="s66">
+        <div class="s30-text">
+          <p class="s30-body">
+            أحسنتم!<br/> إذا لم تُجيبوا إجابةً صحيحة عن بعض الأسئلة،<br/> فمن المهمّ أن تعرفوا ما الذي لم يتّضح لكم بعد.
+          </p>
+          <h1 class="s30-heading">والآن إلى سؤال التحدّي</h1>
+          <p class="s30-body">يتكوّن من 4 بنود. عليكم أن تنجحوا في 3 منها على الأقل.</p>
+        </div>
+        <video
+          class="s30-char-img"
+          id="s66-char-img"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source id="s66-char-img-src" src="" type="video/mp4" />
+        </video>
+        <button class="btn-continue" id="s66-continue" onclick="goTo(61)">
+          هل نبدأ؟
+        </button>
+      </section>
+      <!-- /#s66 -->
+
+      <!-- ═══ s67 | slide 225 | Info screen — battery research context ═══ -->
+      <section class="screen" data-screen="61" id="s67">
+        <h1 class="qa-screen-title-scrape">سؤال التحدّي – الموعد الثاني – مقدّمة</h1>
+        <div class="s31-question">
+          <div class="s31-q-layout">
+            <div class="s31-q-right">
+              <div class="s31-q-inner">
+                <h1 class="s67-title">العودة إلى الهاتف والرحلة السنوية</h1>
+                <p class="s31-q-text">
+                  في المساء الذي سبق الرحلة لاحظتم أن بطاريتكم تنفد بسرعة<br/> ففحصتم البطارية.<br/> واكتشفتم أن هناك أربعة معايير تؤثر في عمر البطارية:
+                </p>
+                <ol>
+                  <li>التطبيقات التي تعمل في الخلفية.</li>
+                  <li>جودة البطارية.</li>
+                  <li>سطوع الشاشة.</li>
+                  <li>ارتفاع حرارة الجهاز.</li>
+                </ol>
+                <p>
+                  يُعطي الفحص كل معيار عددًا من <strong>نقاط استهلاك البطارية</strong>.
+                </p>
+                <p class="s67-research">
+                  <strong>انطلقتم في بحث سيكشف لكم حالة بطاريتكم.</strong></p>
+              </div>
+            </div>
+            <div class="s31-q-left">
+              <div class="vq-img-frame">
+                <svg
+                    class="s31-warmup-img s67-hero-img battery-shot"
+                    viewBox="36 16 710 1345"
+                    role="img"
+                    aria-label="شاشة هاتف ذكي تعرض إعدادات حالة البطارية: مؤشر بطارية ملوّن وقائمة معايير — جودة البطارية، التطبيقات في الخلفية، سطوع الشاشة ومؤشر السخونة."
+                  >
+                    <image href="assets/images/battery_status_base.webp" width="790" height="1451" />
+                  </svg>
+                <button
+                  class="img-zoom-btn"
+                  type="button"
+                  aria-label="تكبير الصورة"
+                  data-zoom-src="assets/images/battery_status_base.webp"
+                  data-zoom-alt="شاشة هاتف ذكي تعرض إعدادات حالة البطارية: مؤشر بطارية ملوّن وقائمة معايير — جودة البطارية، التطبيقات في الخلفية، سطوع الشاشة ومؤشر السخونة."
+                >
+                  <svg
+                    class="img-zoom-btn__icon-svg"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="8.5"
+                      cy="8.5"
+                      r="6"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                    <line
+                      x1="13.2"
+                      y1="13.2"
+                      x2="18"
+                      y2="18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-continue" id="s67-continue" onclick="goTo(62)">
+          متابعة
+        </button>
+      </section>
+      <!-- /#s67 -->
+
+      <!-- ═══ s68 | slides 226–230 | Peak Q1א — minimum points (ValueInput) ═══ -->
+      <section class="screen vq-screen" data-screen="62" id="s68">
+        <h1 class="qa-screen-title-only">أ. وفقًا لهذه المعطيات، ما مجموع النقاط المطلوب ليكون استهلاك البطارية سليمًا؟</h1>
+        <div class="s31-question">
+          <div class="s31-q-layout">
+            <div class="s31-q-right">
+              <div class="s31-q-inner">
+                <div class="s31-q-text-wrap">
+                  <p class="s31-q-text">
+                    في الفحص الأول اكتشفتم أن جودة بطاريتكم حصلت على<br/> 48 نقطة، وهذا يشكّل 16% من التأثير في عمر البطارية.<br/> ليكون الاستهلاك سليمًا، يجب أن تصل البطارية إلى 100% من النقاط المستهدفة.<br/><br/> <strong class="mm-purple-bold">أ. وفقًا لهذه المعطيات، ما مجموع النقاط المطلوب ليكون استهلاك البطارية سليمًا؟</strong></p>
+                </div>
+                <div class="s31-fill-row">
+                  <span class="vq-answer-wrap">
+                  <input
+                    class="s31-answer-box"
+                    id="s68-answer"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="6"
+                    dir="rtl"
+                    aria-label="الإجابة — مجموع النقاط"
+                    oninput="vqInput('s68')"
+                    onfocus="vqInput('s68')"
+                  />
+                  </span>
+                  <span class="s3x-suffix">نقطة</span>
+                </div>
+              </div>
+            </div>
+            <div class="s31-q-left">
+              <div class="vq-img-frame">
+                <svg
+                    class="s31-warmup-img s68-hero-img battery-shot"
+                    viewBox="36 16 710 1345"
+                    role="img"
+                    aria-label="شاشة هاتف ذكي تعرض حالة البطارية، والسطر &quot;جودة البطارية – 48 – 16%&quot; مميَّز باللون البنفسجي."
+                  >
+                    <image href="assets/images/battery_status_base.webp" width="790" height="1451" />
+                    <g class="battery-shot__rows">
+                    <rect x="300" y="738" width="362" height="88" fill="#063B3B" />
+                    <text x="649" y="797">جودة البطارية - 48 - 16%</text>
+                    </g>
+                    <rect class="battery-shot__mark" x="106" y="722" width="572" height="120" />
+                  </svg>
+                <button
+                  class="img-zoom-btn"
+                  type="button"
+                  aria-label="تكبير الصورة"
+                  data-zoom-src="assets/images/battery_status_base.webp"
+                  data-zoom-alt="شاشة هاتف ذكي تعرض حالة البطارية، والسطر &quot;جودة البطارية – 48 – 16%&quot; مميَّز باللون البنفسجي."
+                >
+                  <svg
+                    class="img-zoom-btn__icon-svg"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="8.5"
+                      cy="8.5"
+                      r="6"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                    <line
+                      x1="13.2"
+                      y1="13.2"
+                      x2="18"
+                      y2="18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback-panel scq-popup" id="s68-feedback" hidden></div>
+        <button
+          class="btn-hint"
+          id="s68-hint-btn"
+          hidden
+          onclick="vqHint('s68')"
+        >
+          هل أحصل على تلميح؟
+        </button>
+        <button
+          class="btn-continue"
+          id="s68-action-btn"
+          disabled
+          onclick="vqSubmit('s68')"
+        >
+          هل إجابتي صحيحة؟
+        </button>
+        <div class="hint-panel" id="s68-hint-panel" hidden>
+          <div class="hint-panel-box">
+            <h2 class="hint-panel-title">تلميح</h2>
+            <div class="hint-panel-content">
+              استعينوا بجدول التناسب واحسبوا الكلّ (100%)<br/>بالاعتماد على الجزء (16%).
+            </div>
+            <button class="btn-hint-close" onclick="vqHintClose('s68')">
+              رجوع إلى السؤال
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- /#s68 -->
+
+      <!-- ═══ s69 | slides 231–235 | Peak Q1ב — heating % (ValueInput) ═══ -->
+      <section class="screen vq-screen" data-screen="63" id="s69">
+        <h1 class="qa-screen-title-only">ب. ما النسبة المئوية التي تستهلكها سخونة البطارية من مجموع نسب الاستهلاك؟</h1>
+        <div class="s31-question">
+          <div class="s31-q-layout">
+            <div class="s31-q-right">
+              <div class="s31-q-inner">
+                <div class="s31-q-text-wrap">
+                  <p class="s31-q-text">
+                    استمر الفحص وظهرت المعطيات التالية:<br> التطبيقات في الخلفية تستهلك 32% من البطارية.<br/> سطوع الشاشة يستهلك 28% من البطارية.<br/> لم يُظهر الفحص بعد معطيات سخونة البطارية.<br/><br/> <strong class="mm-purple-bold">ب. ما النسبة المئوية التي تستهلكها سخونة البطارية من مجموع نسب الاستهلاك؟</strong> </br></p>
+                </div>
+                <div class="s31-fill-row">
+                  <span class="s31-pct-suffix">%</span>
+                  <span class="vq-answer-wrap">
+                  <input
+                    class="s31-answer-box"
+                    id="s69-answer"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="3"
+                    dir="rtl"
+                    aria-label="الإجابة — نسبة السخونة"
+                    oninput="vqInput('s69')"
+                    onfocus="vqInput('s69')"
+                  />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="s31-q-left">
+              <div class="vq-img-frame">
+                <svg
+                    class="s31-warmup-img s69-hero-img battery-shot"
+                    viewBox="36 16 710 1345"
+                    role="img"
+                    aria-label="شاشة هاتف ذكي تعرض حالة البطارية: جودة البطارية – 48 – 16%، والسطران &quot;التطبيقات في الخلفية – 32%&quot; و&quot;سطوع الشاشة – 28%&quot; مميَّزان باللون البنفسجي."
+                  >
+                    <image href="assets/images/battery_status_base.webp" width="790" height="1451" />
+                    <g class="battery-shot__rows">
+                    <rect x="300" y="738" width="362" height="88" fill="#063B3B" />
+                    <text x="649" y="797">جودة البطارية - 48 - 16%</text>
+                    <rect x="300" y="858" width="362" height="88" fill="#063B3B" />
+                    <text x="649" y="917">التطبيقات في الخلفية - 32%</text>
+                    <rect x="300" y="972" width="362" height="89" fill="#063B3B" />
+                    <text x="649" y="1031">سطوع الشاشة - 28%</text>
+                    </g>
+                    <rect class="battery-shot__mark" x="106" y="842" width="572" height="233" />
+                  </svg>
+                <button
+                  class="img-zoom-btn"
+                  type="button"
+                  aria-label="تكبير الصورة"
+                  data-zoom-src="assets/images/battery_status_base.webp"
+                  data-zoom-alt="شاشة هاتف ذكي تعرض حالة البطارية: جودة البطارية – 48 – 16%، والسطران &quot;التطبيقات في الخلفية – 32%&quot; و&quot;سطوع الشاشة – 28%&quot; مميَّزان باللون البنفسجي."
+                >
+                  <svg
+                    class="img-zoom-btn__icon-svg"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="8.5"
+                      cy="8.5"
+                      r="6"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                    <line
+                      x1="13.2"
+                      y1="13.2"
+                      x2="18"
+                      y2="18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback-panel scq-popup" id="s69-feedback" hidden></div>
+        <button
+          class="btn-hint"
+          id="s69-hint-btn"
+          hidden
+          onclick="vqHint('s69')"
+        >
+          هل أحصل على تلميح؟
+        </button>
+        <button
+          class="btn-continue"
+          id="s69-action-btn"
+          disabled
+          onclick="vqSubmit('s69')"
+        >
+          هل إجابتي صحيحة؟
+        </button>
+        <div class="hint-panel" id="s69-hint-panel" hidden>
+          <div class="hint-panel-box">
+            <h2 class="hint-panel-title">تلميح</h2>
+            <div class="hint-panel-content">
+              تذكّروا أن جودة البطارية تستهلك 16% من مجموع الاستهلاك.
+            </div>
+            <button class="btn-hint-close" onclick="vqHintClose('s69')">
+              رجوع إلى السؤال
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- /#s69 -->
+
+      <!-- ═══ s70 | slides 236–240 | Peak Q1ג — brightness points (ValueInput) ═══ -->
+      <section class="screen vq-screen" data-screen="64" id="s70">
+        <h1 class="qa-screen-title-scrape">سؤال التحدّي – الموعد الثاني – البند ج</h1>
+        <div class="s31-question">
+          <div class="s31-q-layout">
+            <div class="s31-q-right">
+              <div class="s31-q-inner">
+                <div class="s31-q-text-wrap">
+                  <p class="s31-q-text">
+                    وجدنا أن مجموع النقاط هو 300.<br/> ونعرف الآن أيضًا النسبة المئوية التي يستهلكها كل معيار.<br/><br/> <strong class="mm-purple-bold">ج. احسبوا كم نقطة تُمنح لمعيار سطوع الشاشة.</strong> <span class="q-indent">تذكّروا – المعطيات موجودة على شاشة الهاتف.</span></p>
+                </div>
+                <div class="s31-fill-row">
+                  <span class="vq-answer-wrap">
+                  <input
+                    class="s31-answer-box"
+                    id="s70-answer"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="5"
+                    dir="rtl"
+                    aria-label="الإجابة — عدد النقاط"
+                    oninput="vqInput('s70')"
+                    onfocus="vqInput('s70')"
+                  />
+                  </span>
+                  <span class="s3x-suffix">نقطة</span>
+                </div>
+              </div>
+            </div>
+            <div class="s31-q-left">
+              <div class="vq-img-frame">
+                <svg
+                    class="s31-warmup-img s70-hero-img battery-shot"
+                    viewBox="36 16 710 1345"
+                    role="img"
+                    aria-label="شاشة هاتف ذكي تعرض حالة البطارية: جودة البطارية – 48 – 16%، التطبيقات في الخلفية – 32%، سطوع الشاشة – 28% ومؤشر السخونة – 24%."
+                  >
+                    <image href="assets/images/battery_status_base.webp" width="790" height="1451" />
+                    <g class="battery-shot__rows">
+                    <rect x="300" y="738" width="362" height="88" fill="#063B3B" />
+                    <text x="649" y="797">جودة البطارية - 48 - 16%</text>
+                    <rect x="300" y="858" width="362" height="88" fill="#063B3B" />
+                    <text x="649" y="917">التطبيقات في الخلفية - 32%</text>
+                    <rect x="300" y="972" width="362" height="89" fill="#063B3B" />
+                    <text x="649" y="1031">سطوع الشاشة - 28%</text>
+                    <rect x="300" y="1090" width="362" height="89" fill="#063B3B" />
+                    <text x="649" y="1149">مؤشر السخونة - 24%</text>
+                    </g>
+                  </svg>
+                <button
+                  class="img-zoom-btn"
+                  type="button"
+                  aria-label="تكبير الصورة"
+                  data-zoom-src="assets/images/battery_status_base.webp"
+                  data-zoom-alt="شاشة هاتف ذكي تعرض حالة البطارية: جودة البطارية – 48 – 16%، التطبيقات في الخلفية – 32%، سطوع الشاشة – 28% ومؤشر السخونة – 24%."
+                >
+                  <svg
+                    class="img-zoom-btn__icon-svg"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="8.5"
+                      cy="8.5"
+                      r="6"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                    <line
+                      x1="13.2"
+                      y1="13.2"
+                      x2="18"
+                      y2="18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback-panel scq-popup" id="s70-feedback" hidden></div>
+        <button
+          class="btn-hint"
+          id="s70-hint-btn"
+          hidden
+          onclick="vqHint('s70')"
+        >
+          هل أحصل على تلميح؟
+        </button>
+        <button
+          class="btn-continue"
+          id="s70-action-btn"
+          disabled
+          onclick="vqSubmit('s70')"
+        >
+          هل إجابتي صحيحة؟
+        </button>
+        <div class="hint-panel" id="s70-hint-panel" hidden>
+          <div class="hint-panel-box">
+            <h2 class="hint-panel-title">تلميح</h2>
+            <div class="hint-panel-content">
+              تذكّروا كيف نحسب القيمة المقابلة للنسبة المئوية – أي عدد النقاط الذي تمثّله هذه النسبة من المجموع الكلّي للنقاط.
+            </div>
+            <button class="btn-hint-close" onclick="vqHintClose('s70')">
+              رجوع إلى السؤال
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- /#s70 -->
+
+      <!-- ═══ s71 | slides 241–245 | Peak Q1ד — verdict (science-ref S8 inline fills) ═══ -->
+      <section class="screen vq-screen" data-screen="65" id="s71">
+        <h1 class="qa-screen-title-only">د. هل استهلاك هاتفكم سليم؟</h1>
+        <div class="s31-question">
+          <div class="s31-q-layout">
+            <div class="s31-q-right s31-q-wide">
+              <div class="s31-q-inner">
+                <div class="s31-q-text-wrap">
+                  <p class="s31-q-text">عند انتهاء الفحص، ظهرت على الشاشة الرسالة التالية:</p>
+                  <p class="s71-context">
+                    يكون الاستهلاك <strong>ممتازًا</strong> إذا كان عدد النقاط أعلى من الحدّ الأدنى للنقاط (300) بنسبة 10% أو أكثر. 
+                  </p>
+                  <p class="s31-q-text q-hang">
+                    <strong class="mm-purple-bold">د. هل استهلاك هاتفكم سليم؟</strong> <span class="s71-q-sub">أجيبوا عن <strong>جميع</strong> الأسئلة التالية:</span></p>
+                  <p class="s31-q-text q-indent">يلزم 300 نقطة على الأقل ليكون الاستهلاك سليمًا. في نهاية الفحص، كان عدد النقاط<br/>التي حصل عليها هاتفكم 324 نقطة.</p>
+                </div>
+                <div class="s71-fill-row">
+                  <span>10% من الحدّ الأدنى للنقاط تساوي</span>
+                  <span class="vq-answer-wrap">
+                  <input
+                    class="s31-answer-box s71-inline"
+                    id="s71-a1"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="5"
+                    dir="rtl"
+                    aria-label="10% من 300"
+                    oninput="vqEnable('s71', this)"
+                    onfocus="vqEnable('s71')"
+                  />
+                  </span>
+                  <span>نقطة.</span>
+                </div>
+                <div class="s71-fill-row">
+                  <span>لكي يكون الاستهلاك ممتازًا يجب الحصول على أكثر من</span>
+                  <span class="vq-answer-wrap">
+                  <input
+                    class="s31-answer-box s71-inline"
+                    id="s71-a2"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="5"
+                    dir="rtl"
+                    aria-label="حد الامتياز"
+                    oninput="vqEnable('s71', this)"
+                    onfocus="vqEnable('s71')"
+                  />
+                  </span>
+                  <span>نقطة.</span>
+                </div>
+                <div class="s71-fill-row">
+                  <span>استهلاك هاتفكم هو</span>
+                  <span class="vq-answer-wrap">
+                  <input
+                    class="s31-answer-box s71-inline"
+                    id="s71-a3"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="5"
+                    dir="rtl"
+                    aria-label="نقاط الهاتف"
+                    oninput="vqEnable('s71', this)"
+                    onfocus="vqEnable('s71')"
+                  />
+                  </span>
+                  <span>نقطة، لذلك فإنّ استهلاك الهاتف</span>
+                  <span class="vq-answer-wrap">
+                  <select
+                    class="vq-select"
+                    id="s71-dd"
+                    aria-label="تقييم الاستهلاك"
+                    onchange="vqEnable('s71')"
+                    onfocus="vqEnable('s71')"
+                  >
+                    <option value="" disabled selected>اختاروا إجابة</option>
+                    <option value="ممتاز">ممتاز</option>
+                    <option value="ليس ممتازًا">ليس ممتازًا</option>
+                    <option value="لا يمكن معرفة ذلك">لا يمكن معرفة ذلك</option>
+                  </select>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="s31-q-left">
+              <div class="vq-img-frame">
+                <img loading="lazy"
+                  class="s31-warmup-img s71-hero-img"
+                  src="assets/images/battery_alert_s71.webp"
+                  alt="شاشة إعدادات حالة البطارية في هاتف ذكي، مع رسالة منبثقة: يكون الاستهلاك ممتازًا إذا كان عدد النقاط أعلى من الحدّ الأدنى للنقاط (300) بنسبة 10% أو أكثر."
+                />
+                <button
+                  class="img-zoom-btn"
+                  type="button"
+                  aria-label="تكبير الصورة"
+                  data-zoom-src="assets/images/battery_alert_s71.webp"
+                  data-zoom-alt="شاشة إعدادات حالة البطارية في هاتف ذكي، مع رسالة منبثقة: يكون الاستهلاك ممتازًا إذا كان عدد النقاط أعلى من الحدّ الأدنى للنقاط (300) بنسبة 10% أو أكثر."
+                >
+                  <svg
+                    class="img-zoom-btn__icon-svg"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="8.5"
+                      cy="8.5"
+                      r="6"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                    <line
+                      x1="13.2"
+                      y1="13.2"
+                      x2="18"
+                      y2="18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback-panel scq-popup" id="s71-feedback" hidden></div>
+        <button
+          class="btn-hint"
+          id="s71-hint-btn"
+          hidden
+          onclick="vqHint('s71')"
+        >
+          هل أحصل على تلميح؟
+        </button>
+        <button
+          class="btn-continue"
+          id="s71-action-btn"
+          disabled
+          onclick="vqSubmit('s71')"
+        >
+          هل إجابتي صحيحة؟
+        </button>
+        <div class="hint-panel" id="s71-hint-panel" hidden>
+          <div class="hint-panel-box">
+            <h2 class="hint-panel-title">تلميح</h2>
+            <div class="hint-panel-content">
+              احسبوا كم نقطة تساوي 10% من مجموع 300 نقطة.
+            </div>
+            <button class="btn-hint-close" onclick="vqHintClose('s71')">
+              رجوع إلى السؤال
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- /#s71 -->
+
+      <!-- ═══ s72 | slide 246 | TransitionScreen — second peak question intro ═══ -->
+      
+      <!-- /#s72 -->
+
+      <!-- ═══ s73 | slide 247 | Info screen — trivia game context ═══ -->
+      
+      <!-- /#s73 -->
+
+      <!-- ═══ s74 | slides 248–251 | Peak Q2א — true/false (ONE attempt) ═══ -->
+      
+      <!-- /#s74 -->
+
+      <!-- ═══ s75 | slides 252–256 | Peak Q2ב — total points (ValueInput) ═══ -->
+      
+      <!-- /#s75 -->
+
+      <!-- ═══ s76 | slides 257–261 | Peak Q2ג — multi-select (all correct) ═══ -->
+      
+      <!-- /#s76 -->
+
+      <!-- ═══ s77 | slide 262 | End screen — peak question not passed ═══ -->
+      
+      <!-- /#s77 -->
+
+      <!-- ═══ s78 | slide 263 | End screen — unit completed successfully ═══ -->
+      
+      <!-- /#s78 -->
+
+      <!-- ═══════════════════════════════════════
+         IMAGE-ZOOM MODAL (Fix 8) — shared chrome, purple theme
+    ════════════════════════════════════════ -->
+      <div
+        class="vq-zoom-modal"
+        id="vq-zoom-modal"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-label="عرض الصورة مكبّرة"
+      >
+        <div class="vq-zoom-backdrop" onclick="vqCloseZoom()"></div>
+        <div class="vq-zoom-panel">
+          <button
+            class="vq-zoom-close"
+            type="button"
+            aria-label="إغلاق الصورة"
+            onclick="vqCloseZoom()"
+          >
+            &times;
+          </button>
+          <div class="vq-zoom-stage" id="vq-zoom-stage"></div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════
+         IMAGE-ZOOM MODAL — 720-templates global component spec
+         (currently wired to S2, S31, and S43; other screens keep the legacy
+         vq-zoom-modal above until they're migrated)
+    ════════════════════════════════════════ -->
+      <div
+        class="img-zoom-modal hidden"
+        id="img-zoom-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden="true"
+        aria-label="عرض الصورة مكبّرة"
+      >
+        <div class="img-zoom-modal__backdrop" data-zoom-close="true"></div>
+        <div class="img-zoom-modal__panel">
+          <button
+            class="img-zoom-modal__close"
+            type="button"
+            aria-label="إغلاق الصورة"
+            data-zoom-close="true"
+          >
+            <svg viewBox="0 0 15 15" fill="none" aria-hidden="true">
+              <path
+                d="M1 1L14 14M14 1L1 14"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <div class="img-zoom-modal__stage" id="img-zoom-modal-stage"></div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════
+         REPORT MODAL
+         (outside all .screen elements)
+         Figma: 720 - UI Templates › ReportIssueModal - State 01–09
+         Both fields are required — "שליחת דיווח" stays disabled
+         until a type is chosen and a description is written.
+    ════════════════════════════════════════ -->
+      <div
+        id="report-modal"
+        class="report-modal-overlay"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="report-modal-title"
+        aria-describedby="report-modal-body"
+      >
+        <div class="report-modal-box">
+          <div class="report-modal-head">
+            <h2 class="report-modal-title" id="report-modal-title">
+              التبليغ عن مشكلة
+            </h2>
+            <button
+              type="button"
+              class="report-close-btn"
+              onclick="tryCloseReportModal()"
+              aria-label="إغلاق"
+            >
+              <svg width="12" height="12" viewBox="9 9 12 12" aria-hidden="true" focusable="false">
+                <path d="M20.7208 9.27916C20.542 9.10042 20.2996 9 20.0467 9C19.7939 9 19.5514 9.10042 19.3726 9.27916L15 13.6518L10.6274 9.27916C10.4486 9.10042 10.2061 9 9.95327 9C9.70044 9 9.45797 9.10042 9.27916 9.27916C9.10042 9.45797 9 9.70044 9 9.95327C9 10.2061 9.10042 10.4486 9.27916 10.6274L13.6518 15L9.27916 19.3726C9.10042 19.5514 9 19.7939 9 20.0467C9 20.2996 9.10042 20.542 9.27916 20.7208C9.45797 20.8996 9.70044 21 9.95327 21C10.2061 21 10.4486 20.8996 10.6274 20.7208L15 16.3482L19.3726 20.7208C19.5514 20.8996 19.7939 21 20.0467 21C20.2996 21 20.542 20.8996 20.7208 20.7208C20.8996 20.542 21 20.2996 21 20.0467C21 19.7939 20.8996 19.5514 20.7208 19.3726L16.3482 15L20.7208 10.6274C20.8996 10.4486 21 10.2061 21 9.95327C21 9.70044 20.8996 9.45797 20.7208 9.27916Z" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+          <p class="report-modal-body" id="report-modal-body">
+            هل هناك شيء غير واضح أو لا يعمل كما ينبغي؟<br/>أخبرونا بما حدث حتى نتمكن من معالجته.
+          </p>
+
+          <div class="report-fields">
+            <div class="report-field" id="report-type-field">
+              <span class="report-label" id="report-type-label"
+                >ما نوع المشكلة؟<span aria-hidden="true" class="report-required">*</span></span
+              >
+              <div class="report-select-wrap">
+                <button
+                  type="button"
+                  class="report-select"
+                  id="report-type"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="report-type-list"
+                  aria-labelledby="report-type-label report-type-value"
+                  aria-required="true"
+                  aria-describedby="report-type-error"
+                  data-value=""
+                >
+                  <span class="report-select-value is-placeholder" id="report-type-value">اختاروا خيارًا</span>
+                  <svg class="report-select-chevron" width="16" height="8" viewBox="0 0 16 8" aria-hidden="true" focusable="false">
+                    <path d="M15.6677 0.329895C15.5615 0.225362 15.4351 0.142392 15.2958 0.0857716C15.1566 0.0291509 15.0072 0 14.8564 0C14.7055 0 14.5562 0.0291509 14.4169 0.0857716C14.2776 0.142392 14.1513 0.225362 14.045 0.329895L8.81134 5.43783C8.70511 5.54236 8.57872 5.62533 8.43947 5.68195C8.30021 5.73857 8.15085 5.76772 8 5.76772C7.84915 5.76772 7.69979 5.73857 7.56053 5.68195C7.42128 5.62533 7.29489 5.54236 7.18866 5.43783L1.95497 0.329895C1.84874 0.225362 1.72235 0.142392 1.5831 0.0857716C1.44385 0.0291509 1.29449 0 1.14363 0C0.99278 0 0.843419 0.0291509 0.704167 0.0857716C0.564915 0.142392 0.438528 0.225362 0.332297 0.329895C0.119463 0.538854 0 0.821521 0 1.11616C0 1.4108 0.119463 1.69346 0.332297 1.90242L5.57742 7.02151C6.2202 7.64807 7.09153 8 8 8C8.90847 8 9.7798 7.64807 10.4226 7.02151L15.6677 1.90242C15.8805 1.69346 16 1.4108 16 1.11616C16 0.821521 15.8805 0.538854 15.6677 0.329895Z" fill="currentColor"/>
+                  </svg>
+                </button>
+                <ul
+                  class="report-select-list"
+                  id="report-type-list"
+                  role="listbox"
+                  aria-labelledby="report-type-label"
+                  tabindex="-1"
+                  hidden
+                >
+                  <li role="option" id="report-opt-technical" data-value="technical" aria-selected="false">عطل تقني أو شيء ما لا يعمل</li>
+                  <li role="option" id="report-opt-unclear" data-value="unclear" aria-selected="false">شيء غير واضح لي</li>
+                  <li role="option" id="report-opt-other" data-value="other" aria-selected="false">آخر</li>
+                </ul>
+              </div>
+              <span class="report-error" id="report-type-error" hidden>اختاروا نوع المشكلة</span>
+            </div>
+
+            <div class="report-field" id="report-text-field">
+              <label class="report-label" for="report-text"
+                >ماذا حدث؟<span aria-hidden="true" class="report-required">*</span></label
+              >
+              <textarea
+                class="report-textarea"
+                id="report-text"
+                maxlength="250"
+                aria-required="true"
+                aria-describedby="report-text-error"
+                placeholder="فصّلوا ما حدث لنتمكن من فهم المشكلة"
+              ></textarea>
+              <span class="report-error" id="report-text-error" hidden>اكتبوا ما حدث</span>
+            </div>
+          </div>
+
+          <div class="report-actions">
+            <button type="button" class="report-cancel-btn" onclick="tryCloseReportModal()">
+              إلغاء
+            </button>
+            <button
+              type="button"
+              class="report-submit-btn"
+              id="report-submit"
+              aria-disabled="true"
+              onclick="submitReport()"
+            >
+              إرسال البلاغ
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════
+         REPORT CONFIRM-CLOSE MODAL
+    ════════════════════════════════════════ -->
+      <div
+        id="report-confirm-modal"
+        class="report-modal-overlay"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="confirm-modal-title"
+      >
+        <div class="report-modal-box report-confirm-box">
+          <h2 class="report-modal-title" id="confirm-modal-title">
+            هل تريدون إغلاق النافذة فعلًا؟
+          </h2>
+          <p class="report-modal-body">إذا أغلقتم النافذة فلن يُرسَل البلاغ</p>
+          <div class="report-actions">
+            <button class="report-cancel-btn" onclick="forceCloseReportModal()">
+              إغلاق النافذة
+            </button>
+            <button class="report-submit-btn" onclick="backToReportForm()">
+              أريد التبليغ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /#app -->
+    <script src="../unit-js/10-identity.js?v=20261104b"></script>
+    <script src="../unit-js/20-xapi.js?v=20261103a"></script>
+    <script src="../unit-js/25-report.js?v=20261103a"></script>
+    <script src="../unit-js/40-resume.js?v=20261104b"></script>
+    <script src="../unit-js/50-loader.js?v=20261104b"></script>
+    <script src="script.js?v=47"></script>
+    <script src="../unit-js/main.js?v=3"></script>
+    <script src="../unit-js/90-boot.js?v=20261103a"></script>
+  </body>
+</html>

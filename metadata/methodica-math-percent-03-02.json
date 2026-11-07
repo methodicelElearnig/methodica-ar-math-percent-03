@@ -1,0 +1,182 @@
+{
+  "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/",
+  "title": "وقت التدرّب",
+  "learningUnitId": "methodica-math-percent-03",
+  "componentPurpose": "practice",
+  "isAssessment": false,
+  "recommendedAfterFail": [],
+  "isRequired": true,
+  "relativeDifficulty": 3,
+  "masteryLevel": null,
+  "order": 2,
+  "depthLevel": "core-curriculum-basic",
+  "cognitiveLevels": [
+    "process-thinking"
+  ],
+  "languages": [
+    "Arabic"
+  ],
+  "skills": [],
+  "estimatedTimeInMinutes": 18,
+  "createdAt": "2026-10-25T00:00:00.000Z",
+  "updatedAt": "2026-10-25T00:00:00.000Z",
+  "subContent": [
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-001/",
+      "title": "75% من عدد معيّن هي 150",
+      "informationToBot": "هدف البند: تدرّب على إيجاد الكلّ في سؤال عددي مباشر. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: إيجاد عدد 75% منه هي 150. اتجاهات التفكير والاستراتيجيات: التقدير (75% هي ثلاثة أرباع، والربع هو 50، ولذلك الكلّ 200) أو جدول التناسب: 75% مقابل 150 و100% مقابل x؛ x يساوي 100 ضرب 150 قسمة 75. يوجد تلميح متاح لكل بند. أخطاء شائعة: إجابة 150 أو 112.5 (حساب 75% من 150 بدلًا من إيجاد الكلّ). معلومات إضافية: بند واحد، كتابة عدد. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-001/q1",
+          "questionType": "numeric",
+          "questionText": "75% من عدد معيّن تساوي 150. أوجدوا الكلّ:",
+          "answers": [],
+          "correctAnswers": [
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-002/",
+      "title": "طلبات في مطعم البيتزا",
+      "informationToBot": "هدف البند: تدرّب على إيجاد الكلّ في سياق يومي. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: 22 طلبًا هي 50% من مجمل الطلبات؛ إيجاد مجمل الطلبات في تلك الأمسية. اتجاهات التفكير والاستراتيجيات: 50% هي النصف، ولذلك الكلّ ضعف الكمية الجزئية. ويمكن الحلّ أيضًا بجدول التناسب. يوجد تلميح متاح لكل بند. أخطاء شائعة: إجابة 11 (نصف 22) بدلًا من 44. معلومات إضافية: بند واحد، كتابة عدد. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-002/q1",
+          "questionType": "numeric",
+          "questionText": "في مطعم البيتزا \"الياسمين\" وصل يوم الخميس 22 طلبًا لبيتزا عائلية حتى الساعة 18:00. كانت هذه الطلبات 50% من طلبات البيتزا العائلية التي وصلت في تلك الأمسية. كم طلبًا وصل في تلك الأمسية؟ (طلبات)",
+          "answers": [],
+          "correctAnswers": [
+            44
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-003/",
+      "title": "جمع المال لحفلة نهاية السنة",
+      "informationToBot": "هدف البند: تدرّب على إيجاد الكلّ مع مبالغ مالية. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: 1300 شيكل هي 65% من المبلغ المطلوب؛ إيجاد المبلغ المطلوب. اتجاهات التفكير والاستراتيجيات: جدول التناسب: 65% مقابل 1300 و100% مقابل x؛ x يساوي 100 ضرب 1300 قسمة 65. يوجد تلميح متاح لكل بند. أخطاء شائعة: حساب 65% من 1300 بدلًا من إيجاد الكلّ. معلومات إضافية: بند واحد، كتابة عدد (تقبل الشاشة أيضًا 2,000 مع فاصلة). لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-003/q1",
+          "questionType": "numeric",
+          "questionText": "في الصف الثامن في مدرسة \"الشروق\" جُمع مال لحفلة نهاية السنة. بعد 3 أيام جُمع 1300 ₪، وهي 65% من المبلغ المطلوب. ما هو المبلغ المطلوب لتمويل الحفلة؟ (ش.ج)",
+          "answers": [],
+          "correctAnswers": [
+            2000
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-004/",
+      "title": "مخطط دائري في درس الرياضيات",
+      "informationToBot": "هدف البند: دمج المخطط الدائري (مجموع النسب 100%) مع إيجاد الكلّ. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: البند أ: إيجاد نسبة القطاع الرمادي بالتكملة إلى 100%. البند ب: إيجاد مساحة الدائرة كلها من مساحة القطاع الرمادي. معطيات السؤال: مخطط دائري فيه 5 قطاعات: أزرق 31%، أخضر 24%، برتقالي 18%، أحمر 12%، رمادي - النسبة الناقصة. مساحة القطاع الرمادي: 45 سم². اتجاهات التفكير والاستراتيجيات: البند أ: 100% ناقص (31% + 24% + 18% + 12%) يساوي 15%. البند ب: جدول التناسب - 15% مقابل 45 سم² و100% مقابل x؛ x يساوي 300. يوجد تلميح متاح لكل بند. أخطاء شائعة: نسيان أحد القطاعات في الجمع، أو إجابة 45 سم². معلومات إضافية: في البند أ توجد منزلقات لتحريك القطاع الرمادي؛ وفي البند ب يمكن عرض ما رسمته المعلّمة. يتلقّى البند ب نتيجة البند أ كمعطى. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-004/q1",
+          "questionType": "numeric",
+          "questionText": "في درس الرياضيات رسمت المعلّمة على اللوح مخططًا دائريًا مقسّمًا إلى 5 قطاعات بألوان مختلفة: أزرق – 31%، أخضر – 24%، برتقالي – 18%، أحمر – 12%، رمادي – ؟. أ. ما النسبة المئوية من الدائرة كاملةً التي يمثّلها القطاع الرمادي؟ (%)",
+          "answers": [],
+          "correctAnswers": [
+            15
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-004/q2",
+          "questionType": "numeric",
+          "questionText": "في درس الرياضيات نتعلّم عن المخطط الدائري. رسمت المعلّمة على اللوح مخططًا دائريًا مقسّمًا إلى 5 قطاعات بألوان مختلفة: أزرق – 31%، أخضر – 24%، برتقالي – 18%، أحمر – 12%. اكتشفنا أن القطاع الرمادي يشكّل 15%. مساحة القطاع الخامس في الدائرة هي 45 سم². ب. ما المساحة الكلية للدائرة كاملةً؟ (سم²)",
+          "answers": [],
+          "correctAnswers": [
+            300
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-005/",
+      "title": "متطوّعون في بلدة الأفق",
+      "informationToBot": "هدف البند: إكمال جدول باستخدام نسب مئوية وكميات استنادًا إلى الكلّ المعطى. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: في الجدول متطوعون في مكانين: تُحسب النسبة المئوية للمتطوعين في جمعية حماية الطبيعة (30 من 120) وعدد المتطوعين في جمعية الرفق بالحيوان (15% من 120). معطيات السؤال: في بلدة \"الأفق\" يوجد 120 طالبًا وطالبة يتطوّعون في أماكن مختلفة في المجتمع. جدول أعمدته: مكان التطوّع، عدد المتطوعين، نسبة المتطوعين. الصف 1: جمعية حماية الطبيعة - 30 متطوعًا - النسبة ناقصة. الصف 2: جمعية الرفق بالحيوان - العدد ناقص - 15%. اتجاهات التفكير والاستراتيجيات: 30 من 120 هي ربع، أي 25%؛ و15% من 120 هي 18. ويمكن الحلّ أيضًا بجدول التناسب. يوجد تلميح متاح لكل بند. أخطاء شائعة: إجابة 30 بدلًا من 25%، أو حساب 15% دون اعتبار أنّ 120 هي الكلّ. معلومات إضافية: سؤال واحد فيه خانتان للإكمال، إحداهما بالنسبة المئوية والأخرى بالكمية. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-005/q1",
+          "questionType": "performance",
+          "questionText": "في بلدة \"الأفق\" يتطوّع 120 طالبًا وطالبة في أماكن مختلفة في المجتمع المحلي. يعرض الجدول التالي جزءًا من توزيع الطلاب المتطوّعين على الأماكن المختلفة: أكملوا الجدول.",
+          "answers": null,
+          "correctAnswers": [
+            {
+              "stepId": "النسبة المئوية للمتطوعين في جمعية حماية الطبيعة",
+              "response": "25"
+            },
+            {
+              "stepId": "عدد المتطوعين في جمعية الرفق بالحيوان",
+              "response": "18"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-006/",
+      "title": "علب جبنة الكوتج",
+      "informationToBot": "هدف البند: ثلاثة بنود: إيجاد الكلّ، والتوسّع إلى كمية أكبر، والمقارنة بين منتجين. ما الذي يُتوقَّع أن يفهمه الطالب/يتدرّب عليه: البند أ: 12.5 غرام دهون هي 5% - كمية الجبنة في العلبة. البند ب: كمية الجبنة في 5 علب. البند ج: مقارنة حجم علبة الشركة ب (9% دهون، 18 غرامًا) بعلبة الشركة أ. معطيات السؤال: علبة جبنة كوتج من الشركة أ: 5% دهون، وهي 12.5 غرام من الدهون. علبة الشركة ب: 9% دهون، وهي 18 غرامًا من الدهون. اشترى خالد 5 علب من الشركة أ وسكبها في وعاء. اتجاهات التفكير والاستراتيجيات: أ: جدول التناسب، 12.5 مقابل 5% وx مقابل 100%، النتيجة 250 غرامًا. ب: 5 ضرب 250 يساوي 1,250 غرامًا. ج: الشركة ب - 18 قسمة 9% تعطي علبة وزنها 200 غرام، أصغر من 250 غرامًا. هذه المرة لا يوجد تلميح في البنود. أخطاء شائعة: ب: نسيان الضرب في 5. ج: خطأ في المقارنة بين حجم العلبة ونسبة الدهون - نسبة أعلى لا تدل على علبة أكبر. معلومات إضافية: ثلاثة بنود، كلها اختيار من 4 خيارات. لقطة شاشة: لم تُرفق.",
+      "contentType": "practice",
+      "mediaFormat": "interactive-content",
+      "questions": [
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-006/q1",
+          "questionType": "choice",
+          "questionText": "تحتوي علبة جبنة كوتج على دهون بنسبة 5%، أي 12.5 غرام من الدهون. أ. ما كمية جبنة الكوتج في هذه العلبة؟",
+          "answers": [
+            "125 غرامًا",
+            "150 غرامًا",
+            "200 غرام",
+            "250 غرامًا"
+          ],
+          "correctAnswers": [
+            "250 غرامًا"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-006/q2",
+          "questionType": "choice",
+          "questionText": "اشترى خالد 5 علب من جبنة الكوتج وأفرغها في وعاء كبير لتحضير فطيرة. ب. ما كمية جبنة الكوتج في الوعاء؟",
+          "answers": [
+            "500 غرام",
+            "750 غرامًا",
+            "1,000 غرام",
+            "1,250 غرامًا"
+          ],
+          "correctAnswers": [
+            "1,250 غرامًا"
+          ]
+        },
+        {
+          "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-006/q3",
+          "questionType": "choice",
+          "questionText": "تحتوي علبة جبنة كوتج من الشركة أ على 5% دهون، أي 12.5 غرام من الدهون. تحتوي علبة جبنة كوتج من الشركة ب على 9% دهون، أي 18 غرامًا من الدهون. ج. العلبة التي فيها 9% دهون، مقارنةً بالعلبة التي استخدمها خالد وفيها 5% دهون، هي:",
+          "answers": [
+            "أكبر",
+            "أصغر",
+            "بالحجم نفسه",
+            "لا يمكن معرفة ذلك"
+          ],
+          "correctAnswers": [
+            "أصغر"
+          ]
+        }
+      ]
+    }
+  ]
+}
