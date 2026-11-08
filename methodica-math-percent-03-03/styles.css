@@ -6572,3 +6572,7 @@ mjx-container {
    layers and trap them under the feedback popup. Drop it while zoomed. */
 #s51.embed-zoomed .s31-q-left,
 #s52.embed-zoomed .s31-q-left { animation: none !important; transform: none !important; opacity: 1 !important; }
+
+/* Arabic localization: taller line boxes for titles so dots and diacritics are not clipped */
+.carousel-title, #s6b .carousel-title { line-height: 1.6; padding-bottom: 6px; overflow: visible; }
+.carousel-header { overflow: visible; }

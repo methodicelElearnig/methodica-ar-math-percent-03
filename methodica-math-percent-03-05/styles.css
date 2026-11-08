@@ -6292,3 +6292,7 @@ mjx-container {
 @media (prefers-reduced-motion: reduce) {
   #s63.active .q2-ask, #s63.active .s31-fill-row { animation: none; }
 }
+
+/* Arabic localization: taller line boxes for titles so dots and diacritics are not clipped */
+.carousel-title, #s6b .carousel-title { line-height: 1.6; padding-bottom: 6px; overflow: visible; }
+.carousel-header { overflow: visible; }

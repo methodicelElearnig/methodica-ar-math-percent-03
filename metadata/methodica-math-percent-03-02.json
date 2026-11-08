@@ -31,7 +31,7 @@
         {
           "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-001/q1",
           "questionType": "numeric",
-          "questionText": "75% من عدد معيّن تساوي 150. أوجدوا الكلّ:",
+          "questionText": "‎75% من عدد معيّن تساوي 150. أوجدوا الكلّ:",
           "answers": [],
           "correctAnswers": [
             200
@@ -49,7 +49,7 @@
         {
           "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-002/q1",
           "questionType": "numeric",
-          "questionText": "في مطعم البيتزا \"الياسمين\" وصل يوم الخميس 22 طلبًا لبيتزا عائلية حتى الساعة 18:00. كانت هذه الطلبات 50% من طلبات البيتزا العائلية التي وصلت في تلك الأمسية. كم طلبًا وصل في تلك الأمسية؟ (طلبات)",
+          "questionText": "في مطعم البيتزا \"فلورنتين\" وصل يوم الخميس حتى الساعة 18:00 22 طلبًا لبيتزا عائلية. كانت هذه الطلبات 50% من طلبات البيتزا العائلية التي وصلت في تلك الأمسية. كم طلبًا وصل في تلك الأمسية؟ (طلبات)",
           "answers": [],
           "correctAnswers": [
             44
@@ -137,7 +137,7 @@
         {
           "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-006/q1",
           "questionType": "choice",
-          "questionText": "تحتوي علبة جبنة كوتج على دهون بنسبة 5%، أي 12.5 غرام من الدهون. أ. ما كمية جبنة الكوتج في هذه العلبة؟",
+          "questionText": "تحتوي علبة جبنة كوتج على دهون بنسبة ‎5%، أي 12.5 غرام من الدهون. أ. ما كمية جبنة الكوتج في هذه العلبة؟",
           "answers": [
             "125 غرامًا",
             "150 غرامًا",
@@ -165,7 +165,7 @@
         {
           "questionId": "https://lomdot.education.gov.il/metodica/720active/math/percent/03/methodica-math-percent-03-02/methodica-math-percent-03-02-006/q3",
           "questionType": "choice",
-          "questionText": "تحتوي علبة جبنة كوتج من الشركة أ على 5% دهون، أي 12.5 غرام من الدهون. تحتوي علبة جبنة كوتج من الشركة ب على 9% دهون، أي 18 غرامًا من الدهون. ج. العلبة التي فيها 9% دهون، مقارنةً بالعلبة التي استخدمها خالد وفيها 5% دهون، هي:",
+          "questionText": "تحتوي علبة جبنة كوتج من الشركة أ على ‎5% دهون، أي 12.5 غرام من الدهون. تحتوي علبة جبنة كوتج من الشركة ب على ‎9% دهون، أي 18 غرامًا من الدهون. ج. العلبة التي فيها ‎9% دهون، مقارنةً بالعلبة التي استخدمها خالد وفيها ‎5% دهون، هي:",
           "answers": [
             "أكبر",
             "أصغر",

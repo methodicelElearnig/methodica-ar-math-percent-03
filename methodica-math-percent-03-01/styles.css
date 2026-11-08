@@ -8828,3 +8828,7 @@ mjx-container {
 .eq-chain mjx-container[display="true"] {
   text-align: left !important;
 }
+
+/* Arabic localization: taller line boxes for titles so dots and diacritics are not clipped */
+.carousel-title, #s6b .carousel-title { line-height: 1.6; padding-bottom: 6px; overflow: visible; }
+.carousel-header { overflow: visible; }
